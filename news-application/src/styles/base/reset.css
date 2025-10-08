@@ -1,0 +1,55 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  display: flex;
+  width: 100dvw;
+  height: 100dvh;
+  user-select: none;
+  color: rgb(255, 255, 255);
+  font-size: 0.875rem;
+  align-items: stretch;
+  flex-flow: row nowrap;
+  justify-content: stretch;
+  font-family: "MS Sans Serif";
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    #f0f0f0 0%,
+    #d8d8d8 20%,
+    #c0c0c0 80%,
+    #a8a8a8 100%
+  );
+  overflow: hidden;
+}
+
+button {
+  border: none;
+  color: inherit;
+  display: block;
+  font: inherit;
+  background: unset;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: none;
+}
+
+.react-draggable {
+  cursor: grab;
+}
+
+.react-draggable.react-draggable-dragging {
+  cursor: grabbing;
+}
