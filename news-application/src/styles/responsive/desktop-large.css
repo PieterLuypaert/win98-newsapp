@@ -1,0 +1,15 @@
+@media (min-width: 1200px) {
+  .desktop {
+    padding: 2rem;
+  }
+
+  .desktop .programs {
+    grid-template-columns: repeat(auto-fit, 6rem);
+    grid-auto-rows: 6rem;
+    gap: 1.5rem;
+  }
+
+  .portfolio-content .projects-section .project-item {
+    gap: 3rem;
+  }
+}
