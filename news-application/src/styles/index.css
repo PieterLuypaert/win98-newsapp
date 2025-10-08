@@ -1,0 +1,52 @@
+/* Main CSS entry point - imports all other CSS files */
+
+/* Base styles */
+@import "./base/variables.css";
+@import "./base/fonts.css";
+@import "./base/reset.css";
+
+/* Layout components */
+@import "./layout/desktop.css";
+@import "./layout/taskbar.css";
+@import "./layout/window.css";
+
+/* UI components */
+@import "./components/buttons.css";
+
+/* Content styles */
+
+/* opmaak van de apps komt hier te staan xd */
+
+/* Media queries */
+@import "./responsive/mobile.css";
+@import "./responsive/desktop-large.css";
+
+
+@media (max-width: 900px) {
+  .desktop {
+    background: url("/window-mobile.jpg") center/cover no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+  }
+}
+@media (max-width: 600px) {
+  .desktop {
+    background: url("/window-mobile.jpg") center/cover no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+  }
+}
+@media (max-width: 480px) {
+  .desktop {
+    background: url("/window-mobile.jpg") center/cover no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+  }
+}
+@media (max-width: 360px) {
+  .desktop {
+    background: url("/window-mobile.jpg") center/cover no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+  }
+}
