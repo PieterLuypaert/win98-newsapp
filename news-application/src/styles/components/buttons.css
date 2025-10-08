@@ -1,0 +1,113 @@
+/* Windows 98 Button Base Styles */
+.win98-button,
+button.button,
+.social-button,
+.portfolio-content .projects-section .project-item .project-links .button,
+.portfolio-content
+  .profile-section
+  .profile-header
+  .profile-info
+  .social-links
+  .social-button,
+.content .actions .button {
+  font-family: var(--font-family-primary);
+  font-size: 0.92rem;
+  color: var(--color-black);
+  background: var(--color-window-bg);
+  border: 2px outset var(--color-white);
+  border-right-color: var(--color-gray-dark);
+  border-bottom-color: var(--color-gray-dark);
+  border-radius: 0;
+  padding: 2px 18px;
+  min-width: 56px;
+  min-height: 1.3rem;
+  box-shadow: none;
+  margin: 0.12rem 0.18rem 0.12rem 0;
+  cursor: pointer;
+  transition: none;
+  outline: none;
+  text-align: center;
+  text-shadow: none;
+  line-height: 1.1;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+/* Active State */
+.win98-button:active,
+button.button:active,
+.social-button:active,
+.portfolio-content
+  .projects-section
+  .project-item
+  .project-links
+  .button:active,
+.portfolio-content
+  .profile-section
+  .profile-header
+  .profile-info
+  .social-links
+  .social-button:active,
+.content .actions .button:active {
+  border: 2px inset var(--color-white);
+  border-right-color: var(--color-gray-dark);
+  border-bottom-color: var(--color-gray-dark);
+  background: #b0b0b0;
+}
+
+/* Focus State */
+.win98-button:focus,
+button.button:focus,
+.social-button:focus,
+.portfolio-content .projects-section .project-item .project-links .button:focus,
+.portfolio-content
+  .profile-section
+  .profile-header
+  .profile-info
+  .social-links
+  .social-button:focus,
+.content .actions .button:focus {
+  outline: 1px dotted var(--color-black);
+  outline-offset: -4px;
+}
+
+/* Hover State */
+.win98-button:hover,
+button.button:hover,
+.social-button:hover,
+.portfolio-content .projects-section .project-item .project-links .button:hover,
+.portfolio-content
+  .profile-section
+  .profile-header
+  .profile-info
+  .social-links
+  .social-button:hover,
+.content .actions .button:hover {
+  background: #d0d0d0;
+}
+
+/* Specific overrides for social buttons to match exact Windows 98 style */
+.portfolio-content
+  .profile-section
+  .profile-header
+  .profile-info
+  .social-links
+  .social-button {
+  min-width: auto;
+  padding: 2px 12px;
+  font-size: 0.75rem;
+  margin: 0.12rem 0.25rem 0.12rem 0;
+}
+
+/* Remove conflicting styles */
+.portfolio-content
+  .profile-section
+  .profile-header
+  .profile-info
+  .social-links
+  .social-button {
+  background: var(--color-window-bg) !important;
+  border: 2px outset var(--color-white) !important;
+  border-right-color: var(--color-gray-dark) !important;
+  border-bottom-color: var(--color-gray-dark) !important;
+}
