@@ -9,7 +9,6 @@ export const Category = ({
 }) => {
   const handleCategoryClick = () => {
     if (isNavigationMode && slug) {
-      console.log(`Navigate to /categories/${slug}`);
     }
   };
 
