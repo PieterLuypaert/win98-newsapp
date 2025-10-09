@@ -1,4 +1,4 @@
-import "../styles/layout/window.css";
+import "../window/window.css";
 import {
   Dialog,
   DialogClose,
