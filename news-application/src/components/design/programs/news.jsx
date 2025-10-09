@@ -1,5 +1,5 @@
 import React from "react";
-import { Window } from "../components/window";
+import { Window } from "../../window";
 
 export const news = () => {
   return (

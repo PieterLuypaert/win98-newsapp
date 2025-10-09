@@ -1,5 +1,5 @@
 import "../styles/layout/desktop.css";
-import { ProgramGrid } from "./desktop/ProgramGrid";
+import { ProgramGrid } from "./design/desktop/ProgramGrid";
 
 export const Desktop = () => {
   return (

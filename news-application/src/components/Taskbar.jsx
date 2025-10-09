@@ -1,9 +1,9 @@
 import "../styles/layout/taskbar.css";
-import { StartButton } from "./taskbar/StartButton";
-import { Separator } from "./taskbar/Separator";
-import { FullscreenButton } from "./taskbar/FullscreenButton";
-import { TaskbarTabs } from "./taskbar/TaskbarTabs";
-import { TaskbarTime } from "./taskbar/TaskbarTime";
+import { StartButton } from "./design/startButton/StartButton";
+import { Separator } from "./design/seperator/Separator";
+import { FullscreenButton } from "./design/fullscreenButton/FullscreenButton";
+import { TaskbarTabs } from "./design/taskbar/TaskbarTabs";
+import { TaskbarTime } from "./design/TaskbarTime/TaskbarTime";
 
 export const Taskbar = ({
   time,

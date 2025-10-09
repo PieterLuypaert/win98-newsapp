@@ -1,4 +1,4 @@
-import { news as News } from "../../programs/news";
+import { news as News } from "../programs/news";
 
 export const ProgramGrid = () => {
   return (
