@@ -4,6 +4,24 @@
   overflow: auto;
 }
 
+.news-search {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 2px inset var(--color-window-bg);
+  background: var(--color-window-bg);
+  font-family: var(--font-family);
+  font-size: 1rem;
+  color: var(--color-text);
+  box-sizing: border-box;
+  outline: none;
+  margin-bottom: var(--spacing-md);
+}
+
+.news-search:focus {
+  border: 2px outset var(--color-window-bg);
+  background: var(--color-window-active-bg);
+}
+
 .categories-navigation {
   display: flex;
   gap: var(--spacing-sm);

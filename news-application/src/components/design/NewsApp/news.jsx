@@ -26,6 +26,11 @@ export const news = () => {
       }
     >
       <div className="news-content">
+        <input
+          type="text"
+          className="news-search"
+          placeholder="Search articles..."
+        />
         <div className="categories-navigation">
           {categories.map((category) => (
             <Category
