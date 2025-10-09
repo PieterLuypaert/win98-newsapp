@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Window } from "../window/window";
+import { Category } from "../Category/Category";
+import categoriesData from "../../../data/categories.json";
+import "./news.css";
 
 export const news = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    setCategories(categoriesData);
+  }, []);
+
   return (
     <Window
       title="The latest news"
@@ -15,8 +24,18 @@ export const news = () => {
           <span className="name">News</span>
         </div>
       }
-
     >
+      <div className="news-content">
+        <div className="categories-navigation">
+          {categories.map((category) => (
+            <Category
+              key={category.id}
+              title={category.title}
+              slug={category.slug}
+            />
+          ))}
+        </div>
+      </div>
     </Window>
   );
 };
