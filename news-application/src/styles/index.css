@@ -12,6 +12,9 @@
 
 /* UI components */
 @import "../components/design/button/buttons.css";
+@import "../components/design/seperator/Seperator.css";
+@import "../components/design/startButton/StartButton.css";
+@import "../components/design/programs/programs.css";
 
 /* Content styles */
 

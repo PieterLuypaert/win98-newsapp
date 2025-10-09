@@ -1,4 +1,4 @@
-import "../styles/layout/desktop.css";
+import "../components/design/programs/programs.css";
 import { ProgramGrid } from "./design/ProgramGrid/ProgramGrid";
 
 export const Desktop = () => {
