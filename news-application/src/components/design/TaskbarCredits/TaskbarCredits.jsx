@@ -1,4 +1,3 @@
-import { TaskbarTab } from "./TaskbarTab";
 
 export const TaskbarTabs = () => {
   const tabs = [
@@ -10,7 +9,9 @@ export const TaskbarTabs = () => {
   return (
     <div className="credits">
       {tabs.map((tab, index) => (
-        <TaskbarTab key={index} tab={tab} />
+        <div key={index} className="tab">
+          {tab.name}
+        </div>
       ))}
     </div>
   );
