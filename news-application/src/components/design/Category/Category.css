@@ -15,11 +15,6 @@
   transition: var(--transition-fast);
 }
 
-.news-category.navigation-mode:hover {
-  border: 2px inset var(--color-window-bg);
-  box-shadow: var(--shadow-window-button-active);
-}
-
 .news-category.navigation-mode:active {
   border: 2px inset var(--color-window-bg);
   box-shadow: var(--shadow-window-button-active);
