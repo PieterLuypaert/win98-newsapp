@@ -4,7 +4,6 @@ import "./Category.css";
 export const Category = ({
   title,
   slug,
-  articles = [],
   isNavigationMode = true,
 }) => {
   const handleCategoryClick = () => {
