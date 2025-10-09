@@ -3,6 +3,7 @@ import { Window } from "../window/window";
 import { Category } from "../Category/Category";
 import categoriesData from "../../../data/categories.json";
 import "./news.css";
+import Searchbar from "../Searchbar/Searchbar";
 
 export const news = () => {
   const [categories, setCategories] = useState([]);
@@ -25,12 +26,7 @@ export const news = () => {
         </div>
       }
     >
-      <div className="news-content">
-        <input
-          type="text"
-          className="news-search"
-          placeholder="Search articles..."
-        />
+      <Searchbar />
         <div className="categories-navigation">
           {categories.map((category) => (
             <Category
@@ -40,7 +36,6 @@ export const news = () => {
             />
           ))}
         </div>
-      </div>
     </Window>
   );
 };
