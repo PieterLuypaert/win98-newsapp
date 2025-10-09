@@ -22,21 +22,6 @@ export const Category = ({
         <h2 className="category-title">{title}</h2>
         <div className="category-divider"></div>
       </div>
-      {!isNavigationMode && (
-        <div className="category-content">
-          {articles.length > 0 ? (
-            articles.map((article, index) => (
-              <div key={index} className="article-item">
-                <h3 className="article-title">{article.title}</h3>
-                <p className="article-summary">{article.summary}</p>
-                <span className="article-date">{article.date}</span>
-              </div>
-            ))
-          ) : (
-            <p className="no-articles">No articles available</p>
-          )}
-        </div>
-      )}
     </div>
   );
 };
