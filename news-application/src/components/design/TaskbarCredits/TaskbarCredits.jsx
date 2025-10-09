@@ -2,7 +2,7 @@
 export const TaskbarTabs = () => {
   const tabs = [
     {
-      name: "Developed by Pieter Luypaert",
+      name: "Developed by Pieter Luypaert :)",
     },
   ];
 
