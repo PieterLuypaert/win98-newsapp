@@ -17,10 +17,7 @@
   margin-bottom: var(--spacing-md);
 }
 
-.news-search:focus {
-  border: 2px outset var(--color-window-bg);
-  background: var(--color-window-active-bg);
-}
+
 
 .categories-navigation {
   display: flex;
