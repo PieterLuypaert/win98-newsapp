@@ -1,0 +1,23 @@
+
+.credits {
+  display: flex;
+  min-width: 4.5rem;
+  min-height: 1.75rem;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: linear-gradient(
+    to bottom,
+    #e8e8e8 0%,
+    #d8d8d8 20%,
+    #c8c8c8 80%,
+    #b8b8b8 100%
+  );
+  border: 1px solid #999;
+  border-bottom: 2px solid #666;
+  border-radius: 3px 3px 0 0;
+  transition: all var(--transition-fast);
+  font-size: 0.75rem;
+  position: relative;
+  margin-bottom: -1px;
+}

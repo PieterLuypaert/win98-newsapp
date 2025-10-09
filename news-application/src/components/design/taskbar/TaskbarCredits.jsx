@@ -8,7 +8,7 @@ export const TaskbarTabs = () => {
   ];
 
   return (
-    <div className="tabs">
+    <div className="credits">
       {tabs.map((tab, index) => (
         <TaskbarTab key={index} tab={tab} />
       ))}
