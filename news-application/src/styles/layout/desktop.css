@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   position: relative;
-  /* background: url("/background.jpg") center/cover no-repeat; */
+  background: url("/background.jpg") center/cover no-repeat;
   background-size: cover;
 }
 
