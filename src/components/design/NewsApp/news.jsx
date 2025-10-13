@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Window } from "../window/window";
 import { Category } from "../Category/Category";
 import categoriesData from "../../../data/categories.json";
-import "./news.css";
 import Searchbar from "../Searchbar/Searchbar";
+import "./news.css";
 
 export const news = () => {
   const [categories, setCategories] = useState([]);
@@ -27,15 +27,15 @@ export const news = () => {
       }
     >
       <Searchbar />
-        <div className="categories-navigation">
-          {categories.map((category) => (
-            <Category
-              key={category.id}
-              title={category.title}
-              slug={category.slug}
-            />
-          ))}
-        </div>
+      <div className="categories-navigation">
+        {categories.map((category) => (
+          <Category
+            key={category.id}
+            title={category.title}
+            slug={category.slug}
+          />
+        ))}
+      </div>
     </Window>
   );
 };
