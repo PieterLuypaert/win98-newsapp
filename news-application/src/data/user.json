@@ -1,0 +1,16 @@
+{
+  "firstName": "Brayden",
+  "lastName": "Hudson",
+  "avatar": "https://randomuser.me/api/portraits/men/23.jpg",
+  "email": "brayden.may@example.com",
+  "dateOfBirth": "1993-07-20T09:44:18.674Z",
+  "address": {
+    "street": "22nd Ave",
+    "number": "3946",
+    "city": "Wollongong",
+    "state": "New South Wales",
+    "zipCode": "2520"
+  },
+  "phone": "02-8006-7481",
+  "username": "brayden.hudson"
+}
