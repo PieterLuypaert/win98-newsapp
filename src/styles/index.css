@@ -1,4 +1,3 @@
-/* Main CSS entry point - imports all other CSS files */
 
 /* Base styles */
 @import "./base/variables.css";
