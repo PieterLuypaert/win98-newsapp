@@ -1,0 +1,89 @@
+.article-card {
+  background: var(--color-white);
+  border: 2px solid;
+  border-color: var(--color-window-border-dark) var(--color-window-border-light)
+    var(--color-window-border-light) var(--color-window-border-dark);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+  transition: var(--transition-fast);
+}
+
+.article-card:hover {
+  border-color: var(--color-navy);
+  background: var(--color-gray-light);
+}
+
+.article-card:active {
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+}
+
+.article-card-headline {
+  border-color: var(--color-navy);
+  border-width: 3px;
+  background: var(--color-gray-light);
+}
+
+.article-card-headline .article-card-image {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  margin-bottom: var(--spacing-lg);
+  border: 1px solid var(--color-window-border-dark);
+}
+
+.article-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-navy);
+  display: block;
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-family-primary);
+}
+
+.article-card-headline .article-card-title {
+  font-size: 24px;
+}
+
+.article-card-title:hover {
+  text-decoration: underline;
+}
+
+.article-card-meta {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  font-size: 11px;
+  color: var(--color-gray-darker);
+  font-family: var(--font-family-primary);
+}
+
+.article-card-categories {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.article-card-category {
+  background: var(--color-window-bg);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid;
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+  color: var(--color-black);
+  cursor: pointer;
+  font-family: var(--font-family-primary);
+  transition: var(--transition-fast);
+}
+
+.article-card-category:hover {
+  background: var(--color-gray-medium);
+}
+
+.article-card-intro {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  font-family: var(--font-family-primary);
+  color: var(--color-black);
+}
