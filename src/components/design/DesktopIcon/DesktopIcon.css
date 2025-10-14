@@ -1,0 +1,68 @@
+.desktop-icon {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  user-select: none;
+  transition: var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.desktop-icon:hover,
+.desktop-icon:active {
+  background: rgba(0, 0, 128, 0.2);
+}
+
+.desktop-icon:active .desktop-icon-image {
+  transform: scale(0.95);
+}
+
+.desktop-icon-image {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  transition: var(--transition-fast);
+}
+
+.desktop-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+.desktop-icon-label {
+  color: var(--color-white);
+  font-size: 11px;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-family: var(--font-family-primary);
+  word-wrap: break-word;
+  max-width: 100%;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-icon {
+    width: 90px;
+    padding: var(--spacing-md);
+  }
+
+  .desktop-icon-image {
+    width: 56px;
+    height: 56px;
+    font-size: 40px;
+  }
+
+  .desktop-icon-label {
+    font-size: 12px;
+  }
+}
