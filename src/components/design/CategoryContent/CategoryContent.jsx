@@ -9,15 +9,34 @@ import "./CategoryContent.css";
 export const CategoryContent = ({ categorySlug }) => {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState(categorySlug);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => setActiveCategory(categorySlug), [categorySlug]);
 
   const category = categoriesData.find((cat) => cat.slug === activeCategory);
-  const articles = newsData.filter(
+
+  const searchArticles = (articles, term) => {
+    if (!term) return articles;
+
+    const lowerTerm = term.toLowerCase();
+    return articles.filter((article) => {
+      const titleMatch = article.title.toLowerCase().includes(lowerTerm);
+      const introMatch = article.intro.toLowerCase().includes(lowerTerm);
+      const tagsMatch = article.tags.some((tag) =>
+        tag.title.toLowerCase().includes(lowerTerm)
+      );
+
+      return titleMatch || introMatch || tagsMatch;
+    });
+  };
+
+  const filteredByCategory = newsData.filter(
     (article) =>
       !activeCategory ||
       article.categories.some((cat) => cat.slug === activeCategory)
   );
+
+  const articles = searchArticles(filteredByCategory, searchTerm);
 
   if (activeCategory && !category) {
     return <div className="category-error">Category not found</div>;
@@ -29,6 +48,10 @@ export const CategoryContent = ({ categorySlug }) => {
 
   const handleCategoryClick = (slug) => {
     navigate(slug ? `/category/${slug}` : "/news");
+  };
+
+  const handleSearch = (term) => {
+    setSearchTerm(term);
   };
 
   const renderSection = (title, filtered, isHeadline = false) =>
@@ -55,10 +78,26 @@ export const CategoryContent = ({ categorySlug }) => {
       <NewsNavigation
         activeCategory={activeCategory}
         onCategoryClick={handleCategoryClick}
+        onSearch={handleSearch}
       />
-      {renderSection("Featured", headlines, true)}
-      {renderSection("All Articles", regularNews)}
-      {!articles.length && (
+      {searchTerm && !articles.length ? (
+        <div className="category-empty">
+          No articles found for "{searchTerm}" in this category.
+        </div>
+      ) : (
+        <>
+          {renderSection(
+            searchTerm ? `Search Results (${headlines.length})` : "Featured",
+            headlines,
+            true
+          )}
+          {renderSection(
+            searchTerm ? "Other Results" : "All Articles",
+            regularNews
+          )}
+        </>
+      )}
+      {!searchTerm && !articles.length && (
         <div className="category-empty">
           No articles found in this category.
         </div>
