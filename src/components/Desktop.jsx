@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router";
 import "../styles/layout/programs.css";
 import { DesktopIcon } from "./design/DesktopIcon/DesktopIcon";
@@ -16,9 +16,6 @@ export const Desktop = ({
 }) => {
   const navigate = useNavigate();
   const [windows, setWindows] = useState([]);
-  const prevCategorySlugRef = useRef(null);
-  const prevArticleSlugRef = useRef(null);
-  const isInitialMount = useRef(true);
 
   const openWindowHandler = (type, data = {}) => {
     const newWindow = {
@@ -29,79 +26,65 @@ export const Desktop = ({
     setWindows((prev) => [...prev, newWindow]);
   };
 
-  const closeWindow = (id, shouldNavigate = true) => {
-    const windowToClose = windows.find((w) => w.id === id);
-    setWindows(windows.filter((w) => w.id !== id));
+  const closeWindow = useCallback(
+    (id) => {
+      setWindows((prev) => {
+        const windowToClose = prev.find((w) => w.id === id);
+        const filtered = prev.filter((w) => w.id !== id);
 
-    if (shouldNavigate && windowToClose) {
-      if (windowToClose.type === "article" && articleSlug) {
-        navigate("/news");
-      } else if (windowToClose.type === "category" && categorySlug) {
-        navigate("/news");
-      }
-    }
-  };
+        // Alleen navigeren als dit het laatste venster van dat type is
+        if (windowToClose) {
+          const hasOtherSameType = filtered.some(
+            (w) => w.type === windowToClose.type
+          );
+          if (!hasOtherSameType) {
+            if (
+              windowToClose.type === "article" ||
+              windowToClose.type === "category"
+            ) {
+              setTimeout(() => navigate("/news"), 0);
+            }
+          }
+        }
+
+        return filtered;
+      });
+    },
+    [navigate]
+  );
 
   useEffect(() => {
     if (!openWindow) return;
 
-    if (openWindow === "news" && !windows.some((w) => w.type === "news")) {
-      openWindowHandler("news");
-    } else if (openWindow === "category" && categorySlug) {
-      const hasExistingWindow = windows.some(
-        (w) => w.type === "category" && w.categorySlug === categorySlug
-      );
+    setWindows((prevWindows) => {
+      if (openWindow === "news") {
+        const hasNewsWindow = prevWindows.some((w) => w.type === "news");
+        if (hasNewsWindow) return prevWindows;
+        return [...prevWindows, { id: Date.now(), type: "news" }];
+      } else if (openWindow === "category" && categorySlug) {
+        const hasMatchingWindow = prevWindows.some(
+          (w) => w.type === "category" && w.categorySlug === categorySlug
+        );
+        if (hasMatchingWindow) return prevWindows;
 
-      if (!hasExistingWindow) {
-        const slugChanged =
-          prevCategorySlugRef.current !== null &&
-          prevCategorySlugRef.current !== categorySlug;
+        const filtered = prevWindows.filter((w) => w.type !== "category");
+        return [
+          ...filtered,
+          { id: Date.now(), type: "category", categorySlug },
+        ];
+      } else if (openWindow === "article" && articleSlug) {
+        const hasMatchingWindow = prevWindows.some(
+          (w) => w.type === "article" && w.articleSlug === articleSlug
+        );
+        if (hasMatchingWindow) return prevWindows;
 
-        // Sluit oude category window en open nieuwe in één update
-        setWindows((prev) => {
-          const filtered = slugChanged
-            ? prev.filter((w) => w.type !== "category")
-            : prev;
-          return [
-            ...filtered,
-            {
-              id: Date.now(),
-              type: "category",
-              categorySlug,
-            },
-          ];
-        });
-
-        prevCategorySlugRef.current = categorySlug;
+        // Filter oude article vensters en voeg nieuwe toe
+        const filtered = prevWindows.filter((w) => w.type !== "article");
+        return [...filtered, { id: Date.now(), type: "article", articleSlug }];
       }
-    } else if (openWindow === "article" && articleSlug) {
-      const hasExistingWindow = windows.some(
-        (w) => w.type === "article" && w.articleSlug === articleSlug
-      );
 
-      if (!hasExistingWindow) {
-        const slugChanged =
-          prevArticleSlugRef.current !== null &&
-          prevArticleSlugRef.current !== articleSlug;
-
-        // Sluit oude article window en open nieuwe in één update
-        setWindows((prev) => {
-          const filtered = slugChanged
-            ? prev.filter((w) => w.type !== "article")
-            : prev;
-          return [
-            ...filtered,
-            {
-              id: Date.now(),
-              type: "article",
-              articleSlug,
-            },
-          ];
-        });
-
-        prevArticleSlugRef.current = articleSlug;
-      }
-    }
+      return prevWindows;
+    });
   }, [openWindow, categorySlug, articleSlug]);
 
   return (
@@ -119,7 +102,7 @@ export const Desktop = ({
 
       {windows.map((window) => (
         <Window
-          key={window.id}
+          key={`${window.type}-${window.id}`}
           title={
             window.type === "news"
               ? "News Explorer - Home"

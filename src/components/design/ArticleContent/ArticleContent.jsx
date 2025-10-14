@@ -47,6 +47,14 @@ export const ArticleContent = ({ articleSlug }) => {
     }
   }, []);
 
+  // Reset scroll when article changes
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+    }
+    setScrollProgress(0);
+  }, [articleSlug]);
+
   if (!article) {
     return (
       <div className="article-error">
