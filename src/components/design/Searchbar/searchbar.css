@@ -1,0 +1,93 @@
+.search-bar {
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: center;
+  margin-left: auto;
+}
+
+.search-bar-input {
+  background: var(--color-white);
+  border: 2px solid;
+  border-color: var(--color-window-border-dark) var(--color-window-border-light)
+    var(--color-window-border-light) var(--color-window-border-dark);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-family-primary);
+  font-size: 11px;
+  color: var(--color-black);
+  min-width: 200px;
+  height: 26px;
+}
+
+.search-bar-input:focus {
+  outline: 1px dotted var(--color-black);
+  outline-offset: -4px;
+}
+
+.search-bar-input::placeholder {
+  color: var(--color-gray-dark);
+}
+
+.search-bar-clear {
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+  padding: 0;
+  width: 26px;
+  height: 26px;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.search-bar-clear:hover {
+  background: var(--color-gray-light);
+}
+
+.search-bar-clear:active {
+  border-color: var(--color-window-border-dark) var(--color-window-border-light)
+    var(--color-window-border-light) var(--color-window-border-dark);
+}
+
+.search-bar-button {
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-family: var(--font-family-primary);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--color-black);
+  height: 26px;
+  white-space: nowrap;
+}
+
+.search-bar-button:hover {
+  background: var(--color-gray-light);
+}
+
+.search-bar-button:active {
+  border-color: var(--color-window-border-dark) var(--color-window-border-light)
+    var(--color-window-border-light) var(--color-window-border-dark);
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    width: 100%;
+    margin-left: 0;
+    margin-top: var(--spacing-md);
+  }
+
+  .search-bar-input {
+    flex: 1;
+    min-width: 0;
+  }
+}
