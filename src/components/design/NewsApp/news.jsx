@@ -5,7 +5,7 @@ import categoriesData from "../../../data/categories.json";
 import Searchbar from "../Searchbar/Searchbar";
 import "./news.css";
 
-export const news = () => {
+export const news = ({ isOpen = false }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -15,6 +15,7 @@ export const news = () => {
   return (
     <Window
       title="The latest news"
+      isOpen={isOpen}
       trigger={
         <div className="program">
           <img

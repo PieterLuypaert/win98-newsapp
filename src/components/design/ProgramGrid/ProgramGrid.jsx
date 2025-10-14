@@ -1,9 +1,9 @@
 import { news as News } from "../NewsApp/news";
 
-export const ProgramGrid = () => {
+export const ProgramGrid = ({ openWindow }) => {
   return (
     <div className="programs">
-      <News />
+      <News isOpen={openWindow === "news"} />
     </div>
   );
 };

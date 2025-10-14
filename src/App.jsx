@@ -1,6 +1,6 @@
 import "./styles/index.css";
 import React, { useState, useEffect } from "react";
-import { Desktop } from "./components/Desktop";
+import { Outlet } from "react-router";
 import { Taskbar } from "./components/Taskbar";
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div className="app">
-      <Desktop />
+      <Outlet />
       <Taskbar
         time={formattedTime}
         showFullscreenButton={true}
