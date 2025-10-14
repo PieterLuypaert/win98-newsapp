@@ -197,6 +197,7 @@
   border: 2px solid;
   border-color: var(--color-window-border-light) var(--color-window-border-dark)
     var(--color-window-border-dark) var(--color-window-border-light);
+  margin-bottom: var(--spacing-2xl);
   position: sticky;
   top: 0;
   align-self: start;
@@ -291,6 +292,14 @@
   font-family: var(--font-family-primary);
 }
 
+.article-sidebar {
+  position: sticky;
+  top: var(--spacing-md);
+  align-self: start;
+  max-height: calc(100vh - var(--spacing-3xl));
+  overflow-y: auto;
+}
+
 @media (max-width: 768px) {
   .article-content {
     grid-template-columns: 1fr;
@@ -308,6 +317,8 @@
 
   .article-sidebar {
     order: 1;
+    position: static;
+    max-height: none;
   }
 
   .author-card {
