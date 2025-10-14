@@ -10,4 +10,16 @@ export const routes = [
     name: "News",
     title: "News",
   },
+
+  {
+    path: "/category/:categorySlug",
+    name: "Category",
+    title: "Category",
+  },
+
+  {
+    path: "/article/:articleSlug",
+    name: "Article",
+    title: "Article",
+  },
 ];

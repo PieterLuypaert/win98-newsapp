@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
 import { TrendingList } from "../TrendingList/TrendingList";
@@ -6,7 +7,8 @@ import newsData from "../../../data/news.json";
 import trendingData from "../../../data/trending.json";
 import "./HomeContent.css";
 
-export const HomeContent = ({ openWindow }) => {
+export const HomeContent = () => {
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState(null);
 
   const filteredNews = activeCategory
@@ -19,13 +21,11 @@ export const HomeContent = ({ openWindow }) => {
   const regularNews = filteredNews.filter((article) => !article.isHeadline);
 
   const handleArticleClick = (slug) => {
-    if (openWindow) {
-      openWindow("article", { articleSlug: slug });
-    }
+    navigate(`/article/${slug}`);
   };
 
   const handleCategoryClick = (slug) => {
-    setActiveCategory(slug);
+    navigate(`/category/${slug}`);
   };
 
   return (
