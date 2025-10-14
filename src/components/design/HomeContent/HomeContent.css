@@ -10,7 +10,6 @@
   grid-template-columns: 1fr 300px;
   gap: var(--spacing-3xl);
   flex: 1;
-  overflow: hidden;
   min-height: 0;
 }
 
@@ -18,10 +17,11 @@
   min-width: 0;
   overflow-y: auto;
   padding-right: var(--spacing-md);
+  max-height: 100%;
 }
 
 .home-content-sidebar {
-  overflow-y: auto;
+  max-height: 100%;
 }
 
 .home-section {

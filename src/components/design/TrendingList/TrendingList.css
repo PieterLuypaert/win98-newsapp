@@ -4,6 +4,9 @@
   border-color: var(--color-window-border-dark) var(--color-window-border-light)
     var(--color-window-border-light) var(--color-window-border-dark);
   padding: var(--spacing-xs);
+  position: sticky;
+  top: var(--spacing-md);
+  align-self: start;
 }
 
 .trending-list-header {
