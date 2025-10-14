@@ -41,6 +41,44 @@
   font-family: var(--font-family-primary);
 }
 
+.search-no-results {
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-window-border-dark) var(--color-window-border-light)
+    var(--color-window-border-light) var(--color-window-border-dark);
+  padding: var(--spacing-3xl);
+  text-align: center;
+  font-family: var(--font-family-primary);
+}
+
+.search-no-results p {
+  margin-bottom: var(--spacing-2xl);
+  font-size: 14px;
+  color: var(--color-black);
+}
+
+.search-clear-button {
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+  padding: var(--spacing-md) var(--spacing-2xl);
+  font-family: var(--font-family-primary);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--color-black);
+}
+
+.search-clear-button:hover {
+  background: var(--color-gray-light);
+}
+
+.search-clear-button:active {
+  border-color: var(--color-window-border-dark) var(--color-window-border-light)
+    var(--color-window-border-light) var(--color-window-border-dark);
+}
+
 @media (max-width: 768px) {
   .home-content {
     grid-template-columns: 1fr;
