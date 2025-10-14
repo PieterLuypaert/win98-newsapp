@@ -15,12 +15,5 @@
   box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.9),
     inset -2px -2px 0 var(--color-taskbar-shadow),
     0 -4px 8px rgba(0, 0, 0, 0.15);
-  z-index: var(--z-index-taskbar);
+  z-index: 1000;
 }
-
-
-
-
-
-
-
