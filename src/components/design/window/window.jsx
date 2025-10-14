@@ -1,22 +1,26 @@
-import "../window/window.css";
+import "./window.css";
 import {
   Dialog,
   DialogClose,
   DialogContent,
   DialogPortal,
-  DialogTrigger,
+  DialogTitle,
+  DialogDescription,
 } from "@radix-ui/react-dialog";
-import { forwardRef, useState, useRef } from "react";
+import { forwardRef, useRef } from "react";
 import Draggable from "react-draggable";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export const Window = forwardRef(
-  ({ title, trigger, children, isOpen = false, className, ...props }, ref) => {
-    const [open, setOpen] = useState(isOpen);
+  ({ title, children, onClose, width = 800, height = 600, ...props }, ref) => {
     const nodeRef = useRef(null);
 
     return (
-      <Dialog open={open} onOpenChange={setOpen} modal={false}>
-        <DialogTrigger>{trigger}</DialogTrigger>
+      <Dialog
+        open={true}
+        onOpenChange={(open) => !open && onClose()}
+        modal={false}
+      >
         <DialogPortal>
           <DialogContent
             ref={ref}
@@ -28,12 +32,20 @@ export const Window = forwardRef(
             onTouchStart={(e) => e.stopPropagation()}
             onTouchEnd={(e) => e.stopPropagation()}
           >
+            <VisuallyHidden>
+              <DialogTitle>{title}</DialogTitle>
+              <DialogDescription>{title} window content</DialogDescription>
+            </VisuallyHidden>
             <Draggable
               handle=".title"
               cancel=".closeButton, .touch-close"
               nodeRef={nodeRef}
             >
-              <div ref={nodeRef} className={`window ${className || ""}`}>
+              <div
+                ref={nodeRef}
+                className="window"
+                style={{ width: `${width}px`, minHeight: `${height}px` }}
+              >
                 <div className="title" style={{ position: "relative" }}>
                   {title}
                   <div className="actions">
@@ -43,6 +55,7 @@ export const Window = forwardRef(
                       aria-label="Close window"
                       onTouchStart={(e) => e.stopPropagation()}
                       onTouchEnd={(e) => e.stopPropagation()}
+                      onClick={onClose}
                     >
                       ×
                     </DialogClose>
@@ -57,3 +70,5 @@ export const Window = forwardRef(
     );
   }
 );
+
+Window.displayName = "Window";
