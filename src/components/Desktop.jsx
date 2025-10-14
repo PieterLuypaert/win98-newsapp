@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router";
 import "../styles/layout/programs.css";
 import { DesktopIcon } from "./design/DesktopIcon/DesktopIcon";
@@ -28,29 +28,31 @@ export const Desktop = ({
 
   const closeWindow = useCallback(
     (id) => {
+      setWindows((prev) => prev.filter((w) => w.id !== id));
+
+      // Check na filtering of er nog vensters van dat type zijn
       setWindows((prev) => {
         const windowToClose = prev.find((w) => w.id === id);
-        const filtered = prev.filter((w) => w.id !== id);
+        if (!windowToClose) {
+          // Window is al weg, check of we moeten navigeren
+          const currentWindows = prev;
+          const hasArticle = currentWindows.some((w) => w.type === "article");
+          const hasCategory = currentWindows.some((w) => w.type === "category");
 
-        // Alleen navigeren als dit het laatste venster van dat type is
-        if (windowToClose) {
-          const hasOtherSameType = filtered.some(
-            (w) => w.type === windowToClose.type
-          );
-          if (!hasOtherSameType) {
-            if (
-              windowToClose.type === "article" ||
-              windowToClose.type === "category"
-            ) {
-              setTimeout(() => navigate("/news"), 0);
-            }
+          if (!hasArticle && !hasCategory && articleSlug) {
+            setTimeout(() => navigate("/news"), 0);
+          } else if (
+            !hasCategory &&
+            categorySlug &&
+            openWindow === "category"
+          ) {
+            setTimeout(() => navigate("/news"), 0);
           }
         }
-
-        return filtered;
+        return prev;
       });
     },
-    [navigate]
+    [navigate, articleSlug, categorySlug, openWindow]
   );
 
   useEffect(() => {
@@ -78,7 +80,6 @@ export const Desktop = ({
         );
         if (hasMatchingWindow) return prevWindows;
 
-        // Filter oude article vensters en voeg nieuwe toe
         const filtered = prevWindows.filter((w) => w.type !== "article");
         return [...filtered, { id: Date.now(), type: "article", articleSlug }];
       }
