@@ -9,7 +9,7 @@ export const NewsNavigation = ({ activeCategory, onCategoryClick }) => {
         className={`news-nav-item ${!activeCategory ? "active" : ""}`}
         onClick={() => onCategoryClick(null)}
       >
-        Home
+        All News
       </button>
       {categoriesData.map((category) => (
         <button

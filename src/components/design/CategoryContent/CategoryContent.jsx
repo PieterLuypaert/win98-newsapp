@@ -28,11 +28,7 @@ export const CategoryContent = ({ categorySlug }) => {
   };
 
   const handleCategoryClick = (slug) => {
-    if (slug) {
-      navigate(`/category/${slug}`);
-    } else {
-      navigate("/news");
-    }
+    navigate(slug ? `/category/${slug}` : "/news");
   };
 
   const renderSection = (title, filtered, isHeadline = false) =>
