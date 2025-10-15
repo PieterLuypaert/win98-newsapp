@@ -4,6 +4,7 @@ import { ProgressBar } from "../ProgressBar/ProgressBar";
 import { RelatedArticles } from "../RelatedArticles/RelatedArticles";
 import { Comments } from "../Comments/Comments";
 import { AuthorCard } from "../AuthorCard/AuthorCard";
+import { BookmarkButton } from "../BookmarkButton/BookmarkButton";
 import newsData from "../../../data/news.json";
 import authorsData from "../../../data/authors.json";
 import "./ArticleContent.css";
@@ -169,6 +170,7 @@ export const ArticleContent = ({ articleSlug }) => {
       {author && (
         <aside className="article-sidebar">
           <AuthorCard author={author} />
+          <BookmarkButton articleId={article.id} />
           <ProgressBar progress={scrollProgress} />
         </aside>
       )}

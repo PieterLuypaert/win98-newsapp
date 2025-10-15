@@ -17,6 +17,7 @@
 @import "../components/design/window/window.css";
 @import "../components/design/Comments/Comments.css";
 @import "../components/design/AuthorCard/AuthorCard.css";
+@import "../components/design/BookmarkButton/BookmarkButton.css";
 
 /* Media queries */
 @import "./responsive/mobile.css";
