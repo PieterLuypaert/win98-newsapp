@@ -192,93 +192,6 @@
   color: var(--color-gray-darker);
 }
 
-.author-card {
-  background: var(--color-window-bg);
-  border: 2px solid;
-  border-color: var(--color-window-border-light) var(--color-window-border-dark)
-    var(--color-window-border-dark) var(--color-window-border-light);
-  margin-bottom: var(--spacing-2xl);
-  position: sticky;
-  top: 0;
-  align-self: start;
-}
-
-.author-card-header {
-  background: var(--color-navy);
-  color: var(--color-white);
-  padding: var(--spacing-md) var(--spacing-lg);
-  font-weight: 700;
-  font-size: 11px;
-  border-bottom: 2px solid var(--color-window-border-darker);
-  font-family: var(--font-family-primary);
-}
-
-.author-card-content {
-  background: var(--color-white);
-  padding: var(--spacing-2xl);
-  border: 2px solid;
-  border-color: var(--color-window-border-dark) var(--color-window-border-light)
-    var(--color-window-border-light) var(--color-window-border-dark);
-  margin: 2px;
-}
-
-.author-avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 3px solid var(--color-navy);
-  display: block;
-  margin: 0 auto var(--spacing-xl);
-  box-shadow: var(--shadow-md);
-}
-
-.author-name {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 700;
-  margin: 0 0 var(--spacing-lg) 0;
-  color: var(--color-navy);
-  font-family: var(--font-family-primary);
-}
-
-.author-bio {
-  font-size: 12px;
-  line-height: 1.6;
-  margin: 0 0 var(--spacing-xl) 0;
-  color: var(--color-black);
-  text-align: center;
-  font-family: var(--font-family-primary);
-}
-
-.author-social {
-  display: flex;
-  gap: var(--spacing-md);
-  justify-content: center;
-}
-
-.author-social-link {
-  background: var(--color-window-bg);
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border: 2px solid;
-  border-color: var(--color-window-border-light) var(--color-window-border-dark)
-    var(--color-window-border-dark) var(--color-window-border-light);
-  text-decoration: none;
-  color: var(--color-black);
-  font-size: 11px;
-  font-weight: 700;
-  font-family: var(--font-family-primary);
-  transition: var(--transition-fast);
-}
-
-.author-social-link:hover {
-  background: var(--color-gray-medium);
-}
-
-.author-social-link:active {
-  border-color: var(--color-window-border-dark) var(--color-window-border-light)
-    var(--color-window-border-light) var(--color-window-border-dark);
-}
-
 .article-error {
   background: var(--color-window-bg);
   border: 2px solid;
@@ -319,9 +232,5 @@
     order: 1;
     position: static;
     max-height: none;
-  }
-
-  .author-card {
-    position: static;
   }
 }

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import { ProgressBar } from "../ProgressBar/ProgressBar";
 import { RelatedArticles } from "../RelatedArticles/RelatedArticles";
+import { Comments } from "../Comments/Comments";
+import { AuthorCard } from "../AuthorCard/AuthorCard";
 import newsData from "../../../data/news.json";
 import authorsData from "../../../data/authors.json";
 import "./ArticleContent.css";
@@ -166,48 +168,12 @@ export const ArticleContent = ({ articleSlug }) => {
 
       {author && (
         <aside className="article-sidebar">
-          <div className="author-card">
-            <div className="author-card-header">About the Author</div>
-            <div className="author-card-content">
-              <img
-                src={author.avatar}
-                alt={`${author.firstName} ${author.lastName}`}
-                className="author-avatar"
-              />
-              <h3 className="author-name">
-                {author.firstName} {author.lastName}
-              </h3>
-              <p className="author-bio">{author.bio}</p>
-              {author.social && (
-                <div className="author-social">
-                  {author.social.twitter && (
-                    <a
-                      href={author.social.twitter}
-                      className="author-social-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Twitter
-                    </a>
-                  )}
-                  {author.social.linkedin && (
-                    <a
-                      href={author.social.linkedin}
-                      className="author-social-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      LinkedIn
-                    </a>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-
+          <AuthorCard author={author} />
           <ProgressBar progress={scrollProgress} />
         </aside>
       )}
+
+      {article && <Comments postId={article.id} />}
     </div>
   );
 };
