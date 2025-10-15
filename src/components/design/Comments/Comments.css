@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacing-lg);
 }
 
 .comments-title {
@@ -31,55 +31,7 @@
   font-style: italic;
 }
 
-.comment-form {
-  background: var(--color-gray-light);
-  padding: 1rem;
-  margin: 1rem 0;
-  border: 2px solid var(--color-window-border-dark);
-  box-shadow: var(--shadow-window-inset);
-}
-
-.form-group {
-  margin-bottom: 0.75rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.25rem;
-  font-weight: bold;
-  color: var(--color-black);
-}
-
-.win98-input {
-  width: 100%;
-  padding: 0.25rem 0.5rem;
-  border: none;
-  background: var(--color-white);
-  font-family: var(--font-family-primary);
-  font-size: 0.875rem;
-  box-shadow: inset -1px -1px var(--color-window-border-light),
-    inset 1px 1px var(--color-gray-dark),
-    inset -2px -2px var(--color-gray-medium),
-    inset 2px 2px var(--color-window-border-darker);
-}
-
-.win98-input:focus {
-  outline: 1px dotted var(--color-black);
-  outline-offset: -2px;
-}
-
-textarea.win98-input {
-  resize: vertical;
-  min-height: 80px;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
+/* Comments List */
 .comments-list {
   display: flex;
   flex-direction: column;
@@ -114,6 +66,7 @@ textarea.win98-input {
   word-wrap: break-word;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .comments-header {
     flex-direction: column;
@@ -122,14 +75,6 @@ textarea.win98-input {
   }
 
   .add-comment-btn {
-    width: 100%;
-  }
-
-  .form-actions {
-    flex-direction: column;
-  }
-
-  .form-actions button {
     width: 100%;
   }
 }
