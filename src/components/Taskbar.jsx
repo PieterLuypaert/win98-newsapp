@@ -1,5 +1,6 @@
 import "../styles/layout/taskbar.css";
 import { StartButton } from "./design/startButton/StartButton";
+import { LoginButton } from "./design/loginButton/LoginButton";
 import { Separator } from "./design/seperator/Separator";
 import { FullscreenButton } from "./design/fullscreenButton/FullscreenButton";
 import { TaskbarTabs } from "./design/TaskbarCredits/TaskbarCredits";
@@ -13,6 +14,7 @@ export const Taskbar = ({
   return (
     <div className="taskbar">
       <StartButton />
+      <LoginButton />
       <Separator />
       {showFullscreenButton && <FullscreenButton onClick={onFullscreen} />}
       <TaskbarTabs />
