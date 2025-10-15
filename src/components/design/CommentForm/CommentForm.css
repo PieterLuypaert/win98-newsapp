@@ -1,0 +1,92 @@
+.comment-form {
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+  margin: 1rem 0;
+}
+
+.comment-form-header {
+  background: var(--color-navy);
+  color: var(--color-white);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-weight: 700;
+  font-size: 11px;
+  border-bottom: 2px solid var(--color-window-border-darker);
+  font-family: var(--font-family-primary);
+}
+
+.comment-form-body {
+  background: var(--color-white);
+  padding: var(--spacing-2xl);
+  border: 2px solid;
+  border-color: var(--color-window-border-dark) var(--color-window-border-light)
+    var(--color-window-border-light) var(--color-window-border-dark);
+  margin: 2px;
+}
+
+.form-group {
+  margin-bottom: var(--spacing-xl);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 700;
+  color: var(--color-black);
+  font-size: 11px;
+  font-family: var(--font-family-primary);
+}
+
+.win98-input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  background: var(--color-white);
+  font-family: var(--font-family-primary);
+  font-size: 11px;
+  color: var(--color-black);
+  box-shadow: inset -1px -1px var(--color-window-border-light),
+    inset 1px 1px var(--color-gray-dark),
+    inset -2px -2px var(--color-gray-medium),
+    inset 2px 2px var(--color-window-border-darker);
+}
+
+.win98-input:focus {
+  outline: 1px dotted var(--color-black);
+  outline-offset: -2px;
+}
+
+.win98-input::placeholder {
+  color: var(--color-gray-dark);
+  font-style: italic;
+}
+
+textarea.win98-input {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.4;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-gray-medium);
+}
+
+@media (max-width: 768px) {
+  .comment-form-body {
+    padding: var(--spacing-lg);
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
