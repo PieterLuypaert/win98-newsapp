@@ -20,14 +20,6 @@
   margin-bottom: var(--spacing-3xl);
 }
 
-/* .article-header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--spacing-xl);
-  margin-bottom: var(--spacing-2xl);
-} */
-
 .article-title {
   background: linear-gradient(90deg, var(--color-navy), #1084d0);
   color: var(--color-white);
