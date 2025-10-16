@@ -15,7 +15,7 @@ export const RegisterModal = ({ onClose }) => {
 
         <div className="login-body">
           <div className="login-icon">
-            <img src="/assets/apps/login.png" alt="" />
+            <img src="/assets/apps/inlog.png" alt="" />
           </div>
 
           <form className="login-form" onSubmit={handleSubmit}>
