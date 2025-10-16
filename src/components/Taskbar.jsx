@@ -15,7 +15,7 @@ export const Taskbar = ({
   return (
     <div className="taskbar">
       <StartButton />
-      <Separator /> 
+      <Separator />
       <LoginButton />
       <Bookmark />
       {showFullscreenButton && <FullscreenButton onClick={onFullscreen} />}
