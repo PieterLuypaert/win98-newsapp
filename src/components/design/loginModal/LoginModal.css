@@ -1,0 +1,104 @@
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-index-start-menu, 1000);
+  /* subtiele achtergrond zodat de desktop zicht blijft houden */
+  background: rgba(0, 0, 0, 0.15);
+  font-family: var(--font-family-primary);
+}
+
+.login-dialog {
+  width: 360px;
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+  box-shadow: var(--shadow-window-inset);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.login-title {
+  background: linear-gradient(90deg, var(--color-navy), #1084d0);
+  color: var(--color-white);
+  padding: 8px 10px;
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 2px solid var(--color-window-border-darker);
+}
+
+.login-body {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  background: var(--color-white);
+}
+
+.login-icon img {
+  width: 48px;
+  height: 48px;
+  image-rendering: pixelated;
+  display: block;
+}
+
+.login-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-label {
+  min-width: 85px;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--color-black);
+}
+
+.win98-input {
+  flex: 1;
+  padding: 6px 8px;
+  font-size: 12px;
+  border: none;
+  background: var(--color-white);
+  box-shadow: inset -1px -1px var(--color-window-border-light),
+    inset 1px 1px var(--color-gray-dark),
+    inset -2px -2px var(--color-gray-medium),
+    inset 2px 2px var(--color-window-border-darker);
+  font-family: var(--font-family-primary);
+}
+
+.login-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+/* Kleine aanpassingen voor mobiel */
+@media (max-width: 480px) {
+  .login-dialog {
+    width: calc(100% - 2rem);
+    margin: 1rem;
+  }
+  .login-body {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .login-icon {
+    align-self: center;
+  }
+}
