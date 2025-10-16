@@ -1,4 +1,4 @@
-.taskbar .login {
+.taskbar .TaskbarButton {
   gap: var(--spacing-sm);
   display: flex;
   min-width: 4.5rem;
@@ -13,23 +13,23 @@
   font-weight: bold;
 }
 
-.taskbar .login:hover {
+.taskbar .TaskbarButton:hover {
   background: var(--color-button-hover);
   border-color: #d0d0d0;
 }
 
-.taskbar .login:focus {
+.taskbar .TaskbarButton:focus {
   outline: 1px dotted var(--color-black);
   outline-offset: -3px;
 }
 
-.taskbar .login:not(:disabled):active {
+.taskbar .TaskbarButton:not(:disabled):active {
   background: var(--color-button-active);
   border: 2px inset var(--color-window-bg);
   transform: translateY(1px);
 }
 
-.taskbar .login .icon {
+.taskbar .TaskbarButton .icon {
   height: 1.5rem;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
 }

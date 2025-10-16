@@ -1,7 +1,7 @@
 export const StartButton = () => {
   return (
 
-    <button className="start" title="Start">
+    <button className="TaskbarButton" title="Start">
       <img
         className="icon"
         src="/assets/windows.png"
