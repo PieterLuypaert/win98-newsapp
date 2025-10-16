@@ -10,8 +10,8 @@
 /* UI components */
 @import "../components/design/button/buttons.css";
 @import "../components/design/seperator/Seperator.css";
-@import "../components/design/startButton/StartButton.css";
-@import "../components/design/loginButton/LoginButton.css";
+@import "../components/design/startButton/TaskbarButton.css";
+@import "../components/design/Bookmarks/Bookmarks.css";
 
 @import "./layout/programs.css";
 @import "../components/design/TaskbarTime/TaskbarTime.css";
