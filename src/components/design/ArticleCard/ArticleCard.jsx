@@ -7,6 +7,8 @@ export const ArticleCard = ({
   onClick,
   onCategoryClick,
 }) => {
+  if (!article) return null;
+
   const date = new Date(article.timestamp).toLocaleDateString("nl-BE");
 
   const handleClick = () => {
@@ -18,6 +20,7 @@ export const ArticleCard = ({
   const handleCategoryClick = (e, slug) => {
     e.stopPropagation();
     if (onCategoryClick) {
+      e.preventDefault(); // voorkom full page reload als we client-side navigeren
       onCategoryClick(slug);
     }
   };
@@ -42,13 +45,14 @@ export const ArticleCard = ({
           {article.categories && article.categories.length > 0 && (
             <span className="article-card-categories">
               {article.categories.map((cat) => (
-                <span
+                <a
                   key={cat.slug}
+                  href={`/category/${cat.slug}`}
                   onClick={(e) => handleCategoryClick(e, cat.slug)}
                   className="article-card-category"
                 >
                   {cat.title}
-                </span>
+                </a>
               ))}
             </span>
           )}
