@@ -1,11 +1,9 @@
 import React from "react";
 import "./LoginModal.css";
-import { Button } from "../button/Button";
-import { Window } from "../Window/Window";
+import { LoginForm } from "../LoginForm/LoginForm";
 
 export const LoginModal = ({ onClose, onRegister }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleFormSubmit = (formData) => {
     onClose();
   };
 
@@ -18,40 +16,10 @@ export const LoginModal = ({ onClose, onRegister }) => {
           <div className="login-icon">
             <img src="/assets/apps/inlog.png" alt="" />
           </div>
-
-          <form className="login-form" onSubmit={handleSubmit}>
-            <div className="form-row">
-              <label className="form-label">Email:</label>
-              <input className="win98-input" type="email" name="email" />
-            </div>
-
-            <div className="form-row">
-              <label className="form-label">Wachtwoord:</label>
-              <input className="win98-input" type="password" name="password" />
-            </div>
-
-            <div className="form-row">
-              <label className="form-label">
-                <input type="checkbox" name="terms"  /> Ingelogd blijven
-              </label>
-            </div>
-
-            <div className="login-actions">
-              <Button type="submit" autoFocus>
-                Login
-              </Button>
-              <Button
-                type="button"
-                variant="win98"
-                onClick={onRegister}
-                title="Create a new account"
-              >
-                Register
-              </Button>
-            </div>
-          </form>
+          <LoginForm onSubmit={handleFormSubmit} onRegister={onRegister} />
         </div>
       </div>
     </div>
+    
   );
 };
