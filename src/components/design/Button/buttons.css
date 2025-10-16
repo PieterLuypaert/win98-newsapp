@@ -111,3 +111,22 @@ button.button:hover,
   border-right-color: var(--color-gray-dark) !important;
   border-bottom-color: var(--color-gray-dark) !important;
 }
+
+/* Small modifier for more compact buttons (gebruik className="small" op de Button) */
+.win98-button.small {
+  padding: 2px 8px;
+  min-width: 40px;
+  font-size: 0.85rem;
+  margin: 0.08rem 0.12rem 0.08rem 0;
+}
+
+/* Zorg dat focus/active/hover ook op de kleine variant netjes blijft */
+.win98-button.small:active {
+  /* active tweak */
+}
+.win98-button.small:focus {
+  /* focus tweak */
+}
+.win98-button.small:hover {
+  /* hover tweak */
+}
