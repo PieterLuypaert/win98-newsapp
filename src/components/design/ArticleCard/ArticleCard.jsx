@@ -1,7 +1,5 @@
 import React from "react";
 import "./ArticleCard.css";
-import { ArticleIntro } from "../ArticleIntro/ArticleIntro";
-import { ArticleTitle } from "../ArticleTitle/ArticleTitle";
 
 export const ArticleCard = ({
   article,
@@ -38,6 +36,7 @@ export const ArticleCard = ({
         />
       )}
       <div className="article-card-content">
+        <div className="article-card-title">{article.title}</div>
         <div className="article-card-meta">
           <span className="article-card-date">{date}</span>
           {article.categories && article.categories.length > 0 && (
@@ -54,8 +53,7 @@ export const ArticleCard = ({
             </span>
           )}
         </div>
-        <ArticleTitle>{article.title}</ArticleTitle>
-        <ArticleIntro>{article.intro}</ArticleIntro>
+        <p className="article-card-intro">{article.intro}</p>
       </div>
     </div>
   );
