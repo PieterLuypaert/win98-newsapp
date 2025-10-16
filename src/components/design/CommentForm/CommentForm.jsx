@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Button } from "../button/Button";
+import { Textarea } from "../Textarea/Textarea";
 import "./CommentForm.css";
 
 export const CommentForm = () => {
+  const [body, setBody] = useState("");
+
   return (
     <form className="comment-form">
       <div className="comment-form-header">Add a Comment</div>
@@ -20,11 +23,7 @@ export const CommentForm = () => {
 
         <div className="form-group">
           <label htmlFor="body">Comment:</label>
-          <textarea
-            id="body"
-            name="body"
-            rows="5"
-            className="win98-input"
+          <Textarea
             placeholder="Write your comment here..."
           />
         </div>
