@@ -1,5 +1,6 @@
 import React from "react";
 import "./ArticleCard.css";
+import { ArticleIntro } from "../ArticleIntro/ArticleIntro";
 
 export const ArticleCard = ({
   article,
@@ -53,7 +54,7 @@ export const ArticleCard = ({
             </span>
           )}
         </div>
-        <p className="article-card-intro">{article.intro}</p>
+        <ArticleIntro>{article.intro}</ArticleIntro>
       </div>
     </div>
   );
