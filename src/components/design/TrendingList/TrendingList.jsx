@@ -9,7 +9,6 @@ export const TrendingList = ({ items, onArticleClick }) => {
     }
   };
 
-  // Remove duplicates by articleId
   const uniqueItems = items.filter(
     (item, index, self) =>
       index === self.findIndex((t) => t.articleId === item.articleId)
