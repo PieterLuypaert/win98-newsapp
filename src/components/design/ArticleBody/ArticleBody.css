@@ -1,0 +1,87 @@
+.article-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-black);
+  font-family: var(--font-family-primary);
+}
+
+.article-subtitle {
+  background: var(--color-navy);
+  color: var(--color-white);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin: var(--spacing-3xl) 0 var(--spacing-2xl) 0;
+  font-size: 16px;
+  font-weight: 700;
+  border: 2px solid;
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+  font-family: var(--font-family-primary);
+}
+
+.article-paragraph {
+  margin-bottom: var(--spacing-2xl);
+  color: var(--color-black);
+}
+
+.article-paragraph p {
+  margin: 0 0 var(--spacing-lg) 0;
+}
+
+.article-figure {
+  margin: var(--spacing-3xl) 0;
+  border: 2px solid var(--color-window-border-dark);
+  background: var(--color-white);
+}
+
+.article-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.article-caption {
+  background: var(--color-gray-light);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--color-black);
+  border-top: 2px solid var(--color-window-border-dark);
+  font-family: var(--font-family-primary);
+}
+
+.article-callout {
+  background: var(--color-gray-light);
+  padding: var(--spacing-2xl);
+  margin: var(--spacing-3xl) 0;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-black);
+  font-family: var(--font-family-primary);
+  border-left: 4px solid var(--color-navy);
+}
+
+.article-quote {
+  background: var(--color-gray-light);
+  border: 2px solid;
+  border-color: var(--color-window-border-dark) var(--color-window-border-light)
+    var(--color-window-border-light) var(--color-window-border-dark);
+  border-left: 4px solid var(--color-navy);
+  padding: var(--spacing-2xl) var(--spacing-3xl);
+  margin: var(--spacing-3xl) 0;
+  font-style: italic;
+  font-family: var(--font-family-primary);
+}
+
+.article-quote-text {
+  font-size: 15px;
+  margin: 0 0 var(--spacing-lg) 0;
+  color: var(--color-black);
+  line-height: 1.6;
+}
+
+.article-quote-author {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--color-gray-darker);
+}
