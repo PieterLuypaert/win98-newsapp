@@ -1,15 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
-import { ProgressBar } from "../ProgressBar/ProgressBar";
 import { RelatedArticles } from "../RelatedArticles/RelatedArticles";
 import { Comments } from "../Comments/Comments";
-import { AuthorCard } from "../AuthorCard/AuthorCard";
-import { BookmarkButton } from "../BookmarkButton/BookmarkButton";
 import newsData from "../../../data/news.json";
 import authorsData from "../../../data/authors.json";
 import "./ArticleContent.css";
-
-// new subcomponents
 import { ArticleHeader } from "../ArticleHeader/ArticleHeader";
 import { ArticleBody } from "../ArticleBody/ArticleBody";
 import { ArticleSidebar } from "../ArticleSidebar/ArticleSidebar";
