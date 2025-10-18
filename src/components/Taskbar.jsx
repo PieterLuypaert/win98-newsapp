@@ -1,8 +1,8 @@
 import "../styles/layout/taskbar.css";
 import { StartButton } from "./design/startButton/StartButton";
 import { LoginButton } from "./design/loginButton/LoginButton";
-import { Separator } from "./design/seperator/Separator";
-import { FullscreenButton } from "./design/fullscreenButton/FullscreenButton";
+import { Separator } from "./design/Seperator/Separator";
+import { FullscreenButton } from "./design/FullscreenButton/FullscreenButton";
 import { TaskbarTabs } from "./design/TaskbarCredits/TaskbarCredits";
 import { TaskbarTime } from "./design/TaskbarTime/TaskbarTime";
 import { Bookmark } from "./design/Bookmarks/Bookmarks";
