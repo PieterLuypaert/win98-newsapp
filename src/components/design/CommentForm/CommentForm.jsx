@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "../button/Button";
+import { Button } from "../Button/Button";
 import { Textarea } from "../Textarea/Textarea";
 import "./CommentForm.css";
 
@@ -23,9 +23,7 @@ export const CommentForm = () => {
 
         <div className="form-group">
           <label htmlFor="body">Comment:</label>
-          <Textarea
-            placeholder="Write your comment here..."
-          />
+          <Textarea placeholder="Write your comment here..." />
         </div>
 
         <div className="form-actions">
