@@ -9,6 +9,11 @@ import newsData from "../../../data/news.json";
 import authorsData from "../../../data/authors.json";
 import "./ArticleContent.css";
 
+// new subcomponents
+import { ArticleHeader } from "../ArticleHeader/ArticleHeader";
+import { ArticleBody } from "../ArticleBody/ArticleBody";
+import { ArticleSidebar } from "../ArticleSidebar/ArticleSidebar";
+
 export const ArticleContent = ({ articleSlug }) => {
   const navigate = useNavigate();
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -19,7 +24,6 @@ export const ArticleContent = ({ articleSlug }) => {
     ? authorsData.find((auth) => auth.id === article.authorId)
     : null;
 
-  // dit berekent artikels op basis van de category tags
   const relatedArticles = article
     ? newsData
         .filter((a) => {
@@ -50,7 +54,6 @@ export const ArticleContent = ({ articleSlug }) => {
     }
   }, []);
 
-  // Reset scroll when article changes
   useEffect(() => {
     if (contentRef.current) {
       contentRef.current.scrollTop = 0;
@@ -70,97 +73,14 @@ export const ArticleContent = ({ articleSlug }) => {
     navigate(`/article/${slug}`);
   };
 
-  const renderContentBlock = (block, index) => {
-    switch (block.type) {
-      case "subtitle":
-        return (
-          <h3 key={index} className="article-subtitle">
-            {block.content}
-          </h3>
-        );
-      case "paragraph":
-        return (
-          <div
-            key={index}
-            className="article-paragraph"
-            dangerouslySetInnerHTML={{ __html: block.content }}
-          />
-        );
-      case "image":
-        return (
-          <figure key={index} className="article-figure">
-            <img
-              src={block.url}
-              alt={block.caption}
-              className="article-image"
-            />
-            {block.caption && (
-              <figcaption className="article-caption">
-                {block.caption}
-              </figcaption>
-            )}
-          </figure>
-        );
-      case "callout":
-        return (
-          <div key={index} className="article-callout">
-            {block.content}
-          </div>
-        );
-      case "quote":
-        return (
-          <blockquote key={index} className="article-quote">
-            <p className="article-quote-text">"{block.quote}"</p>
-            <cite className="article-quote-author">
-              — {block.author}
-              {block.position && `, ${block.position}`}
-            </cite>
-          </blockquote>
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
     <div className="article-content" ref={contentRef}>
       <div className="article-main">
-        <article className="article-header">
-          <h1 className="article-title">{article.title}</h1>
-          <div className="article-meta">
-            <span className="article-date">
-              {new Date(article.timestamp).toLocaleDateString("nl-BE", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </span>
-            {article.categories && article.categories.length > 0 && (
-              <div className="article-categories">
-                {article.categories.map((cat) => (
-                  <span key={cat.slug} className="article-category">
-                    {cat.title}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-          {article.mainImage && (
-            <img
-              src={article.mainImage}
-              alt={article.title}
-              className="article-main-image"
-            />
-          )}
-          <p className="article-intro">{article.intro}</p>
-        </article>
-
-        <div className="article-body">
-          {article.content.map((block, index) =>
-            renderContentBlock(block, index)
-          )}
-        </div>
-
+        <ArticleHeader article={article} />
+        <ArticleBody
+          content={article.content}
+          onArticleClick={handleArticleClick}
+        />
         <RelatedArticles
           articles={relatedArticles}
           onArticleClick={handleArticleClick}
@@ -168,11 +88,11 @@ export const ArticleContent = ({ articleSlug }) => {
       </div>
 
       {author && (
-        <aside className="article-sidebar">
-          <AuthorCard author={author} />
-          <BookmarkButton articleId={article.id} />
-          <ProgressBar progress={scrollProgress} />
-        </aside>
+        <ArticleSidebar
+          author={author}
+          articleId={article.id}
+          scrollProgress={scrollProgress}
+        />
       )}
 
       {article && <Comments postId={article.id} />}
