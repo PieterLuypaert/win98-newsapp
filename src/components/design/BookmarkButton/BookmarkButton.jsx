@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "../button/Button";
+import { Button } from "../Button/Button";
 import "./BookmarkButton.css";
 
 export const BookmarkButton = ({ articleId, isBookmarked = false }) => {
