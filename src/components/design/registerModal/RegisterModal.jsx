@@ -1,6 +1,6 @@
 import React from "react";
-import "../loginModal/LoginModal.css"; 
-import { Button } from "../button/Button";
+import "../loginModal/LoginModal.css";
+import { Button } from "../Button/Button";
 
 export const RegisterModal = ({ onClose }) => {
   const handleSubmit = (e) => {
@@ -21,22 +21,42 @@ export const RegisterModal = ({ onClose }) => {
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="form-row">
               <label className="form-label">Email:</label>
-              <input className="win98-input" type="email" name="email" required />
+              <input
+                className="win98-input"
+                type="email"
+                name="email"
+                required
+              />
             </div>
 
             <div className="form-row">
               <label className="form-label">Wachtwoord:</label>
-              <input className="win98-input" type="password" name="password" required />
+              <input
+                className="win98-input"
+                type="password"
+                name="password"
+                required
+              />
             </div>
 
             <div className="form-row">
               <label className="form-label">Voornaam:</label>
-              <input className="win98-input" type="text" name="firstname" required />
+              <input
+                className="win98-input"
+                type="text"
+                name="firstname"
+                required
+              />
             </div>
 
             <div className="form-row">
               <label className="form-label">Achternaam:</label>
-              <input className="win98-input" type="text" name="lastname" required />
+              <input
+                className="win98-input"
+                type="text"
+                name="lastname"
+                required
+              />
             </div>
 
             <div className="form-row">
@@ -52,7 +72,8 @@ export const RegisterModal = ({ onClose }) => {
 
             <div className="form-row">
               <label className="form-label">
-                <input type="checkbox" name="terms" required /> Akkoord met voorwaarden
+                <input type="checkbox" name="terms" required /> Akkoord met
+                voorwaarden
               </label>
             </div>
 
