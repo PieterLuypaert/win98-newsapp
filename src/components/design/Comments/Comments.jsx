@@ -5,16 +5,20 @@ import { CommentForm } from "../CommentForm/CommentForm";
 import commentsData from "../../../data/comments.json";
 import "./Comments.css";
 
-export const Comments = ({ postId }) => {
+export const Comments = ({ postId, initialComments = null, onAdd }) => {
   const [comments, setComments] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    const articleComments = commentsData.filter(
-      (comment) => comment.postId === postId
-    );
-    setComments(articleComments);
-  }, [postId]);
+    if (Array.isArray(initialComments)) {
+      setComments(initialComments);
+    } else {
+      const articleComments = commentsData.filter(
+        (comment) => comment.postId === postId
+      );
+      setComments(articleComments);
+    }
+  }, [postId, initialComments]);
 
   const handleSubmit = (formData) => {
     const comment = {
@@ -23,8 +27,9 @@ export const Comments = ({ postId }) => {
       ...formData,
     };
 
-    setComments([comment, ...comments]);
+    setComments((prev) => [comment, ...prev]);
     setShowForm(false);
+    if (onAdd) onAdd(comment);
   };
 
   const handleCancel = () => {
