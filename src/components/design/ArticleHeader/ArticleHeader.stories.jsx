@@ -28,7 +28,10 @@ const Template = (args) => {
     categories:
       Array.isArray(args.categories) && args.categories.length > 0
         ? args.categories
-        : [{ slug: "nieuws", title: "Nieuws" }, { slug: "tech", title: "Tech" }],
+        : [
+            { slug: "nieuws", title: "Nieuws" },
+            { slug: "tech", title: "Tech" },
+          ],
   };
 
   return (
