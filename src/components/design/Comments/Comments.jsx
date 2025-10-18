@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Button } from "../button/Button";
-import { Separator } from "../seperator/Separator";
+import { Button } from "../Button/Button";
+import { Separator } from "../Seperator/Separator";
 import { CommentForm } from "../CommentForm/CommentForm";
 import commentsData from "../../../data/comments.json";
 import "./Comments.css";
