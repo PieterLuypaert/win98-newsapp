@@ -1,0 +1,16 @@
+.article-sidebar {
+  position: sticky;
+  top: var(--spacing-md);
+  align-self: start;
+  max-height: calc(100vh - var(--spacing-3xl));
+  overflow-y: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .article-sidebar {
+    order: 1;
+    position: static;
+    max-height: none;
+  }
+}
