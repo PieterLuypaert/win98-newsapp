@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "../button/Button";
+import { Button } from "../Button/Button";
 import "./LoginForm.css";
 
 export const LoginForm = ({ onSubmit, onRegister }) => {
