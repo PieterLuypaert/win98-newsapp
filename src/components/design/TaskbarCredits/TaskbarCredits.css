@@ -1,4 +1,3 @@
-
 .credits {
   display: flex;
   min-width: 4.5rem;
@@ -20,4 +19,10 @@
   font-size: 0.75rem;
   position: relative;
   margin-bottom: -1px;
+}
+
+@media (max-width: 600px) {
+  .credits {
+    display: none;
+  }
 }
