@@ -6,7 +6,7 @@ import { Window } from "./design/Window/Window";
 import { HomeContent } from "./design/HomeContent/HomeContent";
 import { CategoryContent } from "./design/CategoryContent/CategoryContent";
 import { ArticleContent } from "./design/ArticleContent/ArticleContent";
-import BookmarksContent from "./design/Bookmarks/BookmarksContent";
+import BookmarksContent from "./design/BookmarksContent/BookmarksContent";
 import categoriesData from "../data/categories.json";
 
 export const Desktop = ({
@@ -18,7 +18,6 @@ export const Desktop = ({
   const navigate = useNavigate();
   const [windows, setWindows] = useState([]);
 
-  // memoized opener so we can call it from an external event listener
   const openWindowHandler = useCallback((type, data = {}) => {
     const newWindow = {
       id: Date.now(),
@@ -28,7 +27,6 @@ export const Desktop = ({
     setWindows((prev) => [...prev, newWindow]);
   }, []);
 
-  // listen for global requests to open an app window (e.g. taskbar buttons)
   useEffect(() => {
     const handler = (e) => {
       const type = e?.detail?.type;
@@ -43,26 +41,19 @@ export const Desktop = ({
 
   const closeWindow = useCallback(
     (id) => {
-      setWindows((prev) => prev.filter((w) => w.id !== id));
-
       setWindows((prev) => {
-        const windowToClose = prev.find((w) => w.id === id);
-        if (!windowToClose) {
-          const currentWindows = prev;
-          const hasArticle = currentWindows.some((w) => w.type === "article");
-          const hasCategory = currentWindows.some((w) => w.type === "category");
+        const newWindows = prev.filter((w) => w.id !== id);
 
-          if (!hasArticle && !hasCategory && articleSlug) {
-            setTimeout(() => navigate("/news"), 0);
-          } else if (
-            !hasCategory &&
-            categorySlug &&
-            openWindow === "category"
-          ) {
-            setTimeout(() => navigate("/news"), 0);
-          }
+        const hasArticle = newWindows.some((w) => w.type === "article");
+        const hasCategory = newWindows.some((w) => w.type === "category");
+
+        if (!hasArticle && !hasCategory && articleSlug) {
+          setTimeout(() => navigate("/news"), 0);
+        } else if (!hasCategory && categorySlug && openWindow === "category") {
+          setTimeout(() => navigate("/news"), 0);
         }
-        return prev;
+
+        return newWindows;
       });
     },
     [navigate, articleSlug, categorySlug, openWindow]
