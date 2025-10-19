@@ -8,8 +8,16 @@
 }
 
 .bookmarks-header {
-  border-bottom: 1px solid var(--color-gray-light);
-  padding-bottom: 8px;
+  background: var(--color-navy);
+  color: var(--color-white);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin: 0 0 var(--spacing-2xl) 0;
+  font-size: 16px;
+  font-weight: 700;
+  border: 2px solid;
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+  font-family: var(--font-family-primary);
 }
 
 .bookmarks-header h2 {
