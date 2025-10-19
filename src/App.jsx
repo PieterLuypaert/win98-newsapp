@@ -44,6 +44,8 @@ function App() {
 
     if (location.pathname === "/news") {
       return { openWindow: "news", showIcons: true };
+    } else if (location.pathname === "/bookmarks") {
+      return { openWindow: "bookmarks", showIcons: true };
     } else if (categoryMatch) {
       return {
         openWindow: "category",
