@@ -6,6 +6,7 @@ import { Window } from "./design/Window/Window";
 import { HomeContent } from "./design/HomeContent/HomeContent";
 import { CategoryContent } from "./design/CategoryContent/CategoryContent";
 import { ArticleContent } from "./design/ArticleContent/ArticleContent";
+import BookmarksContent from "./design/Bookmarks/BookmarksContent";
 import categoriesData from "../data/categories.json";
 
 export const Desktop = ({
@@ -17,24 +18,36 @@ export const Desktop = ({
   const navigate = useNavigate();
   const [windows, setWindows] = useState([]);
 
-  const openWindowHandler = (type, data = {}) => {
+  // memoized opener so we can call it from an external event listener
+  const openWindowHandler = useCallback((type, data = {}) => {
     const newWindow = {
       id: Date.now(),
       type,
       ...data,
     };
     setWindows((prev) => [...prev, newWindow]);
-  };
+  }, []);
+
+  // listen for global requests to open an app window (e.g. taskbar buttons)
+  useEffect(() => {
+    const handler = (e) => {
+      const type = e?.detail?.type;
+      const data = e?.detail?.data || {};
+      if (type) {
+        openWindowHandler(type, data);
+      }
+    };
+    window.addEventListener("openAppWindow", handler);
+    return () => window.removeEventListener("openAppWindow", handler);
+  }, [openWindowHandler]);
 
   const closeWindow = useCallback(
     (id) => {
       setWindows((prev) => prev.filter((w) => w.id !== id));
 
-      // Check na filtering of er nog vensters van dat type zijn
       setWindows((prev) => {
         const windowToClose = prev.find((w) => w.id === id);
         if (!windowToClose) {
-          // Window is al weg, check of we moeten navigeren
           const currentWindows = prev;
           const hasArticle = currentWindows.some((w) => w.type === "article");
           const hasCategory = currentWindows.some((w) => w.type === "category");
@@ -82,6 +95,10 @@ export const Desktop = ({
 
         const filtered = prevWindows.filter((w) => w.type !== "article");
         return [...filtered, { id: Date.now(), type: "article", articleSlug }];
+      } else if (openWindow === "bookmarks") {
+        const hasBookmarks = prevWindows.some((w) => w.type === "bookmarks");
+        if (hasBookmarks) return prevWindows;
+        return [...prevWindows, { id: Date.now(), type: "bookmarks" }];
       }
 
       return prevWindows;
@@ -112,11 +129,21 @@ export const Desktop = ({
                   categoriesData.find((c) => c.slug === window.categorySlug)
                     ?.title || "Category"
                 }`
-              : "News Explorer - Article"
+              : window.type === "article"
+              ? "News Explorer - Article"
+              : window.type === "bookmarks"
+              ? "Bookmarks"
+              : "News Explorer"
           }
           onClose={() => closeWindow(window.id)}
-          width={window.type === "article" ? 900 : 1000}
-          height={600}
+          width={
+            window.type === "article"
+              ? 900
+              : window.type === "bookmarks"
+              ? 800
+              : 1000
+          }
+          height={window.type === "bookmarks" ? 560 : 600}
         >
           {window.type === "news" && <HomeContent />}
           {window.type === "category" && (
@@ -125,6 +152,7 @@ export const Desktop = ({
           {window.type === "article" && (
             <ArticleContent articleSlug={window.articleSlug} />
           )}
+          {window.type === "bookmarks" && <BookmarksContent />}
         </Window>
       ))}
     </div>
