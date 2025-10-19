@@ -1,7 +1,22 @@
-export const Bookmark = () => {
-  return (
+import { useNavigate } from "react-router";
 
-    <button className="Bookmark" title="Bookmarks">
+export const Bookmark = () => {
+  const navigate = useNavigate();
+
+  const handleOpenBookmarks = () => {
+    navigate("/bookmarks");
+
+    window.dispatchEvent(
+      new CustomEvent("openAppWindow", { detail: { type: "bookmarks" } })
+    );
+  };
+
+  return (
+    <button
+      className="Bookmark"
+      title="Bookmarks"
+      onClick={handleOpenBookmarks}
+    >
       <img
         className="icon"
         src="/assets/apps/bookmarks.png"
