@@ -3,7 +3,8 @@ import "../loginModal/LoginModal.css";
 import { Button } from "../Button/Button";
 import { FormGender } from "../FormGender/FormGender";
 import { FormName } from "../FormName/FormName";
-import { FormPassword } from "../FormPassword/FormPassword"; // <-- toegevoegd
+import { FormPassword } from "../FormPassword/FormPassword";
+import { FormEmail } from "../FormEmail/FormEmail"; 
 
 export const RegisterModal = ({ onClose, embedded = false }) => {
   const handleSubmit = (e) => {
@@ -19,8 +20,7 @@ export const RegisterModal = ({ onClose, embedded = false }) => {
 
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="form-row">
-          <label className="form-label">Email:</label>
-          <input className="win98-input" type="email" name="email" required />
+          <FormEmail name="email" required className="win98-input" />
         </div>
 
         <div className="form-row">
