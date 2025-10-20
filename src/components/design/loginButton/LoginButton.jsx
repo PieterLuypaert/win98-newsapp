@@ -1,37 +1,20 @@
-import { useState } from "react";
-import { LoginModal } from "../loginModal/LoginModal";
-import { RegisterModal } from "../registerModal/RegisterModal";
+import { useNavigate } from "react-router";
 
 export const LoginButton = () => {
-  const [showLogin, setShowLogin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <>
-      <button
-        className="TaskbarButton"
-        title="Login"
-        onClick={() => setShowLogin(true)}
-      >
-        <img
-          className="icon"
-          src="/assets/apps/login.png"
-          alt="windows 98 login logo"
-        />
-        <span className="label">Login</span>
-      </button>
-
-      {showLogin && (
-        <LoginModal
-          onClose={() => setShowLogin(false)}
-          onRegister={() => {
-            setShowLogin(false);
-            setShowRegister(true);
-          }}
-        />
-      )}
-
-      {showRegister && <RegisterModal onClose={() => setShowRegister(false)} />}
-    </>
+    <button
+      className="TaskbarButton"
+      title="Login"
+      onClick={() => navigate("/login")}
+    >
+      <img
+        className="icon"
+        src="/assets/apps/login.png"
+        alt="windows 98 login logo"
+      />
+      <span className="label">Login</span>
+    </button>
   );
 };
