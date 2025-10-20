@@ -33,7 +33,6 @@ export const RegisterModal = ({ onClose, embedded = false }) => {
         </div>
 
         <div className="form-row">
-          {/* Samengevoegd in herbruikbare component */}
           <FormName
             firstNameName="firstname"
             lastNameName="lastname"
