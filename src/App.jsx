@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Outlet, useLocation, matchPath, useNavigate } from "react-router";
 import { Taskbar } from "./components/Taskbar";
 import { Desktop } from "./components/Desktop";
-import { Window } from "./components/design/Window/Window";
+import { Window } from "./components/design/window/window";
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -77,9 +77,9 @@ function App() {
     },
   ];
 
-  const win =
-    routes.find((route) => matchPath({ path: route.path }, location.pathname))
-      ?.config || { open: false };
+  const win = routes.find((route) =>
+    matchPath({ path: route.path }, location.pathname)
+  )?.config || { open: false };
 
   const handleCloseWindow = () => {
     navigate("/", { replace: true });

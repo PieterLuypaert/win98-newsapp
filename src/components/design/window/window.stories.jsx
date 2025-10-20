@@ -1,6 +1,6 @@
-import "../../../styles/index.css"; 
+import "../../../styles/index.css";
 import React from "react";
-import { Window } from "../Window/Window";
+import { Window } from "./window";
 
 export default {
   title: "Design/Window",
