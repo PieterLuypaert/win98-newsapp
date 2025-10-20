@@ -5,7 +5,7 @@ import { FormGender } from "../FormGender/FormGender";
 import { FormName } from "../FormName/FormName";
 import { FormPassword } from "../FormPassword/FormPassword";
 import { FormEmail } from "../FormEmail/FormEmail";
-import { FormCheckbox } from "../FormCheckbox/FormCheckbox"; // <-- toegevoegd
+import { FormCheckbox } from "../FormCheckbox/FormCheckbox"; 
 
 export const RegisterModal = ({ onClose, embedded = false }) => {
   const handleSubmit = (e) => {
