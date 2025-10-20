@@ -1,5 +1,6 @@
 import React from "react";
 import "./ArticleCard.css";
+import { Link } from "react-router"; 
 
 export const ArticleCard = ({
   article,
@@ -14,14 +15,6 @@ export const ArticleCard = ({
   const handleClick = () => {
     if (onClick) {
       onClick();
-    }
-  };
-
-  const handleCategoryClick = (e, slug) => {
-    e.stopPropagation();
-    if (onCategoryClick) {
-      e.preventDefault(); // voorkom full page reload als we client-side navigeren
-      onCategoryClick(slug);
     }
   };
 
@@ -45,14 +38,17 @@ export const ArticleCard = ({
           {article.categories && article.categories.length > 0 && (
             <span className="article-card-categories">
               {article.categories.map((cat) => (
-                <a
+                <Link
                   key={cat.slug}
-                  href={`/category/${cat.slug}`}
-                  onClick={(e) => handleCategoryClick(e, cat.slug)}
+                  to={`/category/${cat.slug}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onCategoryClick?.(cat.slug);
+                  }}
                   className="article-card-category"
                 >
                   {cat.title}
-                </a>
+                </Link>
               ))}
             </span>
           )}
