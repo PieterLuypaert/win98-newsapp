@@ -1,5 +1,6 @@
 import "../styles/layout/taskbar.css";
-import { StartButton } from "./design/startButton/StartButton";
+// gebruik juiste mapnaam 'StartButton' (case-sensitive filesystems)
+import { StartButton } from "./design/StartButton/StartButton";
 import { LoginButton } from "./design/loginButton/LoginButton";
 import { Separator } from "./design/Seperator/Separator";
 import { FullscreenButton } from "./design/FullscreenButton/FullscreenButton";
