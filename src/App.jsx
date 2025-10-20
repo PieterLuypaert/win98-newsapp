@@ -1,13 +1,16 @@
 import "./styles/index.css";
 import React, { useState, useEffect } from "react";
-import { useLocation, matchPath } from "react-router";
+import { Outlet, useLocation, matchPath, useNavigate } from "react-router";
 import { Taskbar } from "./components/Taskbar";
 import { Desktop } from "./components/Desktop";
+import { Window } from "./components/design/Window/Window";
 
 function App() {
   const [time, setTime] = useState(new Date());
   const [isFullscreen, setIsFullscreen] = useState(false);
+
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -31,43 +34,74 @@ function App() {
     hour: "2-digit",
     minute: "2-digit",
   });
+  const routes = [
+    {
+      path: "/news",
+      config: {
+        open: true,
+        type: "news",
+        title: "News Explorer - Home",
+        width: 1000,
+        height: 600,
+      },
+    },
+    {
+      path: "/bookmarks",
+      config: {
+        open: true,
+        type: "bookmarks",
+        title: "Bookmarks",
+        width: 800,
+        height: 560,
+      },
+    },
+    {
+      path: "/category/:categorySlug",
+      config: {
+        open: true,
+        type: "category",
+        title: "News Explorer - Category",
+        width: 1000,
+        height: 600,
+      },
+    },
+    {
+      path: "/article/:articleSlug",
+      config: {
+        open: true,
+        type: "article",
+        title: "News Explorer - Article",
+        width: 900,
+        height: 700,
+      },
+    },
+  ];
 
-  const getRouteInfo = () => {
-    const categoryMatch = matchPath(
-      { path: "/category/:categorySlug" },
-      location.pathname
-    );
-    const articleMatch = matchPath(
-      { path: "/article/:articleSlug" },
-      location.pathname
-    );
+  const win =
+    routes.find((route) => matchPath({ path: route.path }, location.pathname))
+      ?.config || { open: false };
 
-    if (location.pathname === "/news") {
-      return { openWindow: "news", showIcons: true };
-    } else if (location.pathname === "/bookmarks") {
-      return { openWindow: "bookmarks", showIcons: true };
-    } else if (categoryMatch) {
-      return {
-        openWindow: "category",
-        categorySlug: categoryMatch.params.categorySlug,
-        showIcons: true,
-      };
-    } else if (articleMatch) {
-      return {
-        openWindow: "article",
-        articleSlug: articleMatch.params.articleSlug,
-        showIcons: true,
-      };
-    } else {
-      return { showIcons: true };
-    }
+  const handleCloseWindow = () => {
+    navigate("/", { replace: true });
   };
-
-  const routeInfo = getRouteInfo();
 
   return (
     <div className="app">
-      <Desktop {...routeInfo} />
+      <Desktop showIcons={true} />
+
+      <main className="page-content">
+        {win.open ? (
+          <Window
+            title={win.title}
+            onClose={handleCloseWindow}
+            width={win.width}
+            height={win.height}
+          >
+            <Outlet />
+          </Window>
+        ) : null}
+      </main>
+
       <Taskbar
         time={formattedTime}
         showFullscreenButton={true}
