@@ -1,5 +1,4 @@
 import React from "react";
-// changed: useParams uit react-router
 import { useParams } from "react-router";
 import { CategoryContent } from "../components/design/CategoryContent/CategoryContent";
 
