@@ -2,8 +2,8 @@
 
 Klik op de link om te openen:
 
-- [Web5 Storybook op Render](https://web5-pieter.onrender.com)
-- [News Application op Render](https://opdracht-2-news-application.onrender.com)
+- [ News Application op Render](https://web5-pieter.onrender.com)
+- [News Application Storybook op Render](https://opdracht-2-news-application.onrender.com)
 
 ## Source Code
 
