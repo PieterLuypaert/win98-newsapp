@@ -8,7 +8,7 @@
 @import "./layout/taskbar.css";
 
 /* UI components */
-@import "../components/design/button/buttons.css";
+@import "../components/design/Button/buttons.css";
 @import "../components/design/seperator/Seperator.css";
 @import "../components/design/startButton/TaskbarButton.css";
 @import "../components/design/Bookmarks/Bookmarks.css";
