@@ -78,13 +78,4 @@ export const RegisterModal = ({ onClose, embedded = false }) => {
   if (embedded) {
     return <div className="login-body embedded">{inner}</div>;
   }
-
-  return (
-    <div className="login-overlay" role="dialog" aria-modal="true">
-      <div className="login-dialog" role="document">
-        <div className="login-title">Create an Account</div>
-        <div className="login-body">{inner}</div>
-      </div>
-    </div>
-  );
 };
