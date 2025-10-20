@@ -90,11 +90,13 @@
 .window .body::-webkit-scrollbar-thumb {
   background: var(--color-window-bg);
   border: 2px solid;
-  border-color: var(--color-window-border-light) var(--color-window-border-dark) var(--color-window-border-dark) var(--color-window-border-light);
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
 }
 
 .window .body::-webkit-scrollbar-thumb:active {
-  border-color: var(--color-window-border-dark) var(--color-window-border-light) var(--color-window-border-light) var(--color-window-border-dark);
+  border-color: var(--color-window-border-dark) var(--color-window-border-light)
+    var(--color-window-border-light) var(--color-window-border-dark);
 }
 /* Mobile responsiveness */
 @media (max-width: 768px) {
@@ -116,15 +118,18 @@
   }
 
   .window {
-    min-width: unset;
+    min-width: unset !important;
+    min-height: unset !important;
     width: 100%;
     max-width: 100%;
-    max-height: 90vh;
-    overflow: visible;
+    max-height: calc(100vh - 6rem) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
     gap: var(--spacing-xs, 4px);
     padding: 2px;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
   }
 
   .window .title {
@@ -146,7 +151,7 @@
     min-height: 0;
     display: flex;
     flex-direction: column;
-    max-height: 80vh;
+    max-height: calc(100vh - 10rem);
   }
 }
 
@@ -157,7 +162,9 @@
 
   .window {
     font-size: 14px;
-    max-height: 90vh;
+    min-height: unset !important;
+    max-height: calc(100vh - 4rem) !important;
+    overflow-y: auto !important;
   }
 
   .window .title .closeButton {
@@ -168,11 +175,11 @@
 
   .window .body {
     margin: 0;
-    max-height: 90vh;
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
   }
 }
 
-/* iPad Air (landscape & portrait) specific adjustments */
 @media (max-width: 1180px) and (min-width: 769px) {
   .window {
     max-height: 70vh;
