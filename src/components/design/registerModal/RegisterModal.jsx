@@ -1,6 +1,7 @@
 import React from "react";
 import "../loginModal/LoginModal.css";
 import { Button } from "../Button/Button";
+import { FormGender } from "../FormGender/FormGender"; // <-- toegevoegd
 
 export const RegisterModal = ({ onClose, embedded = false }) => {
   const handleSubmit = (e) => {
@@ -46,14 +47,7 @@ export const RegisterModal = ({ onClose, embedded = false }) => {
         </div>
 
         <div className="form-row">
-          <label className="form-label">Geslacht:</label>
-          <select className="win98-input" name="gender" required>
-            <option value="">Selecteer...</option>
-            <option value="male">Man</option>
-            <option value="female">Vrouw</option>
-            <option value="other">Anders</option>
-            <option value="prefer_not_to_say">Liever niet zeggen</option>
-          </select>
+          <FormGender name="gender" required className="win98-input" />
         </div>
 
         <div className="form-row">

@@ -1,0 +1,7 @@
+.form-gender {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* form-label en win98-input worden al door globale component-styles afgedekt */
