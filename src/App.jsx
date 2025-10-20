@@ -34,7 +34,7 @@ function App() {
     hour: "2-digit",
     minute: "2-digit",
   });
-  
+
   const routes = [
     {
       path: "/news",
@@ -74,6 +74,26 @@ function App() {
         title: "News Explorer - Article",
         width: 1000,
         height: 600,
+      },
+    },
+    {
+      path: "/login",
+      config: {
+        open: true,
+        type: "login",
+        title: "Login",
+        width: 480,
+        height: 420,
+      },
+    },
+    {
+      path: "/register",
+      config: {
+        open: true,
+        type: "register",
+        title: "Register",
+        width: 520,
+        height: 520,
       },
     },
   ];
