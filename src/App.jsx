@@ -34,6 +34,7 @@ function App() {
     hour: "2-digit",
     minute: "2-digit",
   });
+  
   const routes = [
     {
       path: "/news",
@@ -71,8 +72,8 @@ function App() {
         open: true,
         type: "article",
         title: "News Explorer - Article",
-        width: 900,
-        height: 700,
+        width: 1000,
+        height: 600,
       },
     },
   ];
