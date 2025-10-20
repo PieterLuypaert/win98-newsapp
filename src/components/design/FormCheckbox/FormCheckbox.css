@@ -1,0 +1,13 @@
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-input {
+  margin-right: 6px;
+  width: 14px;
+  height: 14px;
+}
+
+/* label-layout gebruikt bestaande .form-label styling */

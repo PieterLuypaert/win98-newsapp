@@ -4,7 +4,8 @@ import { Button } from "../Button/Button";
 import { FormGender } from "../FormGender/FormGender";
 import { FormName } from "../FormName/FormName";
 import { FormPassword } from "../FormPassword/FormPassword";
-import { FormEmail } from "../FormEmail/FormEmail"; 
+import { FormEmail } from "../FormEmail/FormEmail";
+import { FormCheckbox } from "../FormCheckbox/FormCheckbox"; // <-- toegevoegd
 
 export const RegisterModal = ({ onClose, embedded = false }) => {
   const handleSubmit = (e) => {
@@ -43,10 +44,7 @@ export const RegisterModal = ({ onClose, embedded = false }) => {
         </div>
 
         <div className="form-row">
-          <label className="form-label">
-            <input type="checkbox" name="terms" required /> Akkoord met
-            voorwaarden
-          </label>
+          <FormCheckbox name="terms" label="Akkoord met voorwaarden" required />
         </div>
 
         <div className="login-actions">
