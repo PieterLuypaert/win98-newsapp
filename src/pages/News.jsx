@@ -1,5 +1,10 @@
-import { Desktop } from "../components/Desktop";
+import React from "react";
+import { HomeContent } from "../components/design/HomeContent/HomeContent";
 
-export const News = () => {
-  return <Desktop openWindow="news" showIcons={true} />;
-};
+export default function News() {
+  return (
+    <section className="page news-page">
+      <HomeContent />
+    </section>
+  );
+}

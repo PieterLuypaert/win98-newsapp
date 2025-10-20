@@ -1,14 +1,6 @@
-import { Desktop } from "../components/Desktop";
-import { useParams } from "react-router";
+import React from "react";
+import { HomeContent } from "../components/design/HomeContent/HomeContent";
 
-export const Home = ({ openWindow }) => {
-  const { categorySlug } = useParams();
-
-  return (
-    <Desktop
-      openWindow={openWindow}
-      categorySlug={categorySlug}
-      showIcons={true}
-    />
-  );
-};
+export default function Home() {
+  return <HomeContent />;
+}
