@@ -5,10 +5,6 @@ export const Bookmark = () => {
 
   const handleOpenBookmarks = () => {
     navigate("/bookmarks");
-
-    window.dispatchEvent(
-      new CustomEvent("openAppWindow", { detail: { type: "bookmarks" } })
-    );
   };
 
   return (

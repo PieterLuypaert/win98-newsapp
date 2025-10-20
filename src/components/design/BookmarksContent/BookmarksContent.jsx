@@ -3,20 +3,18 @@ import { ArticleCard } from "../ArticleCard/ArticleCard";
 import newsData from "../../../data/news.json";
 import "./BookmarksContent.css";
 import { Button } from "../Button/Button";
+import { useNavigate } from "react-router";
 
 const sampleBookmarkedSlugs = newsData.slice(0, 4).map((a) => a.slug);
 
 const BookmarksContent = () => {
+  const navigate = useNavigate();
   const bookmarkedArticles = newsData.filter((a) =>
     sampleBookmarkedSlugs.includes(a.slug)
   );
 
   const handleArticleClick = (slug) => {
-    window.dispatchEvent(
-      new CustomEvent("openAppWindow", {
-        detail: { type: "article", data: { articleSlug: slug } },
-      })
-    );
+    navigate(`/article/${slug}`);
   };
 
   return (
