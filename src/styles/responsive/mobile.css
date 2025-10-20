@@ -147,7 +147,6 @@
     touch-action: manipulation;
   }
 
-  /* Ensure touch targets are at least 44px */
   .portfolio-content
     .profile-section
     .profile-header
