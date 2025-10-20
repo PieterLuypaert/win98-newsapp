@@ -1,8 +1,9 @@
 import React from "react";
 import "../loginModal/LoginModal.css";
 import { Button } from "../Button/Button";
-import { FormGender } from "../FormGender/FormGender"; // <-- bestaande import
-import { FormName } from "../FormName/FormName"; // <-- toegevoegd
+import { FormGender } from "../FormGender/FormGender";
+import { FormName } from "../FormName/FormName";
+import { FormPassword } from "../FormPassword/FormPassword"; // <-- toegevoegd
 
 export const RegisterModal = ({ onClose, embedded = false }) => {
   const handleSubmit = (e) => {
@@ -23,13 +24,9 @@ export const RegisterModal = ({ onClose, embedded = false }) => {
         </div>
 
         <div className="form-row">
-          <label className="form-label">Wachtwoord:</label>
-          <input
-            className="win98-input"
-            type="password"
-            name="password"
-            required
-          />
+          <div className="form-row">
+            <FormPassword name="password" required className="win98-input" />
+          </div>
         </div>
 
         <div className="form-row">
