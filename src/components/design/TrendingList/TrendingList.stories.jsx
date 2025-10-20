@@ -1,5 +1,6 @@
 import "../../../styles/index.css";
 import React from "react";
+import { MemoryRouter } from "react-router";
 import { TrendingList } from "./TrendingList";
 
 export default {
@@ -12,9 +13,11 @@ export default {
 };
 
 const Template = (args) => (
-  <div style={{ padding: 16, maxWidth: 320 }}>
-    <TrendingList {...args} />
-  </div>
+  <MemoryRouter initialEntries={["/"]}>
+    <div style={{ padding: 16, maxWidth: 320 }}>
+      <TrendingList {...args} />
+    </div>
+  </MemoryRouter>
 );
 
 export const Default = Template.bind({});
