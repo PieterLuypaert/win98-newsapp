@@ -1,9 +1,11 @@
 .article-sidebar {
+  position: -webkit-sticky;
   position: sticky;
   top: var(--spacing-md);
   align-self: start;
-  max-height: calc(100vh - var(--spacing-3xl));
-  overflow-y: auto;
+
+  max-height: none;
+  overflow: visible;
 }
 
 /* Responsive adjustments */

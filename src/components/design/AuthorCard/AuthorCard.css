@@ -4,9 +4,10 @@
   border-color: var(--color-window-border-light) var(--color-window-border-dark)
     var(--color-window-border-dark) var(--color-window-border-light);
   margin-bottom: var(--spacing-2xl);
-  position: sticky;
-  top: 0;
-  align-self: start;
+
+  position: static;
+  top: auto;
+  align-self: stretch;
 }
 
 .author-card-header {
