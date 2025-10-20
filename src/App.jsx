@@ -82,8 +82,8 @@ function App() {
         open: true,
         type: "login",
         title: "Login",
-        width: 480,
-        height: 420,
+        width: 360,
+        height: 180,
       },
     },
     {
@@ -92,8 +92,8 @@ function App() {
         open: true,
         type: "register",
         title: "Register",
-        width: 520,
-        height: 520,
+        width: 360,
+        height: 180,
       },
     },
   ];

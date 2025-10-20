@@ -11,7 +11,7 @@
   gap: var(--spacing-sm);
   padding: 3px;
   display: flex;
-  min-width: 60rem;
+  min-width: 20rem;
   flex-direction: column;
   background: var(--color-silver);
   box-shadow: var(--shadow-window-inset);
