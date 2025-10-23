@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
-import categoriesData from "../../../data/categories.json";
 import "./CategoryContent.css";
 import { useQuery } from "@tanstack/react-query";
 import { fetchNews } from "../../../core/modules/news/news.api";
+import { fetchCategories } from "../../../core/modules/categories/category.api";
 
 export const CategoryContent = ({ categorySlug }) => {
   const navigate = useNavigate();
@@ -15,12 +15,20 @@ export const CategoryContent = ({ categorySlug }) => {
   useEffect(() => setActiveCategory(categorySlug), [categorySlug]);
 
   // fetch news
-  const { data: news = [], isLoading } = useQuery({
+  const { data: news = [], isLoading: newsLoading } = useQuery({
     queryKey: ["news"],
     queryFn: fetchNews,
   });
 
-  const category = categoriesData.find((cat) => cat.slug === activeCategory);
+  // fetch categories
+  const { data: categories = [], isLoading: catLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+  });
+
+  const isLoading = newsLoading || catLoading;
+
+  const category = categories.find((cat) => cat.slug === activeCategory);
 
   const searchArticles = (articles, term) => {
     if (!term) return articles;
@@ -98,6 +106,7 @@ export const CategoryContent = ({ categorySlug }) => {
         activeCategory={activeCategory}
         onCategoryClick={handleCategoryClick}
         onSearch={handleSearch}
+        categories={categories} // pass fetched categories to navigation
       />
       {searchTerm && !articles.length ? (
         <div className="category-empty">
