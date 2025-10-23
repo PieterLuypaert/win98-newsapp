@@ -1,7 +1,14 @@
 import "../../../styles/index.css";
 import React from "react";
 import { NewsNavigation } from "./NewsNavigation";
-import categoriesData from "../../../data/categories.json";
+
+// replace external data import with a small inline sample
+const sampleCategories = [
+  { slug: "nieuws", title: "Nieuws" },
+  { slug: "tech", title: "Tech" },
+  { slug: "wereld", title: "Wereld" },
+  { slug: "cultuur", title: "Cultuur" },
+];
 
 export default {
   title: "Design/NewsNavigation",
@@ -9,7 +16,7 @@ export default {
   argTypes: {
     activeCategory: {
       control: { type: "select" },
-      options: ["", ...categoriesData.map((c) => c.slug)],
+      options: ["", ...sampleCategories.map((c) => c.slug)],
     },
     showSearch: { control: "boolean" },
     onCategoryClick: { action: "onCategoryClick" },
@@ -20,7 +27,7 @@ export default {
 const Template = (args) => (
   <div style={{ padding: 16, maxWidth: 900 }}>
     <NewsNavigation
-      categories={categoriesData} 
+      categories={sampleCategories}
       activeCategory={args.activeCategory || null}
       onCategoryClick={args.onCategoryClick}
       onSearch={args.showSearch ? args.onSearch : undefined}
@@ -36,7 +43,7 @@ Default.args = {
 
 export const CategoryActive = Template.bind({});
 CategoryActive.args = {
-  activeCategory: categoriesData[0]?.slug || "",
+  activeCategory: sampleCategories[0]?.slug || "",
   showSearch: true,
 };
 
