@@ -10,11 +10,15 @@ import Category from "./pages/Category";
 import Article from "./pages/Article";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 const root = document.getElementById("root");
 
+const client = new QueryClient();
+
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
+    <QueryClientProvider client={client}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
@@ -27,5 +31,6 @@ ReactDOM.createRoot(root).render(
         </Route>
       </Routes>
     </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 );
