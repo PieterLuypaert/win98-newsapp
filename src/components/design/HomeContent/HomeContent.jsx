@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
 import { TrendingList } from "../TrendingList/TrendingList";
-import trendingData from "../../../data/trending.json";
 import "./HomeContent.css";
 import { useQuery } from "@tanstack/react-query";
 import { fetchNews } from "../../../core/modules/news/news.api";
@@ -30,7 +29,7 @@ export const HomeContent = () => {
             <p>Loading news...</p>
           </div>
           <aside className="home-content-sidebar">
-            <TrendingList items={trendingData} onArticleClick={() => {}} />
+            <TrendingList onArticleClick={() => {}} />
           </aside>
         </div>
       </div>
@@ -160,10 +159,7 @@ export const HomeContent = () => {
         </div>
 
         <aside className="home-content-sidebar">
-          <TrendingList
-            items={trendingData}
-            onArticleClick={handleArticleClick}
-          />
+          <TrendingList onArticleClick={handleArticleClick} />
         </aside>
       </div>
     </div>
