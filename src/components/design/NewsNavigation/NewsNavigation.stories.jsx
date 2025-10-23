@@ -20,6 +20,7 @@ export default {
 const Template = (args) => (
   <div style={{ padding: 16, maxWidth: 900 }}>
     <NewsNavigation
+      categories={categoriesData} 
       activeCategory={args.activeCategory || null}
       onCategoryClick={args.onCategoryClick}
       onSearch={args.showSearch ? args.onSearch : undefined}
