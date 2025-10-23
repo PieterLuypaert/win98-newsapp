@@ -17,12 +17,14 @@ const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: false } },
 });
 
+// use React.createElement to avoid JSX in a .js file
 export const decorators = [
-  (Story) => (
-    <QueryClientProvider client={queryClient}>
-      <Story />
-    </QueryClientProvider>
-  ),
+  (Story) =>
+    React.createElement(
+      QueryClientProvider,
+      { client: queryClient },
+      React.createElement(Story)
+    ),
 ];
 
 export default preview;
