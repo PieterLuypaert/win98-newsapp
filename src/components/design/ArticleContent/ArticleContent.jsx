@@ -2,25 +2,31 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import { RelatedArticles } from "../RelatedArticles/RelatedArticles";
 import { Comments } from "../Comments/Comments";
-import newsData from "../../../data/news.json";
 import authorsData from "../../../data/authors.json";
 import "./ArticleContent.css";
 import { ArticleHeader } from "../ArticleHeader/ArticleHeader";
 import { ArticleBody } from "../ArticleBody/ArticleBody";
 import { ArticleSidebar } from "../ArticleSidebar/ArticleSidebar";
+import { useQuery } from "@tanstack/react-query";
+import { fetchNews } from "../../../core/modules/news/news.api";
 
 export const ArticleContent = ({ articleSlug }) => {
   const navigate = useNavigate();
   const [scrollProgress, setScrollProgress] = useState(0);
   const contentRef = useRef(null);
 
-  const article = newsData.find((a) => a.slug === articleSlug);
+  const { data: news = [], isLoading } = useQuery({
+    queryKey: ["news"],
+    queryFn: fetchNews,
+  });
+
+  const article = news.find((a) => a.slug === articleSlug);
   const author = article
     ? authorsData.find((auth) => auth.id === article.authorId)
     : null;
 
   const relatedArticles = article
-    ? newsData
+    ? news
         .filter((a) => {
           if (a.id === article.id) return false;
           return a.tags.some((tag) =>
@@ -55,6 +61,10 @@ export const ArticleContent = ({ articleSlug }) => {
     }
     setScrollProgress(0);
   }, [articleSlug]);
+
+  if (isLoading) {
+    return <div className="article-content">Loading article...</div>;
+  }
 
   if (!article) {
     return (

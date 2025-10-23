@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
-import newsData from "../../../data/news.json";
 import categoriesData from "../../../data/categories.json";
 import "./CategoryContent.css";
+import { useQuery } from "@tanstack/react-query";
+import { fetchNews } from "../../../core/modules/news/news.api";
 
 export const CategoryContent = ({ categorySlug }) => {
   const navigate = useNavigate();
@@ -12,6 +13,12 @@ export const CategoryContent = ({ categorySlug }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => setActiveCategory(categorySlug), [categorySlug]);
+
+  // fetch news
+  const { data: news = [], isLoading } = useQuery({
+    queryKey: ["news"],
+    queryFn: fetchNews,
+  });
 
   const category = categoriesData.find((cat) => cat.slug === activeCategory);
 
@@ -30,7 +37,19 @@ export const CategoryContent = ({ categorySlug }) => {
     });
   };
 
-  const filteredByCategory = newsData.filter(
+  if (isLoading) {
+    return (
+      <div className="category-content-wrapper">
+        <NewsNavigation
+          activeCategory={activeCategory}
+          onCategoryClick={(slug) => setActiveCategory(slug)}
+        />
+        <div style={{ padding: 16 }}>Loading articles...</div>
+      </div>
+    );
+  }
+
+  const filteredByCategory = news.filter(
     (article) =>
       !activeCategory ||
       article.categories.some((cat) => cat.slug === activeCategory)

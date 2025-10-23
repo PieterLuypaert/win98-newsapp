@@ -1,21 +1,32 @@
 import React from "react";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
-import newsData from "../../../data/news.json";
 import "./BookmarksContent.css";
 import { Button } from "../Button/Button";
 import { useNavigate } from "react-router";
-
-const sampleBookmarkedSlugs = newsData.slice(0, 4).map((a) => a.slug);
+import { useQuery } from "@tanstack/react-query";
+import { fetchNews } from "../../../core/modules/news/news.api";
 
 const BookmarksContent = () => {
   const navigate = useNavigate();
-  const bookmarkedArticles = newsData.filter((a) =>
+
+  const { data: news = [], isLoading } = useQuery({
+    queryKey: ["news"],
+    queryFn: fetchNews,
+  });
+
+  const sampleBookmarkedSlugs = (news || []).slice(0, 4).map((a) => a.slug);
+
+  const bookmarkedArticles = news.filter((a) =>
     sampleBookmarkedSlugs.includes(a.slug)
   );
 
   const handleArticleClick = (slug) => {
     navigate(`/article/${slug}`);
   };
+
+  if (isLoading) {
+    return <div className="bookmarks-wrapper">Loading saved articles...</div>;
+  }
 
   return (
     <div className="bookmarks-wrapper">

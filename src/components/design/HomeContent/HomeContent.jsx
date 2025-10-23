@@ -3,14 +3,39 @@ import { useNavigate } from "react-router";
 import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
 import { TrendingList } from "../TrendingList/TrendingList";
-import newsData from "../../../data/news.json";
 import trendingData from "../../../data/trending.json";
 import "./HomeContent.css";
+import { useQuery } from "@tanstack/react-query";
+import { fetchNews } from "../../../core/modules/news/news.api";
 
 export const HomeContent = () => {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const { data: newsData = [], isLoading } = useQuery({
+    queryKey: ["news"],
+    queryFn: fetchNews,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="home-content-wrapper">
+        <NewsNavigation
+          activeCategory={activeCategory}
+          onCategoryClick={(slug) => setActiveCategory(slug)}
+        />
+        <div className="home-content">
+          <div className="home-content-main">
+            <p>Loading news...</p>
+          </div>
+          <aside className="home-content-sidebar">
+            <TrendingList items={trendingData} onArticleClick={() => {}} />
+          </aside>
+        </div>
+      </div>
+    );
+  }
 
   const searchArticles = (articles, term) => {
     if (!term) return articles;
