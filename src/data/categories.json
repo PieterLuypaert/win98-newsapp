@@ -1,7 +1,0 @@
-[
-  { "id": 1, "title": "General", "slug": "general" },
-  { "id": 2, "title": "Sports", "slug": "sports" },
-  { "id": 3, "title": "Tech", "slug": "tech" },
-  { "id": 4, "title": "Science", "slug": "science" },
-  { "id": 5, "title": "Lifestyle", "slug": "lifestyle" }
-]
