@@ -1,16 +1,28 @@
 /* Fullscreen container */
 .bootscreen {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-index-bsod, 9999);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--desktop-bg-default) center/cover no-repeat;
-  background-size: cover;
-  -webkit-font-smoothing: antialiased;
-  font-family: var(--font-family-primary);
-  pointer-events: auto;
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-index-bsod, 9999);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.12);
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--font-family-primary);
+    pointer-events: auto;
+    overflow: hidden; 
+}
+
+.bootscreen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--desktop-bg-default) center/cover no-repeat;
+    background-size: cover;
+    filter: blur(8px);
+    transform: scale(1.04); 
+    z-index: -1;
+    pointer-events: none;
 }
 
 .bootscreen-outer {
