@@ -1,5 +1,6 @@
 import React from "react";
 import "./Textarea.css";
+import PropTypes from "prop-types";
 
 export const Textarea = ({
   id,
@@ -21,4 +22,14 @@ export const Textarea = ({
       onChange={onChange}
     />
   );
+};
+
+Textarea.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  rows: PropTypes.number,
+  placeholder: PropTypes.string,
+  className: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 };
