@@ -1,10 +1,12 @@
 import React from "react";
 import "./TrendingList.css";
 import { Link } from "react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchTrending } from "../../../core/modules/trending/trending.api";
+import LoadingDialog from "../LoadingDialog/LoadingDialog";
 
 export const TrendingList = ({ items: propItems, onArticleClick }) => {
+  const queryClient = useQueryClient();
   const { data: fetched = [], isLoading } = useQuery({
     queryKey: ["trending"],
     queryFn: fetchTrending,
@@ -26,7 +28,12 @@ export const TrendingList = ({ items: propItems, onArticleClick }) => {
     return (
       <div className="trending-list">
         <div className="trending-list-header">Top 10 Trending</div>
-        <div style={{ padding: 12 }}>Loading trending...</div>
+        <div style={{ padding: 12 }}>
+          <LoadingDialog
+            message="Loading trending..."
+            onCancel={() => queryClient.cancelQueries(["trending"])}
+          />
+        </div>
       </div>
     );
   }
