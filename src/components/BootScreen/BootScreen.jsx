@@ -25,7 +25,7 @@ export default function BootScreen({ onFinish }) {
 
         <div className="bootscreen-body">
           <motion.img
-            src="/assets/startlogo.svg"
+            src="/assets/bootscreen.png"
             alt="Start logo"
             className="bootscreen-logo"
             initial={{ opacity: 0, scale: 0.98, y: 8 }}
