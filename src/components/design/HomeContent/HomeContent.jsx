@@ -4,13 +4,16 @@ import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
 import { TrendingList } from "../TrendingList/TrendingList";
 import "./HomeContent.css";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchNews } from "../../../core/modules/news/news.api";
+import LoadingDialog from "../LoadingDialog/LoadingDialog";
 
 export const HomeContent = () => {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const queryClient = useQueryClient();
 
   const { data: newsData = [], isLoading } = useQuery({
     queryKey: ["news"],
@@ -26,7 +29,10 @@ export const HomeContent = () => {
         />
         <div className="home-content">
           <div className="home-content-main">
-            <p>Loading news...</p>
+            <LoadingDialog
+              message="Loading news..."
+              onCancel={() => queryClient.cancelQueries(["news"])}
+            />
           </div>
           <aside className="home-content-sidebar">
             <TrendingList onArticleClick={() => {}} />
