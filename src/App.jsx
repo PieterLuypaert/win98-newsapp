@@ -1,10 +1,10 @@
 import "./styles/index.css";
 import React, { useState, useEffect } from "react";
 import { Outlet, useLocation, matchPath, useNavigate } from "react-router";
-import { Taskbar } from "./components/Taskbar";
+import TaskbarContainer from "./components/functional/Taskbar/TaskbarContainer";
 import { Desktop } from "./components/Desktop";
 import { Window } from "./components/design/window/window";
-import BootScreen from "./components/BootScreen/BootScreen"; 
+import BootScreen from "./components/BootScreen/BootScreen";
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -129,7 +129,7 @@ function App() {
         ) : null}
       </main>
 
-      <Taskbar
+      <TaskbarContainer
         time={formattedTime}
         showFullscreenButton={true}
         onFullscreen={handleFullscreen}
