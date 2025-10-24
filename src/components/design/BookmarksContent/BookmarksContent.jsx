@@ -3,11 +3,13 @@ import { ArticleCard } from "../ArticleCard/ArticleCard";
 import "./BookmarksContent.css";
 import { Button } from "../Button/Button";
 import { useNavigate } from "react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchNews } from "../../../core/modules/news/news.api";
+import LoadingDialog from "../LoadingDialog/LoadingDialog";
 
 const BookmarksContent = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { data: news = [], isLoading } = useQuery({
     queryKey: ["news"],
@@ -25,7 +27,14 @@ const BookmarksContent = () => {
   };
 
   if (isLoading) {
-    return <div className="bookmarks-wrapper">Loading saved articles...</div>;
+    return (
+      <div className="bookmarks-wrapper">
+        <LoadingDialog
+          message="Loading saved articles..."
+          onCancel={() => queryClient.cancelQueries(["news"])}
+        />
+      </div>
+    );
   }
 
   return (
