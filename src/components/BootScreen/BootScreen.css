@@ -1,0 +1,109 @@
+/* Fullscreen container */
+.bootscreen {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-bsod, 9999);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--desktop-bg-default); /* same feel as desktop */
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-family-primary);
+  pointer-events: auto;
+}
+
+.bootscreen-outer {
+  width: min(720px, 92vw);
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-window-border-dark) var(--color-window-border-light)
+    var(--color-window-border-light) var(--color-window-border-dark);
+  box-shadow: var(--shadow-window-inset);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px;
+  gap: 12px;
+}
+
+.bootscreen-title {
+  align-self: stretch;
+  background: var(--color-navy);
+  color: var(--color-white);
+  font-weight: 700;
+  padding: 8px 10px;
+  font-size: 13px;
+  border-bottom: 2px solid var(--color-window-border-darker);
+  box-sizing: border-box;
+  font-family: var(--font-family-primary);
+  letter-spacing: 0.3px;
+}
+
+.bootscreen-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 10px 12px 10px;
+  background: linear-gradient(to bottom, #e9e9e9, #d7d7d7);
+  border: 2px solid;
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+}
+
+.bootscreen-logo {
+  width: 420px;
+  max-width: 88%;
+  height: auto;
+  image-rendering: pixelated;
+  display: block;
+  margin: 6px 0;
+}
+
+.bootscreen-caption {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-black);
+  font-family: var(--font-family-primary);
+}
+
+.bootscreen-progress-wrap {
+  width: 420px;
+  max-width: 88%;
+  height: 14px;
+  margin-top: 12px;
+  background: var(--color-window-inset);
+  border: 2px solid;
+  border-color: var(--color-window-border-dark) var(--color-window-border-light)
+    var(--color-window-border-light) var(--color-window-border-dark);
+  box-shadow: inset -1px -1px rgba(255, 255, 255, 0.4),
+    inset 1px 1px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.bootscreen-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #7bb8ff 0%, #2b8fe6 60%, #1a68b8 100%);
+  box-shadow: inset -1px -1px rgba(0, 0, 0, 0.12);
+}
+
+.bootscreen-subtext {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--color-gray-darker);
+  font-family: var(--font-family-mono);
+}
+
+@media (max-width: 480px) {
+  .bootscreen-outer {
+    padding: 10px;
+  }
+  .bootscreen-logo {
+    width: 260px;
+  }
+  .bootscreen-progress-wrap {
+    height: 12px;
+  }
+}
