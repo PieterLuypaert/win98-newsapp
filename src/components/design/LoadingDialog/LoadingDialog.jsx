@@ -3,14 +3,12 @@ import "./LoadingDialog.css";
 
 const LoadingDialog = ({ message = "Loading...", onCancel }) => {
   return (
-    <div className="ld-overlay" role="dialog" aria-live="polite">
-      <div className="ld-window">
-        <div className="ld-title">Loading</div>
-
+    <div className="ld-inline" role="status" aria-live="polite">
+      <div className="ld-window ld-window--embedded">
         <div className="ld-body">
           <div className="ld-message">{message}</div>
 
-          <div className="ld-progress-outer" aria-hidden>
+          <div className="ld-progress-outer" aria-hidden="true">
             <div className="ld-progress">
               {[...Array(8)].map((_, i) => (
                 <span

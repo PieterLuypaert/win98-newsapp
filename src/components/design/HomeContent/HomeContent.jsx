@@ -30,6 +30,7 @@ export const HomeContent = () => {
         <div className="home-content">
           <div className="home-content-main">
             <LoadingDialog
+              embedded
               message="Loading news..."
               onCancel={() => queryClient.cancelQueries(["news"])}
             />
