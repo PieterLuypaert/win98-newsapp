@@ -4,10 +4,12 @@ import { Outlet, useLocation, matchPath, useNavigate } from "react-router";
 import { Taskbar } from "./components/Taskbar";
 import { Desktop } from "./components/Desktop";
 import { Window } from "./components/design/window/window";
+import BootScreen from "./components/BootScreen/BootScreen"; // NEW
 
 function App() {
   const [time, setTime] = useState(new Date());
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showBoot, setShowBoot] = useState(true);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -106,28 +108,38 @@ function App() {
     navigate("/", { replace: true });
   };
 
+  const handleBootFinish = () => {
+    setShowBoot(false);
+  };
+
   return (
     <div className="app">
-      <Desktop showIcons={true} />
+      {showBoot ? (
+        <BootScreen onFinish={handleBootFinish} />
+      ) : (
+        <>
+          <Desktop showIcons={true} />
 
-      <main className="page-content">
-        {win.open ? (
-          <Window
-            title={win.title}
-            onClose={handleCloseWindow}
-            width={win.width}
-            height={win.height}
-          >
-            <Outlet />
-          </Window>
-        ) : null}
-      </main>
+          <main className="page-content">
+            {win.open ? (
+              <Window
+                title={win.title}
+                onClose={handleCloseWindow}
+                width={win.width}
+                height={win.height}
+              >
+                <Outlet />
+              </Window>
+            ) : null}
+          </main>
 
-      <Taskbar
-        time={formattedTime}
-        showFullscreenButton={true}
-        onFullscreen={handleFullscreen}
-      />
+          <Taskbar
+            time={formattedTime}
+            showFullscreenButton={true}
+            onFullscreen={handleFullscreen}
+          />
+        </>
+      )}
     </div>
   );
 }
