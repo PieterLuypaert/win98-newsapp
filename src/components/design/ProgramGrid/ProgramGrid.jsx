@@ -1,9 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { NewsWindow } from "../NewsWindow/NewsWindow";
-import { HomeContent } from "../HomeContent/HomeContent";
-import { CategoryContent } from "../CategoryContent/CategoryContent";
-import { ArticleContent } from "../ArticleContent/ArticleContent";
+import HomeContainer from "../../functional/Home/HomeContainer";
+import CategoryContainer from "../../functional/Category/CategoryContainer";
+import ArticleContainer from "../../functional/Article/ArticleContainer";
+import BookmarksContainer from "../../functional/Bookmarks/BookmarksContainer";
 
 export const ProgramGrid = ({ openWindow, categorySlug, articleSlug }) => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export const ProgramGrid = ({ openWindow, categorySlug, articleSlug }) => {
   if (openWindow === "news") {
     return (
       <NewsWindow title="News Explorer - Home" onClose={handleClose}>
-        <HomeContent />
+        <HomeContainer />
       </NewsWindow>
     );
   }
@@ -23,7 +24,7 @@ export const ProgramGrid = ({ openWindow, categorySlug, articleSlug }) => {
   if (openWindow === "category") {
     return (
       <NewsWindow title={`News Explorer - Category`} onClose={handleClose}>
-        <CategoryContent categorySlug={categorySlug} />
+        <CategoryContainer categorySlug={categorySlug} />
       </NewsWindow>
     );
   }
@@ -31,7 +32,15 @@ export const ProgramGrid = ({ openWindow, categorySlug, articleSlug }) => {
   if (openWindow === "article") {
     return (
       <NewsWindow title="News Explorer - Article" onClose={handleClose}>
-        <ArticleContent articleSlug={articleSlug} />
+        <ArticleContainer articleSlug={articleSlug} />
+      </NewsWindow>
+    );
+  }
+
+  if (openWindow === "bookmarks") {
+    return (
+      <NewsWindow title="Bookmarks" onClose={handleClose}>
+        <BookmarksContainer />
       </NewsWindow>
     );
   }
