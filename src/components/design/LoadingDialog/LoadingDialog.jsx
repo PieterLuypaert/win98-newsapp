@@ -21,22 +21,6 @@ const LoadingDialog = ({ message = "Loading...", onCancel }) => {
               ))}
             </div>
           </div>
-
-          <div className="ld-buttons">
-            <button className="win98-button small" disabled>
-              Done
-            </button>
-            <button
-              className="win98-button small"
-              onClick={(e) => {
-                e.stopPropagation();
-                if (typeof onCancel === "function") onCancel();
-              }}
-              title="Cancel"
-            >
-              Cancel
-            </button>
-          </div>
         </div>
       </div>
     </div>
