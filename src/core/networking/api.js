@@ -5,13 +5,13 @@ const API = axios.create({
 });
 
 // // 2 seconden vertraging voor elke response
-// const delay = (ms) => new Promise((r) => setTimeout(r, ms));
+const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// API.interceptors.response.use(
-//   async (response) => {
-//     await delay(2000);
-//     return response;
-//   },
-// );
+API.interceptors.response.use(
+  async (response) => {
+    await delay(2000); 
+    return response;
+  },
+);
 
 export default API;
