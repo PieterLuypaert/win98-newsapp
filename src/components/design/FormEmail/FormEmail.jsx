@@ -1,5 +1,6 @@
 import React from "react";
 import "./FormEmail.css";
+import PropTypes from "prop-types";
 
 export const FormEmail = ({
   name = "email",
@@ -7,6 +8,9 @@ export const FormEmail = ({
   className = "win98-input",
   required = false,
   placeholder = "",
+  value,
+  onChange,
+  ...rest
 }) => {
   const inputId = id || `${name}-id`;
 
@@ -22,9 +26,22 @@ export const FormEmail = ({
         className={className}
         placeholder={placeholder}
         required={required}
+        value={value}
+        onChange={onChange}
+        {...rest}
       />
     </div>
   );
+};
+
+FormEmail.propTypes = {
+  name: PropTypes.string,
+  id: PropTypes.string,
+  className: PropTypes.string,
+  required: PropTypes.bool,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default FormEmail;
