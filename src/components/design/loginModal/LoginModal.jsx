@@ -1,22 +1,28 @@
 import React from "react";
 import "./LoginModal.css";
-import { LoginForm } from "../LoginForm/LoginForm";
 
-export const LoginModal = ({ onClose, onRegister, embedded = false }) => {
-  const handleFormSubmit = (formData) => {
-    onClose();
-  };
-
+export const LoginModal = ({
+  embedded,
+  onClose,
+  onRegister,
+  FormComponent = null,
+}) => {
   const inner = (
     <>
       <div className="login-icon">
         <img src="/assets/apps/inlog.png" alt="" />
       </div>
-      <LoginForm onSubmit={handleFormSubmit} onRegister={onRegister} />
+      {FormComponent ? (
+        <FormComponent onRegister={onRegister} onClose={onClose} />
+      ) : null}
     </>
   );
 
   if (embedded) {
     return <div className="login-body embedded">{inner}</div>;
   }
+
+  return null;
 };
+
+export default LoginModal;
