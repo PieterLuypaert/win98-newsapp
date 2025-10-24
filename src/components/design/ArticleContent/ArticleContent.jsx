@@ -6,14 +6,16 @@ import "./ArticleContent.css";
 import { ArticleHeader } from "../ArticleHeader/ArticleHeader";
 import { ArticleBody } from "../ArticleBody/ArticleBody";
 import { ArticleSidebar } from "../ArticleSidebar/ArticleSidebar";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchNews } from "../../../core/modules/news/news.api";
 import { fetchAuthors } from "../../../core/modules/authors/authors.api";
+import LoadingDialog from "../LoadingDialog/LoadingDialog";
 
 export const ArticleContent = ({ articleSlug }) => {
   const navigate = useNavigate();
   const [scrollProgress, setScrollProgress] = useState(0);
   const contentRef = useRef(null);
+  const queryClient = useQueryClient();
 
   const { data: news = [], isLoading: newsLoading } = useQuery({
     queryKey: ["news"],
@@ -70,7 +72,17 @@ export const ArticleContent = ({ articleSlug }) => {
   }, [articleSlug]);
 
   if (isLoading) {
-    return <div className="article-content">Loading article...</div>;
+    return (
+      <div className="article-content">
+        <LoadingDialog
+          message="Loading article..."
+          onCancel={() => {
+            queryClient.cancelQueries(["news"]);
+            queryClient.cancelQueries(["authors"]);
+          }}
+        />
+      </div>
+    );
   }
 
   if (!article) {
