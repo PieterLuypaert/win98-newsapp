@@ -6,7 +6,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--desktop-bg-default); /* same feel as desktop */
+  background: var(--desktop-bg-default) center/cover no-repeat;
+  background-size: cover;
   -webkit-font-smoothing: antialiased;
   font-family: var(--font-family-primary);
   pointer-events: auto;
