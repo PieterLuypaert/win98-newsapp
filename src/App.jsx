@@ -4,7 +4,7 @@ import { Outlet, useLocation, matchPath, useNavigate } from "react-router";
 import { Taskbar } from "./components/Taskbar";
 import { Desktop } from "./components/Desktop";
 import { Window } from "./components/design/window/window";
-import BootScreen from "./components/BootScreen/BootScreen"; // NEW
+import BootScreen from "./components/BootScreen/BootScreen"; 
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -114,32 +114,28 @@ function App() {
 
   return (
     <div className="app">
-      {showBoot ? (
-        <BootScreen onFinish={handleBootFinish} />
-      ) : (
-        <>
-          <Desktop showIcons={true} />
+      <Desktop showIcons={true} />
 
-          <main className="page-content">
-            {win.open ? (
-              <Window
-                title={win.title}
-                onClose={handleCloseWindow}
-                width={win.width}
-                height={win.height}
-              >
-                <Outlet />
-              </Window>
-            ) : null}
-          </main>
+      <main className="page-content">
+        {win.open ? (
+          <Window
+            title={win.title}
+            onClose={handleCloseWindow}
+            width={win.width}
+            height={win.height}
+          >
+            <Outlet />
+          </Window>
+        ) : null}
+      </main>
 
-          <Taskbar
-            time={formattedTime}
-            showFullscreenButton={true}
-            onFullscreen={handleFullscreen}
-          />
-        </>
-      )}
+      <Taskbar
+        time={formattedTime}
+        showFullscreenButton={true}
+        onFullscreen={handleFullscreen}
+      />
+
+      {showBoot && <BootScreen onFinish={handleBootFinish} />}
     </div>
   );
 }
