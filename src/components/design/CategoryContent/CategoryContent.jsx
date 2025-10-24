@@ -3,9 +3,10 @@ import { useNavigate } from "react-router";
 import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
 import "./CategoryContent.css";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchNews } from "../../../core/modules/news/news.api";
 import { fetchCategories } from "../../../core/modules/categories/category.api";
+import LoadingDialog from "../LoadingDialog/LoadingDialog";
 
 export const CategoryContent = ({ categorySlug }) => {
   const navigate = useNavigate();
@@ -13,6 +14,8 @@ export const CategoryContent = ({ categorySlug }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => setActiveCategory(categorySlug), [categorySlug]);
+
+  const queryClient = useQueryClient();
 
   // fetch news
   const { data: news = [], isLoading: newsLoading } = useQuery({
@@ -52,7 +55,15 @@ export const CategoryContent = ({ categorySlug }) => {
           activeCategory={activeCategory}
           onCategoryClick={(slug) => setActiveCategory(slug)}
         />
-        <div style={{ padding: 16 }}>Loading articles...</div>
+        <div style={{ padding: 16 }}>
+          <LoadingDialog
+            message="Loading articles..."
+            onCancel={() => {
+              queryClient.cancelQueries(["news"]);
+              queryClient.cancelQueries(["categories"]);
+            }}
+          />
+        </div>
       </div>
     );
   }
