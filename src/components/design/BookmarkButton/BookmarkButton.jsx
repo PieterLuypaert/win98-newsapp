@@ -1,14 +1,25 @@
-import { useState } from "react";
+import React from "react";
 import { Button } from "../Button/Button";
 import "./BookmarkButton.css";
+import LoginPrompt from "../LoginPrompt/LoginPrompt";
 
-export const BookmarkButton = ({ articleId, isBookmarked = false }) => {
-  const [bookmarked, setBookmarked] = useState(isBookmarked);
-
+export const BookmarkButton = ({
+  bookmarked = false,
+  onClick = () => {},
+  showPrompt = false,
+  onClosePrompt = () => {},
+  onLogin = () => {},
+  onRegister = () => {},
+  titleAdd = "Bookmark",
+  titleRemove = "Bookmarked",
+}) => {
   return (
-    <div className="bookmark-button-container">
+    <div
+      className="bookmark-button-container"
+      onClick={(e) => e.stopPropagation()}
+    >
       <Button
-        onClick={() => setBookmarked(!bookmarked)}
+        onClick={onClick}
         variant="win98"
         className={`bookmark-button ${bookmarked ? "bookmarked" : ""}`}
         title={bookmarked ? "Remove bookmark" : "Add bookmark"}
@@ -19,9 +30,19 @@ export const BookmarkButton = ({ articleId, isBookmarked = false }) => {
           className="bookmark-icon"
         />
         <span className="bookmark-text">
-          {bookmarked ? "Bookmarked" : "Bookmark"}
+          {bookmarked ? titleRemove : titleAdd}
         </span>
       </Button>
+
+      {showPrompt && (
+        <LoginPrompt
+          onClose={onClosePrompt}
+          onLogin={onLogin}
+          onRegister={onRegister}
+        />
+      )}
     </div>
   );
 };
+
+export default BookmarkButton;
