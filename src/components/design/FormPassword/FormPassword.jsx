@@ -1,5 +1,6 @@
 import React from "react";
 import "./FormPassword.css";
+import PropTypes from "prop-types";
 
 export const FormPassword = ({
   name = "password",
@@ -7,6 +8,9 @@ export const FormPassword = ({
   className = "win98-input",
   required = false,
   placeholder = "",
+  value,
+  onChange,
+  ...rest
 }) => {
   const inputId = id || `${name}-id`;
 
@@ -22,9 +26,22 @@ export const FormPassword = ({
         className={className}
         placeholder={placeholder}
         required={required}
+        value={value}
+        onChange={onChange}
+        {...rest}
       />
     </div>
   );
+};
+
+FormPassword.propTypes = {
+  name: PropTypes.string,
+  id: PropTypes.string,
+  className: PropTypes.string,
+  required: PropTypes.bool,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default FormPassword;
