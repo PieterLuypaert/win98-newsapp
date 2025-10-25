@@ -9,6 +9,19 @@ const AuthProvider = ({ children }) => {
     (u) => {
       Storage.saveUser(u);
       setUserState(u);
+
+     
+      if (u) {
+        try {
+          Storage.clearBookmarks(null); 
+        } catch {
+        }
+        try {
+          
+          Storage.saveBookmarks(u.id, []);
+        } catch {
+        }
+      }
     },
     [setUserState]
   );
