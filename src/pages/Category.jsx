@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams } from "react-router";
-import { CategoryContent } from "../components/design/CategoryContent/CategoryContent";
+import CategoryContainer from "../components/functional/Category/CategoryContainer";
 
 export default function Category() {
   const { categorySlug } = useParams();
   return (
     <section className="page category-page">
-      <CategoryContent categorySlug={categorySlug} />
+      <CategoryContainer categorySlug={categorySlug} />
     </section>
   );
 }
