@@ -7,4 +7,27 @@
   background-size: cover;
 }
 
+.article-sidebar,
+.bookmark-button-container {
+  overflow: visible;
+}
 
+.bookmark-button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.article-sidebar .login-prompt {
+  position: relative; 
+  width: 100%;
+  min-width: 0;
+  margin-top: 0.75rem;
+  box-shadow: none;
+  z-index: 10;
+}
+
+.article-sidebar .login-prompt {
+  max-width: 320px;
+}
