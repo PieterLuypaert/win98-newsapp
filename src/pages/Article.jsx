@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams } from "react-router";
-import { ArticleContent } from "../components/design/ArticleContent/ArticleContent";
+import ArticleContainer from "../components/functional/Article/ArticleContainer";
 
 export default function Article() {
   const { articleSlug } = useParams();
   return (
     <section className="page article-page">
-      <ArticleContent articleSlug={articleSlug} />
+      <ArticleContainer articleSlug={articleSlug} />
     </section>
   );
 }
