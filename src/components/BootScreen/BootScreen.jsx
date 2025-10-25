@@ -33,7 +33,7 @@ export default function BootScreen({ onFinish }) {
             transition={{ duration: 0.8, ease: "easeOut" }}
           />
 
-          <div className="bootscreen-caption">Windows 98 — Starting up...</div>
+          <div className="bootscreen-caption">News Application — Starting up...</div>
 
           <div
             className="bootscreen-progress-wrap"
