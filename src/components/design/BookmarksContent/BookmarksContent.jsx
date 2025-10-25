@@ -2,36 +2,60 @@ import React from "react";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
 import "./BookmarksContent.css";
 import { Button } from "../Button/Button";
-import { useNavigate } from "react-router";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchNews } from "../../../core/modules/news/news.api";
 import LoadingDialog from "../LoadingDialog/LoadingDialog";
 
-const BookmarksContent = () => {
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
+export const BookmarksContent = ({
+  isAuthenticated = false,
+  onLogin = () => {},
+  onRegister = () => {},
+  isLoading = false,
+  bookmarkedArticles = [],
+  bookmarksCount = 0,
+  onRemoveBookmark = () => {},
+  onArticleClick = () => {},
+}) => {
+  if (!isAuthenticated) {
+    return (
+      <div className="bookmarks-wrapper">
+        <header className="bookmarks-header">
+          <h2>Saved Articles</h2>
+        </header>
 
-  const { data: news = [], isLoading } = useQuery({
-    queryKey: ["news"],
-    queryFn: fetchNews,
-  });
+        <div className="bookmarks-empty">
+          <div className="empty-inner">
+            <div className="empty-message">
+              <p>Je bent niet ingelogd.</p>
+              <p>Log in om artikelen op te slaan en te bekijken.</p>
+            </div>
 
-  const sampleBookmarkedSlugs = (news || []).slice(0, 4).map((a) => a.slug);
-
-  const bookmarkedArticles = news.filter((a) =>
-    sampleBookmarkedSlugs.includes(a.slug)
-  );
-
-  const handleArticleClick = (slug) => {
-    navigate(`/article/${slug}`);
-  };
+            <div className="empty-actions">
+              <Button
+                variant="win98"
+                className="win98-button"
+                onClick={onLogin}
+              >
+                Login
+              </Button>
+              <Button
+                variant="win98"
+                className="win98-button"
+                onClick={onRegister}
+              >
+                Register
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
       <div className="bookmarks-wrapper">
         <LoadingDialog
           message="Loading saved articles..."
-          onCancel={() => queryClient.cancelQueries(["news"])}
+          onCancel={() => {}}
         />
       </div>
     );
@@ -40,21 +64,21 @@ const BookmarksContent = () => {
   return (
     <div className="bookmarks-wrapper">
       <header className="bookmarks-header">
-        <h2>Saved Articles</h2>
+        <h2>Saved Articles ({bookmarksCount})</h2>
       </header>
 
       <main className="bookmarks-list">
         {bookmarkedArticles.length === 0 ? (
           <div className="bookmarks-empty">
             <p>No saved articles yet.</p>
-            <p>Use the bookmark button on an article to save it.</p>
+            <p>Gebruik de bookmark knop op een artikel om het op te slaan.</p>
           </div>
         ) : (
           bookmarkedArticles.map((article) => (
             <div key={article.id} className="bookmark-item">
               <ArticleCard
                 article={article}
-                onClick={() => handleArticleClick(article.slug)}
+                onClick={() => onArticleClick(article.slug)}
                 onCategoryClick={() => {}}
               />
               <div className="bookmark-actions">
@@ -63,6 +87,7 @@ const BookmarksContent = () => {
                   className="remove-bookmark"
                   onClick={(e) => {
                     e.stopPropagation();
+                    onRemoveBookmark(article.slug);
                   }}
                   title="Remove bookmark"
                 >
