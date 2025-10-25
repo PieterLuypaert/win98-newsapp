@@ -1,97 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import React from "react";
 import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
 import "./CategoryContent.css";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchNews } from "../../../core/modules/news/news.api";
-import { fetchCategories } from "../../../core/modules/categories/category.api";
 import LoadingDialog from "../LoadingDialog/LoadingDialog";
 
-export const CategoryContent = ({ categorySlug }) => {
-  const navigate = useNavigate();
-  const [activeCategory, setActiveCategory] = useState(categorySlug);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  useEffect(() => setActiveCategory(categorySlug), [categorySlug]);
-
-  const queryClient = useQueryClient();
-
-  // fetch news
-  const { data: news = [], isLoading: newsLoading } = useQuery({
-    queryKey: ["news"],
-    queryFn: fetchNews,
-  });
-
-  // fetch categories
-  const { data: categories = [], isLoading: catLoading } = useQuery({
-    queryKey: ["categories"],
-    queryFn: fetchCategories,
-  });
-
-  const isLoading = newsLoading || catLoading;
-
-  const category = categories.find((cat) => cat.slug === activeCategory);
-
-  const searchArticles = (articles, term) => {
-    if (!term) return articles;
-
-    const lowerTerm = term.toLowerCase();
-    return articles.filter((article) => {
-      const titleMatch = article.title.toLowerCase().includes(lowerTerm);
-      const introMatch = article.intro.toLowerCase().includes(lowerTerm);
-      const tagsMatch = article.tags.some((tag) =>
-        tag.title.toLowerCase().includes(lowerTerm)
-      );
-
-      return titleMatch || introMatch || tagsMatch;
-    });
-  };
-
-  if (isLoading) {
-    return (
-      <div className="category-content-wrapper">
-        <NewsNavigation
-          activeCategory={activeCategory}
-          onCategoryClick={(slug) => setActiveCategory(slug)}
-        />
-        <div style={{ padding: 16 }}>
-          <LoadingDialog
-            message="Loading articles..."
-            onCancel={() => {
-              queryClient.cancelQueries(["news"]);
-              queryClient.cancelQueries(["categories"]);
-            }}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  const filteredByCategory = news.filter(
-    (article) =>
-      !activeCategory ||
-      article.categories.some((cat) => cat.slug === activeCategory)
-  );
-
-  const articles = searchArticles(filteredByCategory, searchTerm);
-
-  if (activeCategory && !category) {
-    return <div className="category-error">Category not found</div>;
-  }
-
-  const handleArticleClick = (slug) => {
-    navigate(`/article/${slug}`);
-  };
-
-  const handleCategoryClick = (slug) => {
-    navigate(slug ? `/category/${slug}` : "/news");
-  };
-
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-  };
-
+export const CategoryContent = ({
+  isLoading = false,
+  categories = [],
+  activeCategory = null,
+  onCategoryClick = () => {},
+  articles = [],
+  searchTerm = "",
+  onSearch = () => {},
+  onArticleClick = () => {},
+}) => {
   const renderSection = (title, filtered, isHeadline = false) =>
     !!filtered.length && (
       <section className="category-section">
@@ -101,25 +23,66 @@ export const CategoryContent = ({ categorySlug }) => {
             key={article.id}
             article={article}
             isHeadline={isHeadline}
-            onClick={() => handleArticleClick(article.slug)}
-            onCategoryClick={handleCategoryClick}
+            onClick={() => onArticleClick(article.slug)}
+            onCategoryClick={(slug) => onCategoryClick(slug)}
           />
         ))}
       </section>
     );
 
-  const headlines = articles.filter((a) => a.isHeadline);
-  const regularNews = articles.filter((a) => !a.isHeadline);
+  if (isLoading) {
+    return (
+      <div className="category-content-wrapper">
+        <NewsNavigation
+          activeCategory={activeCategory}
+          onCategoryClick={(slug) => onCategoryClick(slug)}
+        />
+        <div style={{ padding: 16 }}>
+          <LoadingDialog message="Loading articles..." onCancel={() => {}} />
+        </div>
+      </div>
+    );
+  }
+
+  const filteredByCategory = articles.filter(
+    (article) =>
+      !activeCategory ||
+      article.categories.some((cat) => cat.slug === activeCategory)
+  );
+
+  const lowerTerm = searchTerm ? searchTerm.toLowerCase() : "";
+  const searchArticles = (items) => {
+    if (!lowerTerm) return items;
+    return items.filter((article) => {
+      const titleMatch = article.title.toLowerCase().includes(lowerTerm);
+      const introMatch = article.intro.toLowerCase().includes(lowerTerm);
+      const tagsMatch = article.tags.some((tag) =>
+        tag.title.toLowerCase().includes(lowerTerm)
+      );
+      return titleMatch || introMatch || tagsMatch;
+    });
+  };
+
+  const articlesFiltered = searchArticles(filteredByCategory);
+
+  const headlines = articlesFiltered.filter((a) => a.isHeadline);
+  const regularNews = articlesFiltered.filter((a) => !a.isHeadline);
+
+  const category = categories.find((c) => c.slug === activeCategory);
+
+  if (activeCategory && !category) {
+    return <div className="category-error">Category not found</div>;
+  }
 
   return (
     <div className="category-content-wrapper">
       <NewsNavigation
         activeCategory={activeCategory}
-        onCategoryClick={handleCategoryClick}
-        onSearch={handleSearch}
-        categories={categories} // pass fetched categories to navigation
+        onCategoryClick={onCategoryClick}
+        onSearch={onSearch}
+        categories={categories}
       />
-      {searchTerm && !articles.length ? (
+      {searchTerm && !articlesFiltered.length ? (
         <div className="category-empty">
           No articles found for "{searchTerm}" in this category.
         </div>
@@ -136,7 +99,7 @@ export const CategoryContent = ({ categorySlug }) => {
           )}
         </>
       )}
-      {!searchTerm && !articles.length && (
+      {!searchTerm && !articlesFiltered.length && (
         <div className="category-empty">
           No articles found in this category.
         </div>
@@ -144,3 +107,5 @@ export const CategoryContent = ({ categorySlug }) => {
     </div>
   );
 };
+
+export default CategoryContent;
