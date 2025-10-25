@@ -32,6 +32,32 @@
   .taskbar .win98-button[title="Fullscreen"] {
     display: none;
   }
+
+  .login-prompt {
+    position: static !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin-top: 0.75rem !important;
+    box-shadow: none !important; 
+    border-left-width: 2px !important;
+    border-right-width: 2px !important;
+  }
+
+  .login-prompt .login-prompt-body {
+    padding: 0.5rem !important;
+  }
+
+  .login-prompt .login-prompt-header {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .bookmark-button-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    align-items: stretch !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -103,6 +129,14 @@
     padding: 6px;
     border-radius: 6px;
   }
+
+  .login-prompt {
+    position: static !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin-top: 0.5rem !important;
+    box-shadow: none !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -117,6 +151,18 @@
     width: 100% !important;
     padding: 4px;
     border-radius: 4px;
+  }
+
+  .login-prompt {
+    position: static !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin-top: 0.5rem !important;
+    box-shadow: none !important;
+  }
+
+  .login-prompt .login-prompt-body {
+    padding: 0.4rem !important;
   }
 }
 
