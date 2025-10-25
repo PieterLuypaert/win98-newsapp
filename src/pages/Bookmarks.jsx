@@ -1,10 +1,10 @@
 import React from "react";
-import BookmarksContent from "../components/design/BookmarksContent/BookmarksContent";
+import BookmarksContainer from "../components/functional/Bookmarks/BookmarksContainer";
 
 export default function Bookmarks() {
   return (
     <section className="page bookmarks-page">
-      <BookmarksContent />
+      <BookmarksContainer />
     </section>
   );
 }
