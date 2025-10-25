@@ -1,48 +1,21 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { Button } from "../Button/Button";
 import { Separator } from "../Seperator/Separator";
-import { CommentForm } from "../CommentForm/CommentForm";
-import commentsData from "../../../data/comments.json";
 import "./Comments.css";
 
-export const Comments = ({ postId, initialComments = null, onAdd }) => {
-  const [comments, setComments] = useState([]);
-  const [showForm, setShowForm] = useState(false);
-
-  useEffect(() => {
-    if (Array.isArray(initialComments)) {
-      setComments(initialComments);
-    } else {
-      const articleComments = commentsData.filter(
-        (comment) => comment.postId === postId
-      );
-      setComments(articleComments);
-    }
-  }, [postId, initialComments]);
-
-  const handleSubmit = (formData) => {
-    const comment = {
-      postId,
-      id: Date.now(),
-      ...formData,
-    };
-
-    setComments((prev) => [comment, ...prev]);
-    setShowForm(false);
-    if (onAdd) onAdd(comment);
-  };
-
-  const handleCancel = () => {
-    setShowForm(false);
-  };
-
+export const Comments = ({
+  comments = [],
+  showForm = false,
+  onToggleForm,
+  FormComponent = null,
+}) => {
   return (
     <div className="comments-section">
       <div className="comments-header">
         <h3 className="comments-title">Comments ({comments.length})</h3>
         <Button
           variant="win98"
-          onClick={() => setShowForm(!showForm)}
+          onClick={() => onToggleForm && onToggleForm()}
           className="add-comment-btn"
         >
           {showForm ? "Cancel" : "+ Add Comment"}
@@ -51,9 +24,7 @@ export const Comments = ({ postId, initialComments = null, onAdd }) => {
 
       <Separator />
 
-      {showForm && (
-        <CommentForm onSubmit={handleSubmit} onCancel={handleCancel} />
-      )}
+      {showForm && FormComponent ? <FormComponent /> : null}
 
       <div className="comments-list">
         {comments.length === 0 ? (
@@ -74,3 +45,5 @@ export const Comments = ({ postId, initialComments = null, onAdd }) => {
     </div>
   );
 };
+
+export default Comments;
