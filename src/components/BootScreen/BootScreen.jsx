@@ -21,7 +21,7 @@ export default function BootScreen({ onFinish }) {
       aria-hidden={exiting}
     >
       <div className="bootscreen-outer">
-        <div className="bootscreen-title">Microsoft Windows</div>
+        <div className="bootscreen-title">Web5 - News Application - Pieter Luypaert</div>
 
         <div className="bootscreen-body">
           <motion.img
