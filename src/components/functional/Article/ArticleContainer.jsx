@@ -18,6 +18,7 @@ const ArticleContainer = ({ articleSlug }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const contentRef = useRef(null);
+  const [contentNode, setContentNode] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const { data: news = [], isLoading: newsLoading } = useQuery({
@@ -54,23 +55,26 @@ const ArticleContainer = ({ articleSlug }) => {
       .slice(0, 3);
   }, [news, article]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!contentRef.current) return;
-      const element = contentRef.current;
-      const scrollTop = element.scrollTop;
-      const scrollHeight = element.scrollHeight - element.clientHeight;
-      const progress = (scrollTop / Math.max(scrollHeight, 1)) * 100;
-      setScrollProgress(Math.min(Math.max(progress, 0), 100));
-    };
+  const setContentRef = useCallback((node) => {
+    contentRef.current = node;
+    setContentNode(node);
+  }, []);
 
+  const handleScroll = useCallback(() => {
     const el = contentRef.current;
-    if (el) {
-      el.addEventListener("scroll", handleScroll);
-      return () => el.removeEventListener("scroll", handleScroll);
-    }
-    return undefined;
-  }, [articleSlug]);
+    if (!el) return;
+    const scrollTop = el.scrollTop;
+    const scrollHeight = el.scrollHeight - el.clientHeight;
+    const progress = (scrollTop / Math.max(scrollHeight, 1)) * 100;
+    setScrollProgress(Math.min(Math.max(progress, 0), 100));
+  }, []);
+
+  useEffect(() => {
+    if (!contentNode) return undefined;
+    contentNode.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => contentNode.removeEventListener("scroll", handleScroll);
+  }, [contentNode, handleScroll]);
 
   useEffect(() => {
     if (contentRef.current) contentRef.current.scrollTop = 0;
@@ -121,7 +125,7 @@ const ArticleContainer = ({ articleSlug }) => {
         />
       )}
       CommentsComponent={CommentsContainer}
-      contentRef={contentRef}
+      contentRef={setContentRef}
     />
   );
 };
