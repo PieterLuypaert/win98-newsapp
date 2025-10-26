@@ -14,6 +14,10 @@ export const LoginPrompt = ({
       className="login-prompt"
       role="dialog"
       onClick={(e) => e.stopPropagation()}
+      onMouseDown={(e) => e.stopPropagation()}
+      onTouchStart={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
+      onWheel={(e) => e.stopPropagation()}
     >
       <div className="login-prompt-header">
         <div className="login-prompt-title">{title}</div>
