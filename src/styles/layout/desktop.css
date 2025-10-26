@@ -28,7 +28,7 @@
   align-items: stretch;
 }
 
--.article-sidebar .login-prompt {
+.article-sidebar .login-prompt {
   position: static; 
   width: 100%; 
   max-width: none;
