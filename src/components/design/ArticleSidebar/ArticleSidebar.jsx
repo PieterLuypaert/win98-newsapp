@@ -11,7 +11,7 @@ export const ArticleSidebar = ({
 }) => {
   return (
     <aside className="article-sidebar">
-      <AuthorCard author={author} />
+      {author ? <AuthorCard author={author} /> : null}
       {BookmarkComponent ? <BookmarkComponent articleId={articleId} /> : null}
       <ProgressBar progress={scrollProgress} />
     </aside>
