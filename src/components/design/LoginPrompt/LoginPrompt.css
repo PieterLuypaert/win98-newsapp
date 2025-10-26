@@ -1,16 +1,21 @@
 .login-prompt {
   position: absolute;
   top: calc(100% + 0.5rem);
-  left: 0;
+  right: 0;
   min-width: 250px;
   background: var(--color-window-bg);
   border: 2px solid;
   border-color: var(--color-window-border-light) var(--color-window-border-dark)
     var(--color-window-border-dark) var(--color-window-border-light);
   box-shadow: var(--shadow-md);
-  z-index: 1000;
+  z-index: 1002; /* hoger dan taskbar / sidebar items */
   animation: slideIn 0.2s ease;
   box-sizing: border-box;
+
+  /* voorkom scroll chaining / event propagation naar parent */
+  overscroll-behavior: contain;
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
 }
 
 @keyframes slideIn {
@@ -77,13 +82,32 @@
   color: var(--color-black);
   font-size: 11px;
   line-height: 1.4;
+
+  max-height: 60vh;
+  overflow: auto;
 }
 
-/* Responsive tweak */
+.article-sidebar .login-prompt {
+  position: static; 
+  right: auto;
+  left: auto;
+  min-width: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0.5rem 0; 
+  box-shadow: none; 
+}
+
 @media (max-width: 768px) {
   .login-prompt {
     min-width: 200px;
     right: 0;
     left: auto;
+    position: static; 
+  }
+
+  .login-prompt-body {
+    max-height: none;
+    overflow: visible;
   }
 }

@@ -12,20 +12,29 @@
   overflow: visible;
 }
 
-.bookmark-button-container {
+.article-sidebar {
+  position: relative; 
+  z-index: 10; -
+  background: var(--color-window-bg); -
+  border-left: 2px solid var(--color-window-border-dark);
+  padding: 0.5rem;
+  box-shadow: var(--shadow-window-inset);
+}
+
+-.bookmark-button-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   align-items: stretch;
 }
 
-.article-sidebar .login-prompt {
-  position: relative; 
-  width: 100%;
-  min-width: 0;
-  margin-top: 0.75rem;
-  box-shadow: none;
-  z-index: 10;
+-.article-sidebar .login-prompt {
+  position: static; 
+  width: 100%; 
+  max-width: none;
+  margin-top: 0.75rem; 
+  box-shadow: none; 
+  z-index: auto;
 }
 
 .article-sidebar .login-prompt {
