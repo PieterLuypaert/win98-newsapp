@@ -37,14 +37,12 @@ export const ArticleContent = ({
         />
       </div>
 
-      {author && (
-        <ArticleSidebar
-          author={author}
-          articleId={article.id}
-          scrollProgress={scrollProgress}
-          BookmarkComponent={BookmarkComponent}
-        />
-      )}
+      <ArticleSidebar
+        author={author}
+        articleId={article.id}
+        scrollProgress={scrollProgress}
+        BookmarkComponent={BookmarkComponent}
+      />
 
       {CommentsComponent && article && (
         <CommentsComponent postId={article.id} />
