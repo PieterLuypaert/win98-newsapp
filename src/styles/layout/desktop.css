@@ -14,8 +14,8 @@
 
 .article-sidebar {
   position: relative; 
-  z-index: 10; -
-  background: var(--color-window-bg); -
+  z-index: 10; 
+  background: var(--color-window-bg); 
   border-left: 2px solid var(--color-window-border-dark);
   padding: 0.5rem;
   box-shadow: var(--shadow-window-inset);
