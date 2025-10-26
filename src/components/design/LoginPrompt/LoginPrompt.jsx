@@ -19,8 +19,9 @@ export const LoginPrompt = ({
       const target = e.target;
       if (
         target &&
-        (target.closest?.(".login-prompt-close") ||
-          target.closest?.("[data-allow-propagation]"))
+        target.closest?.(
+          ".login-prompt-close, button, a, input, textarea, select, [data-allow-propagation]"
+        )
       ) {
         return;
       }
