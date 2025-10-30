@@ -14,7 +14,7 @@ export const getUser = () => {
 export const saveBookmarks = (userId, bookmarks) => {
   localStorage.setItem(BOOKMARKS_KEY(userId), JSON.stringify(bookmarks || []));
 };
-
+  
 export const getBookmarks = (userId) => {
   const raw = localStorage.getItem(BOOKMARKS_KEY(userId));
   return raw ? JSON.parse(raw) : [];
