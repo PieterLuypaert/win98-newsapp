@@ -1,4 +1,4 @@
-import { Button } from "@/components/design/Button/Button";
+import { Button } from "@design/Button/Button";
 
 export const FullscreenButton = ({ onClick }) => {
   return (
