@@ -1,8 +1,8 @@
 import React from "react";
-import { ArticleCard } from "../ArticleCard/ArticleCard";
-import "./BookmarksContent.css";
-import { Button } from "../Button/Button";
-import LoadingDialog from "../LoadingDialog/LoadingDialog";
+import { ArticleCard } from "@/components/design/ArticleCard/ArticleCard";
+import "@/components/design/BookmarksContent/BookmarksContent.css";
+import { Button } from "@/components/design/Button/Button";
+import LoadingDialog from "@/components/design/LoadingDialog/LoadingDialog";
 
 export const BookmarksContent = ({
   isAuthenticated = false,

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Button } from "../Button/Button";
-import "./LoginPrompt.css";
+import { Button } from "@/components/design/Button/Button";
+import "@/components/design/LoginPrompt/LoginPrompt.css";
 
 export const LoginPrompt = ({
   onClose = () => {},
@@ -25,8 +25,7 @@ export const LoginPrompt = ({
       ) {
         return;
       }
-    } catch (err) {
-    }
+    } catch (err) {}
     e.stopPropagation();
   };
 

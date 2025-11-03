@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "../Button/Button";
-import { Separator } from "../Seperator/Separator";
-import "./Comments.css";
+import { Button } from "@/components/design/Button/Button";
+import { Separator } from "@/components/design/Seperator/Separator";
+import "@/components/design/Comments/Comments.css";
 
 export const Comments = ({
   comments = [],

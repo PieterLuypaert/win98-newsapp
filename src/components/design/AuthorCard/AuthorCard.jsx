@@ -1,4 +1,4 @@
-import "./AuthorCard.css";
+import "@/components/design/AuthorCard/AuthorCard.css";
 
 export const AuthorCard = ({ author }) => {
   if (!author) return null;
@@ -44,3 +44,5 @@ export const AuthorCard = ({ author }) => {
     </div>
   );
 };
+
+export default AuthorCard;

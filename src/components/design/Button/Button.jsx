@@ -1,5 +1,5 @@
 import React from "react";
-import "./Button.css";
+import "@/components/design/Button/Button.css";
 
 export const Button = ({
   children,
@@ -22,3 +22,5 @@ export const Button = ({
     </button>
   );
 };
+
+export default Button;

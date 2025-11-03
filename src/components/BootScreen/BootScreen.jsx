@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import "./BootScreen.css";
+import "@/components/BootScreen/BootScreen.css";
 
 export default function BootScreen({ onFinish }) {
   const [exiting, setExiting] = useState(false);
@@ -21,7 +21,9 @@ export default function BootScreen({ onFinish }) {
       aria-hidden={exiting}
     >
       <div className="bootscreen-outer">
-        <div className="bootscreen-title">Web5 - News Application - Pieter Luypaert</div>
+        <div className="bootscreen-title">
+          Web5 - News Application - Pieter Luypaert
+        </div>
 
         <div className="bootscreen-body">
           <motion.img
@@ -33,7 +35,9 @@ export default function BootScreen({ onFinish }) {
             transition={{ duration: 0.8, ease: "easeOut" }}
           />
 
-          <div className="bootscreen-caption">News Application — Starting up...</div>
+          <div className="bootscreen-caption">
+            News Application — Starting up...
+          </div>
 
           <div
             className="bootscreen-progress-wrap"

@@ -1,5 +1,5 @@
 import React from "react";
-import "./FormName.css";
+import "@/components/design/FormName/FormName.css";
 import PropTypes from "prop-types";
 
 export const FormName = ({
@@ -10,8 +10,8 @@ export const FormName = ({
   className = "win98-input",
   required = false,
   idPrefix,
-  firstFieldProps = {}, 
-  lastFieldProps = {}, 
+  firstFieldProps = {},
+  lastFieldProps = {},
 }) => {
   const firstId = idPrefix ? `${idPrefix}-firstname` : `${firstNameName}-id`;
   const lastId = idPrefix ? `${idPrefix}-lastname` : `${lastNameName}-id`;

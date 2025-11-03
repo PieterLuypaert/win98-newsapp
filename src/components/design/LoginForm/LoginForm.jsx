@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "../Button/Button";
-import "./LoginForm.css";
+import { Button } from "@/components/design/Button/Button";
+import "@/components/design/LoginForm/LoginForm.css";
 import PropTypes from "prop-types";
 
 export const LoginForm = ({
