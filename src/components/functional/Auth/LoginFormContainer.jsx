@@ -5,11 +5,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { fakeLogin } from "@/core/auth/auth.api.js";
 import useAuth from "./UseAuth";
-import LoginForm from "@/components/design/LoginForm/LoginForm";
+import { FormInput } from "@/components/design/FormInput/FormInput";
+import { FormCheckbox } from "@/components/design/FormCheckbox/FormCheckbox";
+import { Button } from "@/components/design/Button/Button";
+import "@/components/design/LoginForm/LoginForm.css";
 
 const schema = zod.object({
-  email: zod.email(),
-  password: zod.string().min(1),
+  email: zod.string().email("Invalid email address"),
+  password: zod.string().min(1, "Password is required"),
   remember: zod.boolean().optional(),
 });
 
@@ -35,44 +38,66 @@ export const LoginFormContainer = ({ onSuccessClose, onRegister }) => {
     mutate(data);
   };
 
-  const onSubmitFromDesign = () => {
-    handleSubmit(onSubmit)();
-  };
+  const serverError = isError ? error?.message || "Login failed" : null;
 
   return (
-    <Controller
-      control={control}
-      name="email"
-      render={({ field: emailField }) => (
-        <Controller
-          control={control}
-          name="password"
-          render={({ field: passwordField }) => (
-            <Controller
-              control={control}
-              name="remember"
-              render={({ field: rememberField }) => (
-                <LoginForm
-                  emailFieldProps={emailField}
-                  passwordFieldProps={passwordField}
-                  rememberFieldProps={rememberField}
-                  onSubmit={onSubmitFromDesign}
-                  onRegister={onRegister}
-                  isLoading={isLoading}
-                  error={
-                    isError
-                      ? error?.message || null
-                      : errors.email?.message ||
-                        errors.password?.message ||
-                        null
-                  }
-                />
-              )}
-            />
-          )}
-        />
+    <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        control={control}
+        name="email"
+        render={({ field }) => (
+          <FormInput
+            type="email"
+            label="Email:"
+            {...field}
+            error={errors.email?.message}
+          />
+        )}
+      />
+
+      <Controller
+        control={control}
+        name="password"
+        render={({ field }) => (
+          <FormInput
+            type="password"
+            label="Wachtwoord:"
+            {...field}
+            error={errors.password?.message}
+          />
+        )}
+      />
+
+      <Controller
+        control={control}
+        name="remember"
+        render={({ field }) => (
+          <FormCheckbox
+            checked={!!field.value}
+            onChange={(e) => field.onChange(e.target.checked)}
+            label="Ingelogd blijven"
+            name={field.name}
+          />
+        )}
+      />
+
+      <div className="login-actions">
+        <Button type="submit" autoFocus disabled={isLoading}>
+          {isLoading ? "Logging in..." : "Login"}
+        </Button>
+        <Button
+          type="button"
+          variant="win98"
+          onClick={() => onRegister && onRegister()}
+        >
+          Register
+        </Button>
+      </div>
+
+      {serverError && (
+        <div style={{ color: "red", marginTop: 8 }}>{serverError}</div>
       )}
-    />
+    </form>
   );
 };
 

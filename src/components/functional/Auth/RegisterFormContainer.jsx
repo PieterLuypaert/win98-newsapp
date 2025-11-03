@@ -6,14 +6,12 @@ import { useMutation } from "@tanstack/react-query";
 import { fakeRegister } from "../../../core/auth/auth.api.js";
 import useAuth from "../Auth/UseAuth";
 import { Button } from "../../design/Button/Button";
-import { FormEmail } from "../../design/FormEmail/FormEmail";
-import { FormPassword } from "../../design/FormPassword/FormPassword";
-import { FormName } from "../../design/FormName/FormName";
-import { FormGender } from "../../design/FormGender/FormGender";
+import { FormInput } from "../../design/FormInput/FormInput";
+import { FormSelect } from "../../design/FormSelect/FormSelect";
 import { FormCheckbox } from "../../design/FormCheckbox/FormCheckbox";
 
 const schema = zod.object({
-  email: zod.email(),
+  email: zod.string().email("Invalid email address"),
   password: zod.string().min(6, "Password must be at least 6 characters"),
   firstname: zod.string().min(1, "Voornaam is required"),
   lastname: zod.string().min(1, "Achternaam is required"),
@@ -22,6 +20,13 @@ const schema = zod.object({
     .boolean()
     .refine((v) => v === true, { message: "Je moet akkoord gaan" }),
 });
+
+const genderOptions = [
+  { value: "male", label: "Man" },
+  { value: "female", label: "Vrouw" },
+  { value: "other", label: "Anders" },
+  { value: "prefer_not_to_say", label: "Liever niet zeggen" },
+];
 
 export const RegisterFormContainer = ({ onClose }) => {
   const { setUser } = useAuth();
@@ -56,119 +61,89 @@ export const RegisterFormContainer = ({ onClose }) => {
 
   return (
     <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-row">
-        <Controller
-          control={control}
-          name="email"
-          render={({ field }) => (
-            <FormEmail
-              className="win98-input"
-              value={field.value}
-              onChange={field.onChange}
-              onBlur={field.onBlur}
-              name={field.name}
-            />
-          )}
-        />
-        {errors.email && (
-          <div style={{ color: "red", fontSize: 12 }}>
-            {errors.email.message}
-          </div>
+      <Controller
+        control={control}
+        name="email"
+        render={({ field }) => (
+          <FormInput
+            type="email"
+            label="Email:"
+            {...field}
+            error={errors.email?.message}
+          />
         )}
-      </div>
+      />
 
-      <div className="form-row">
-        <Controller
-          control={control}
-          name="password"
-          render={({ field }) => (
-            <FormPassword
-              className="win98-input"
-              value={field.value}
-              onChange={field.onChange}
-              onBlur={field.onBlur}
-              name={field.name}
-            />
-          )}
-        />
-        {errors.password && (
-          <div style={{ color: "red", fontSize: 12 }}>
-            {errors.password.message}
-          </div>
+      <Controller
+        control={control}
+        name="password"
+        render={({ field }) => (
+          <FormInput
+            type="password"
+            label="Wachtwoord:"
+            {...field}
+            error={errors.password?.message}
+          />
         )}
-      </div>
+      />
 
-      <div className="form-row">
-        <Controller
-          control={control}
-          name="firstname"
-          render={({ field }) => (
-            <Controller
-              control={control}
-              name="lastname"
-              render={({ field: lastField }) => (
-                <FormName
-                  firstFieldProps={{
-                    value: field.value,
-                    onChange: field.onChange,
-                    onBlur: field.onBlur,
-                    name: field.name,
-                  }}
-                  lastFieldProps={{
-                    value: lastField.value,
-                    onChange: lastField.onChange,
-                    onBlur: lastField.onBlur,
-                    name: lastField.name,
-                  }}
-                  className="win98-input"
-                />
-              )}
-            />
-          )}
-        />
-        {(errors.firstname || errors.lastname) && (
-          <div style={{ color: "red", fontSize: 12 }}>
-            {errors.firstname?.message || errors.lastname?.message}
-          </div>
+      <Controller
+        control={control}
+        name="firstname"
+        render={({ field }) => (
+          <FormInput
+            type="text"
+            label="Voornaam:"
+            placeholder="Voornaam"
+            {...field}
+            error={errors.firstname?.message}
+          />
         )}
-      </div>
+      />
 
-      <div className="form-row">
-        <Controller
-          control={control}
-          name="gender"
-          render={({ field }) => (
-            <FormGender
-              className="win98-input"
-              value={field.value}
-              onChange={(e) => field.onChange(e.target.value)}
-              onBlur={field.onBlur}
-              name={field.name}
-            />
-          )}
-        />
-      </div>
-
-      <div className="form-row">
-        <Controller
-          control={control}
-          name="terms"
-          render={({ field }) => (
-            <FormCheckbox
-              checked={!!field.value}
-              onChange={(e) => field.onChange(e.target.checked)}
-              onBlur={field.onBlur}
-              label="Akkoord met voorwaarden"
-              name={field.name}
-            />
-          )}
-        />
-        {errors.terms && (
-          <div style={{ color: "red", fontSize: 12 }}>
-            {errors.terms.message}
-          </div>
+      <Controller
+        control={control}
+        name="lastname"
+        render={({ field }) => (
+          <FormInput
+            type="text"
+            label="Achternaam:"
+            placeholder="Achternaam"
+            {...field}
+            error={errors.lastname?.message}
+          />
         )}
-      </div>
+      />
+
+      <Controller
+        control={control}
+        name="gender"
+        render={({ field }) => (
+          <FormSelect
+            label="Geslacht:"
+            options={genderOptions}
+            {...field}
+            onChange={(e) => field.onChange(e.target.value)}
+            error={errors.gender?.message}
+          />
+        )}
+      />
+
+      <Controller
+        control={control}
+        name="terms"
+        render={({ field }) => (
+          <FormCheckbox
+            checked={!!field.value}
+            onChange={(e) => field.onChange(e.target.checked)}
+            label="Akkoord met voorwaarden"
+            name={field.name}
+          />
+        )}
+      />
+      {errors.terms && (
+        <div style={{ color: "red", fontSize: 12 }}>{errors.terms.message}</div>
+      )}
 
       <div className="login-actions">
         <Button type="submit" autoFocus disabled={isLoading}>
@@ -181,9 +156,6 @@ export const RegisterFormContainer = ({ onClose }) => {
 
       {serverError && (
         <div style={{ color: "red", marginTop: 8 }}>{serverError}</div>
-      )}
-      {isError && !serverError && (
-        <div style={{ color: "red", marginTop: 8 }}>{error?.message}</div>
       )}
     </form>
   );

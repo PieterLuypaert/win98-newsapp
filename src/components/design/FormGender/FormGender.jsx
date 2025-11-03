@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 export const FormGender = ({
   name = "gender",
-  className = "",
   required = false,
   id,
   value,
@@ -27,11 +26,6 @@ export const FormGender = ({
         onChange={onChange}
         {...rest}
       >
-        <option value="">Selecteer...</option>
-        <option value="male">Man</option>
-        <option value="female">Vrouw</option>
-        <option value="other">Anders</option>
-        <option value="prefer_not_to_say">Liever niet zeggen</option>
       </select>
     </div>
   );
