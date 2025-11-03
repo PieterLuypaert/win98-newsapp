@@ -15,15 +15,6 @@ export const TrendingList = ({ items: propItems, onArticleClick }) => {
   const items =
     Array.isArray(propItems) && propItems.length ? propItems : fetched;
 
-  const handleClick = (e, slug) => {
-    e.preventDefault();
-    if (onArticleClick) {
-      onArticleClick(slug);
-      return;
-    }
-    window.location.href = `/article/${slug}`;
-  };
-
   if (isLoading && (!propItems || propItems.length === 0)) {
     return (
       <div className="trending-list">
@@ -49,11 +40,7 @@ export const TrendingList = ({ items: propItems, onArticleClick }) => {
       <ol className="trending-list-items">
         {uniqueItems.slice(0, 10).map((item) => (
           <li key={item.articleId} className="trending-list-item">
-            <Link
-              to={`/article/${item.slug}`}
-              className="trending-list-link"
-              onClick={(e) => handleClick(e, item.slug)}
-            >
+            <Link to={`/article/${item.slug}`} className="trending-list-link">
               {item.title}
             </Link>
             <span className="trending-list-views">{item.views} views</span>
