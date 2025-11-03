@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { NewsNavigation } from "@/components/design/NewsNavigation/NewsNavigation";
 import { ArticleCard } from "@/components/design/ArticleCard/ArticleCard";
 import { TrendingList } from "@/components/design/TrendingList/TrendingList";
@@ -6,6 +6,7 @@ import { Button } from "@/components/design/Button/Button";
 import "@/components/design/HomeContent/HomeContent.css";
 import LoadingDialog from "@/components/design/LoadingDialog/LoadingDialog";
 import { useHomeLogic } from "@/pages/Home";
+import playSound from "@/core/utils/playSound";
 
 export const HomeContent = () => {
   const {
@@ -23,6 +24,19 @@ export const HomeContent = () => {
     setActiveCategory,
     handleCancelQuery,
   } = useHomeLogic();
+
+  const prevSearchTerm = useRef(searchTerm);
+
+  useEffect(() => {
+    if (
+      searchTerm &&
+      prevSearchTerm.current !== searchTerm &&
+      filteredNews.length === 0
+    ) {
+      playSound("/assets/sounds/erro.mp3");
+    }
+    prevSearchTerm.current = searchTerm;
+  }, [searchTerm, filteredNews.length]);
 
   if (isLoading) {
     return (

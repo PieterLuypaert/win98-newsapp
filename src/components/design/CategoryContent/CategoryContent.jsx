@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
+import playSound from "@/core/utils/playSound";
 import "./CategoryContent.css";
 import LoadingDialog from "../LoadingDialog/LoadingDialog";
 
@@ -14,6 +15,8 @@ export const CategoryContent = ({
   onSearch = () => {},
   onArticleClick = () => {},
 }) => {
+  const prevSearchTerm = useRef(searchTerm);
+
   const renderSection = (title, filtered, isHeadline = false) =>
     !!filtered.length && (
       <section className="category-section">
@@ -64,6 +67,17 @@ export const CategoryContent = ({
   };
 
   const articlesFiltered = searchArticles(filteredByCategory);
+
+  useEffect(() => {
+    if (
+      searchTerm &&
+      prevSearchTerm.current !== searchTerm &&
+      articlesFiltered.length === 0
+    ) {
+      playSound("/assets/sounds/error.wav");
+    }
+    prevSearchTerm.current = searchTerm;
+  }, [searchTerm, articlesFiltered.length]);
 
   const headlines = articlesFiltered.filter((a) => a.isHeadline);
   const regularNews = articlesFiltered.filter((a) => !a.isHeadline);
