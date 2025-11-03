@@ -26,9 +26,7 @@ A nostalgic Windows 98-styled news application built with React, featuring a ret
 - [State Management](#state-management)
 - [Styling Approach](#styling-approach)
 - [Performance Optimizations](#performance-optimizations)
-- [Testing](#testing)
 - [Deployment](#deployment)
-- [Future Enhancements](#future-enhancements)
 - [License](#license)
 
 ## Project Overview
