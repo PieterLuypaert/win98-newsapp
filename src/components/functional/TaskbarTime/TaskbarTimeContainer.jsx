@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TaskbarTime } from "../../design/TaskbarTime/TaskbarTime";
+import { TaskbarTime } from "@design/TaskbarTime/TaskbarTime";
 
 export const TaskbarTimeContainer = () => {
   const [time, setTime] = useState(new Date());
