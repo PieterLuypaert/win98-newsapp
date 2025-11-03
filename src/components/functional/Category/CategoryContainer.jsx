@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import CategoryContent from "../../design/CategoryContent/CategoryContent";
-import { fetchNews } from "../../../core/modules/news/news.api";
-import { fetchCategories } from "../../../core/modules/categories/category.api";
+import CategoryContent from "@/components/design/CategoryContent/CategoryContent";
+import { fetchNews } from "@/core/modules/news/news.api";
+import { fetchCategories } from "@/core/modules/categories/category.api";
 
 const CategoryContainer = ({ categorySlug }) => {
     const navigate = useNavigate();

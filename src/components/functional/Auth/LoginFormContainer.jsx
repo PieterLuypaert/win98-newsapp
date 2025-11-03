@@ -3,11 +3,11 @@ import { useForm, Controller } from "react-hook-form";
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { fakeLogin } from "@/core/auth/auth.api.js";
-import useAuth from "./UseAuth";
-import { FormInput } from "@/components/design/FormInput/FormInput";
-import { FormCheckbox } from "@/components/design/FormCheckbox/FormCheckbox";
-import { Button } from "@/components/design/Button/Button";
+import { fakeLogin } from "@core/auth/auth.api.js";
+import useAuth from "@functional/Auth/UseAuth";
+import { FormInput } from "@design/FormInput/FormInput";
+import { FormCheckbox } from "@design/FormCheckbox/FormCheckbox";
+import { Button } from "@design/Button/Button";
 
 const schema = zod.object({
   email: zod.string().email("Invalid email address"),

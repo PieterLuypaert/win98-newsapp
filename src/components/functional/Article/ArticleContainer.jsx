@@ -7,12 +7,12 @@ import React, {
 } from "react";
 import { useNavigate } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import ArticleContent from "../../design/ArticleContent/ArticleContent";
-import { fetchNews } from "../../../core/modules/news/news.api";
-import { fetchAuthors } from "../../../core/modules/authors/authors.api";
-import BookmarkButtonContainer from "../../functional/Bookmarks/BookmarkButtonContainer";
-import CommentsContainer from "../Comments/CommentsContainer";
-import LoadingDialog from "../../design/LoadingDialog/LoadingDialog";
+import ArticleContent from "@design/ArticleContent/ArticleContent";
+import { fetchNews } from "@core/modules/news/news.api";
+import { fetchAuthors } from "@core/modules/authors/authors.api";
+import BookmarkButtonContainer from "@functional/Bookmarks/BookmarkButtonContainer";
+import CommentsContainer from "@functional/Comments/CommentsContainer";
+import LoadingDialog from "@design/LoadingDialog/LoadingDialog";
 
 const ArticleContainer = ({ articleSlug }) => {
   const navigate = useNavigate();
