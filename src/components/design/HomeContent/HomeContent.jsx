@@ -1,94 +1,50 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import React from "react";
 import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
 import { TrendingList } from "../TrendingList/TrendingList";
 import "./HomeContent.css";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchNews } from "../../../core/modules/news/news.api";
 import LoadingDialog from "../LoadingDialog/LoadingDialog";
+import { useHomeLogic } from "../../../pages/Home";
 
 export const HomeContent = () => {
-  const navigate = useNavigate();
-  const [activeCategory, setActiveCategory] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const queryClient = useQueryClient();
-
-  const { data: newsData = [], isLoading } = useQuery({
-    queryKey: ["news"],
-    queryFn: fetchNews,
-  });
+  const {
+    isLoading,
+    activeCategory,
+    searchTerm,
+    filteredNews,
+    headlines,
+    regularNews,
+    sectionTitle,
+    handleCategoryClick,
+    handleArticleClick,
+    handleSearch,
+    handleClearSearch,
+    setActiveCategory,
+    handleCancelQuery,
+  } = useHomeLogic();
 
   if (isLoading) {
     return (
       <div className="home-content-wrapper">
         <NewsNavigation
           activeCategory={activeCategory}
-          onCategoryClick={(slug) => setActiveCategory(slug)}
+          onCategoryClick={handleCategoryClick}
         />
         <div className="home-content">
           <div className="home-content-main">
             <LoadingDialog
               embedded
               message="Loading news..."
-              onCancel={() => queryClient.cancelQueries(["news"])}
+              onCancel={handleCancelQuery}
             />
           </div>
           <aside className="home-content-sidebar">
-            <TrendingList onArticleClick={() => {}} />
+            <TrendingList onArticleClick={handleArticleClick} />
           </aside>
         </div>
       </div>
     );
   }
-
-  const searchArticles = (articles, term) => {
-    if (!term) return articles;
-
-    const lowerTerm = term.toLowerCase();
-    return articles.filter((article) => {
-      const titleMatch = article.title.toLowerCase().includes(lowerTerm);
-      const introMatch = article.intro.toLowerCase().includes(lowerTerm);
-      const tagsMatch = article.tags.some((tag) =>
-        tag.title.toLowerCase().includes(lowerTerm)
-      );
-      const categoryMatch = article.categories.some((cat) =>
-        cat.title.toLowerCase().includes(lowerTerm)
-      );
-
-      return titleMatch || introMatch || tagsMatch || categoryMatch;
-    });
-  };
-
-  const filteredByCategory = activeCategory
-    ? newsData.filter((article) =>
-        article.categories.some((cat) => cat.slug === activeCategory)
-      )
-    : newsData;
-
-  const filteredNews = searchArticles(filteredByCategory, searchTerm);
-
-  const headlines = filteredNews.filter((article) => article.isHeadline);
-  const regularNews = filteredNews.filter((article) => !article.isHeadline);
-
-  const handleArticleClick = (slug) => {
-    navigate(`/article/${slug}`);
-  };
-
-  const handleCategoryClick = (slug) => {
-    navigate(`/category/${slug}`);
-  };
-
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-  };
-
-  const getSectionTitle = () => {
-    if (searchTerm) return `Search Results (${filteredNews.length})`;
-    if (activeCategory) return "Featured";
-    return "Breaking News";
-  };
 
   return (
     <div className="home-content-wrapper">
@@ -104,7 +60,7 @@ export const HomeContent = () => {
               <p>No articles found for "{searchTerm}"</p>
               <button
                 className="search-clear-button"
-                onClick={() => setSearchTerm("")}
+                onClick={handleClearSearch}
               >
                 Clear Search
               </button>
@@ -112,7 +68,7 @@ export const HomeContent = () => {
           ) : (
             <>
               <section className="home-section">
-                <h2 className="home-section-title">{getSectionTitle()}</h2>
+                <h2 className="home-section-title">{sectionTitle}</h2>
                 {headlines.length > 0 ? (
                   headlines.map((article) => (
                     <ArticleCard
@@ -120,7 +76,7 @@ export const HomeContent = () => {
                       article={article}
                       isHeadline={true}
                       onClick={() => handleArticleClick(article.slug)}
-                      onCategoryClick={(slug) => setActiveCategory(slug)}
+                      onCategoryClick={setActiveCategory}
                     />
                   ))
                 ) : !searchTerm ? (
@@ -139,7 +95,7 @@ export const HomeContent = () => {
                         key={article.id}
                         article={article}
                         onClick={() => handleArticleClick(article.slug)}
-                        onCategoryClick={(slug) => setActiveCategory(slug)}
+                        onCategoryClick={setActiveCategory}
                       />
                     ))
                   ) : (
@@ -156,7 +112,7 @@ export const HomeContent = () => {
                       key={article.id}
                       article={article}
                       onClick={() => handleArticleClick(article.slug)}
-                      onCategoryClick={(slug) => setActiveCategory(slug)}
+                      onCategoryClick={setActiveCategory}
                     />
                   ))}
                 </section>
