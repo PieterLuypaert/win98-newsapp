@@ -15,6 +15,17 @@ export const Desktop = ({ showIcons = true }) => {
     Storage.getIconPositions()
   );
 
+  const getClippyMessage = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) {
+      return "Goedemorgen! Klik op het News icoon om het laatste nieuws te lezen.";
+    } else if (hour < 18) {
+      return "Goedemiddag! Ontdek de laatste nieuwsartikelen.";
+    } else {
+      return "Goedenavond! Tijd voor het avondnieuws?";
+    }
+  };
+
   const icons = [
     {
       id: "news",
@@ -61,7 +72,7 @@ export const Desktop = ({ showIcons = true }) => {
         </div>
       )}
 
-      <Clippy message="Klik op het News icoon om te beginnen." />
+      <Clippy message={getClippyMessage()} />
     </div>
   );
 };

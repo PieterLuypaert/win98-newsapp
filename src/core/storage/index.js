@@ -4,6 +4,8 @@ const BOOKMARKS_KEY = (userId) => `app_bookmarks_${userId ?? "guest"}`;
 
 const ICON_POSITIONS_KEY = "app_icon_positions";
 
+const CLIPPY_STATE_KEY = "app_clippy_dismissed";
+
 export const saveUser = (user) => {
   localStorage.setItem(AUTH_KEY, JSON.stringify(user));
 };
@@ -37,4 +39,17 @@ export const getIconPositions = () => {
 
 export const clearIconPositions = () => {
   localStorage.removeItem(ICON_POSITIONS_KEY);
+};
+
+export const saveClippyDismissed = (dismissed = true) => {
+  localStorage.setItem(CLIPPY_STATE_KEY, JSON.stringify(dismissed));
+};
+
+export const isClippyDismissed = () => {
+  const raw = localStorage.getItem(CLIPPY_STATE_KEY);
+  return raw ? JSON.parse(raw) : false;
+};
+
+export const clearClippyState = () => {
+  localStorage.removeItem(CLIPPY_STATE_KEY);
 };

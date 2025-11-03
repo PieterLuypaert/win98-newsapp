@@ -17,7 +17,7 @@
   padding: 0;
   max-width: 280px;
   box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
-  animation: slideIn 0.3s ease-out;
+  animation: slideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .clippy-speech-header {
@@ -69,7 +69,17 @@
 .clippy-character {
   width: 120px;
   height: 120px;
-  animation: bounce 2s ease-in-out infinite;
+  animation: clippyEntrance 0.6s ease-out, bounce 2s ease-in-out 0.6s infinite;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.clippy-character:hover {
+  transform: scale(1.1);
+}
+
+.clippy-character:active {
+  transform: scale(0.95);
 }
 
 .clippy-character img {
@@ -96,6 +106,17 @@
   }
   50% {
     transform: translateY(-10px);
+  }
+}
+
+@keyframes clippyEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
