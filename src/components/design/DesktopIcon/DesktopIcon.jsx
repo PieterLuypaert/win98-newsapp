@@ -3,7 +3,15 @@ import "./DesktopIcon.css";
 
 export const DesktopIcon = forwardRef(
   (
-    { icon, label, isImage = false, isDragging = false, onMouseDown, onClick },
+    {
+      icon,
+      label,
+      isImage = false,
+      isDragging = false,
+      onMouseDown,
+      onClick,
+      onContextMenu,
+    },
     ref
   ) => {
     return (
@@ -12,6 +20,7 @@ export const DesktopIcon = forwardRef(
         className={`desktop-icon ${isDragging ? "dragging" : ""}`}
         onMouseDown={onMouseDown}
         onClick={onClick}
+        onContextMenu={onContextMenu}
         style={{ cursor: isDragging ? "grabbing" : "grab" }}
       >
         <div className="desktop-icon-image">
