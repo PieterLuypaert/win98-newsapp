@@ -29,3 +29,32 @@
 @import "./responsive/mobile.css";
 @import "./responsive/tablet.css";
 @import "./responsive/desktop-large.css";
+
+@media (max-width: 900px) {
+  .desktop {
+    background: url("/window-mobile.jpg") center/cover no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+  }
+}
+@media (max-width: 600px) {
+  .desktop {
+    background: url("/window-mobile.jpg") center/cover no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+  }
+}
+@media (max-width: 480px) {
+  .desktop {
+    background: url("/window-mobile.jpg") center/cover no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+  }
+}
+@media (max-width: 360px) {
+  .desktop {
+    background: url("/window-mobile.jpg") center/cover no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+  }
+}
