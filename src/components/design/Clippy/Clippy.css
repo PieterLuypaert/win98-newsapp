@@ -1,0 +1,116 @@
+.clippy-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.clippy-speech-bubble {
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+  padding: 0;
+  max-width: 280px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease-out;
+}
+
+.clippy-speech-header {
+  background: var(--color-navy);
+  color: var(--color-white);
+  padding: 4px 8px;
+  font-family: var(--font-family-primary);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clippy-close {
+  background: var(--color-window-bg);
+  border: 1px solid;
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clippy-close:hover {
+  background: var(--color-gray-light);
+}
+
+.clippy-close:active {
+  border-color: var(--color-window-border-dark) var(--color-window-border-light)
+    var(--color-window-border-light) var(--color-window-border-dark);
+}
+
+.clippy-speech-content {
+  padding: 12px;
+  font-family: var(--font-family-primary);
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--color-black);
+}
+
+.clippy-character {
+  width: 120px;
+  height: 120px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.clippy-character img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .clippy-container {
+    bottom: 60px;
+    right: 10px;
+  }
+
+  .clippy-speech-bubble {
+    max-width: 200px;
+  }
+
+  .clippy-character {
+    width: 80px;
+    height: 80px;
+  }
+}
