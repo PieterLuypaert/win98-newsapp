@@ -534,32 +534,6 @@ npm run test:coverage  # Coverage report
 3. Application deploys to production URL
 4. Storybook deploys to documentation URL
 
-## Future Enhancements
-
-### Planned Features
-
-1. **User Profiles**: Customizable user profiles and avatars
-2. **Article Sharing**: Social media integration
-3. **Advanced Search**: Filters by date, author, tags
-4. **Dark Mode**: Toggle between light/dark themes
-5. **Offline Mode**: Service worker for offline reading
-6. **Push Notifications**: Breaking news alerts
-7. **RSS Feed**: Subscribe to categories
-8. **Multilingual Support**: Content in multiple languages
-9. **Article Editor**: Admin panel for content management
-10. **Analytics Dashboard**: Reading statistics
-
-### Technical Improvements
-
-- Implement comprehensive testing suite
-- Add end-to-end testing with Cypress
-- Improve accessibility (ARIA labels, keyboard navigation)
-- Implement Progressive Web App features
-- Add GraphQL for more efficient data fetching
-- Server-side rendering for better SEO
-- Implement real authentication with JWT
-- Add Redis caching layer
-
 ## Contributing
 
 This project was developed as part of the Web 5 course at Artevelde University of Applied Sciences.
@@ -574,13 +548,6 @@ This project is created for educational purposes as part of the PGM curriculum.
 
 - GitHub: [PieterLuypaert](https://github.com/pgm-2526-web-5)
 - Project: Web 5 - Advanced Web Development
-
-## Acknowledgments
-
-- Artevelde University of Applied Sciences
-- PGM Web Development Program
-- Windows 98 UI inspiration
-- React and React Query communities
 
 ---
 
