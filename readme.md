@@ -484,34 +484,6 @@ addComment(postId, data);
 - Responsive images with srcset
 - WebP format with fallbacks
 
-### Bundle Optimization
-
-- Tree shaking
-- Minification
-- Gzip compression
-
-## Testing
-
-### Component Testing (Future)
-
-```bash
-# Planned testing setup
-npm run test           # Run tests
-npm run test:coverage  # Coverage report
-```
-
-### Manual Testing Checklist
-
-- [ ] Homepage loads with articles
-- [ ] Category filtering works
-- [ ] Article search functions
-- [ ] Article detail page renders
-- [ ] Bookmarking requires login
-- [ ] Login/register forms validate
-- [ ] Desktop icons are draggable
-- [ ] Window can be closed
-- [ ] Mobile responsive layout works
-
 ## Deployment
 
 ### Render Configuration
