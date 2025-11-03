@@ -1,11 +1,11 @@
 import React from "react";
-import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
-import { ArticleCard } from "../ArticleCard/ArticleCard";
-import { TrendingList } from "../TrendingList/TrendingList";
-import { Button } from "../Button/Button";
+import { NewsNavigation } from "@/components/design/NewsNavigation/NewsNavigation";
+import { ArticleCard } from "@/components/design/ArticleCard/ArticleCard";
+import { TrendingList } from "@/components/design/TrendingList/TrendingList";
+import { Button } from "@/components/design/Button/Button";
 import "./HomeContent.css";
-import LoadingDialog from "../LoadingDialog/LoadingDialog";
-import { useHomeLogic } from "../../../pages/Home";
+import LoadingDialog from "@/components/design/LoadingDialog/LoadingDialog";
+import { useHomeLogic } from "@/pages/Home";
 
 export const HomeContent = () => {
   const {

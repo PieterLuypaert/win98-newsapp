@@ -2,7 +2,7 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import CommentForm from "../../design/CommentForm/CommentForm";
+import CommentForm from "@/components/design/CommentForm/CommentForm";
 
 const schema = zod.object({
   name: zod.string().min(1, "Naam is vereist"),

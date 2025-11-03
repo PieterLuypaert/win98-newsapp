@@ -3,13 +3,13 @@ import { useForm, Controller } from "react-hook-form";
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { fakeLogin } from "../../../core/auth/auth.api.js";
+import { fakeLogin } from "@/core/auth/auth.api.js";
 import useAuth from "./UseAuth";
-import LoginForm from "../../design/LoginForm/LoginForm";
+import LoginForm from "@/components/design/LoginForm/LoginForm";
 
 const schema = zod.object({
   email: zod.email(),
-  password: zod.string().min(1,),
+  password: zod.string().min(1),
   remember: zod.boolean().optional(),
 });
 
