@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchNews } from "../core/modules/news/news.api";
-import { HomeContent } from "../components/design/HomeContent/HomeContent";
+import { fetchNews } from "@/core/modules/news/news.api";
+import { HomeContent } from "@/components/design/HomeContent/HomeContent";
 
 export const useHomeLogic = () => {
   const navigate = useNavigate();
