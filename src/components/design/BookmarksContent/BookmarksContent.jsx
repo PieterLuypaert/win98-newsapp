@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 import { ArticleCard } from "@/components/design/ArticleCard/ArticleCard";
 import "@/components/design/BookmarksContent/BookmarksContent.css";
 import { Button } from "@/components/design/Button/Button";
@@ -6,13 +7,10 @@ import LoadingDialog from "@/components/design/LoadingDialog/LoadingDialog";
 
 export const BookmarksContent = ({
   isAuthenticated = false,
-  onLogin = () => {},
-  onRegister = () => {},
   isLoading = false,
   bookmarkedArticles = [],
   bookmarksCount = 0,
   onRemoveBookmark = () => {},
-  onArticleClick = () => {},
 }) => {
   if (!isAuthenticated) {
     return (
@@ -29,20 +27,16 @@ export const BookmarksContent = ({
             </div>
 
             <div className="empty-actions">
-              <Button
-                variant="win98"
-                className="win98-button"
-                onClick={onLogin}
-              >
-                Login
-              </Button>
-              <Button
-                variant="win98"
-                className="win98-button"
-                onClick={onRegister}
-              >
-                Register
-              </Button>
+              <Link to="/login">
+                <Button variant="win98" className="win98-button">
+                  Login
+                </Button>
+              </Link>
+              <Link to="/register">
+                <Button variant="win98" className="win98-button">
+                  Register
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -76,11 +70,13 @@ export const BookmarksContent = ({
         ) : (
           bookmarkedArticles.map((article) => (
             <div key={article.id} className="bookmark-item">
-              <ArticleCard
-                article={article}
-                onClick={() => onArticleClick(article.slug)}
-                onCategoryClick={() => {}}
-              />
+              <Link to={`/article/${article.slug}`}>
+                <ArticleCard
+                  article={article}
+                  onClick={(e) => e.preventDefault()}
+                  onCategoryClick={() => {}}
+                />
+              </Link>
               <div className="bookmark-actions">
                 <Button
                   variant="win98"
