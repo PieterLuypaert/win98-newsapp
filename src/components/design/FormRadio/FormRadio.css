@@ -1,0 +1,28 @@
+.form-radio {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.radio-option input[type="radio"] {
+  cursor: pointer;
+}
+
+.radio-option span {
+  user-select: none;
+}

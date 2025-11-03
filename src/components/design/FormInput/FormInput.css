@@ -1,0 +1,15 @@
+.form-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-input input {
+  flex: 1;
+}
+
+.form-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
