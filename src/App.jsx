@@ -7,20 +7,11 @@ import { Window } from "@/components/design/window/window";
 import BootScreen from "@/components/BootScreen/BootScreen";
 
 function App() {
-  const [time, setTime] = useState(new Date());
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showBoot, setShowBoot] = useState(true);
 
   const location = useLocation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   const handleFullscreen = () => {
     if (!document.fullscreenElement) {
@@ -31,11 +22,6 @@ function App() {
       setIsFullscreen(false);
     }
   };
-
-  const formattedTime = time.toLocaleTimeString("nl-BE", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
 
   const routes = [
     {
@@ -130,7 +116,6 @@ function App() {
       </main>
 
       <TaskbarContainer
-        time={formattedTime}
         showFullscreenButton={true}
         onFullscreen={handleFullscreen}
       />
