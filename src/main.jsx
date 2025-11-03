@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
-import App from "./App";
-import Home from "./pages/Home";
-import News from "./pages/News";
-import Bookmarks from "./pages/Bookmarks";
-import Category from "./pages/Category";
-import Article from "./pages/Article";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import App from "@/App";
+import Home from "@/pages/Home";
+import News from "@/pages/News";
+import Bookmarks from "@/pages/Bookmarks";
+import Category from "@/pages/Category";
+import Article from "@/pages/Article";
+import Login from "@/pages/Login";
+import Register from "@/pages/Register";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import AuthProvider from "./components/functional/Auth/AuthProvider";
-import BookmarksProvider from "./components/functional/Bookmarks/BookmarksProvider";
+import AuthProvider from "@/components/functional/Auth/AuthProvider";
+import BookmarksProvider from "@/components/functional/Bookmarks/BookmarksProvider";
 
 const root = document.getElementById("root");
 const client = new QueryClient();
