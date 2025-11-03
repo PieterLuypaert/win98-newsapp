@@ -9,11 +9,14 @@ export const DesktopIconContainer = ({
   isImage = false,
   position,
   onPositionChange,
+  onResetPosition,
 }) => {
   const iconRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [hasMoved, setHasMoved] = useState(false);
+  const [showContextMenu, setShowContextMenu] = useState(false);
+  const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
   const startPosRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -88,6 +91,28 @@ export const DesktopIconContainer = ({
     }
   };
 
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setContextMenuPos({ x: e.clientX, y: e.clientY });
+    setShowContextMenu(true);
+  };
+
+  const handleResetPosition = () => {
+    setShowContextMenu(false);
+    if (onResetPosition) {
+      onResetPosition(id);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = () => setShowContextMenu(false);
+    if (showContextMenu) {
+      document.addEventListener("click", handleClickOutside);
+      return () => document.removeEventListener("click", handleClickOutside);
+    }
+  }, [showContextMenu]);
+
   useEffect(() => {
     if (isDragging) {
       document.addEventListener("mousemove", handleMouseMove);
@@ -100,15 +125,34 @@ export const DesktopIconContainer = ({
   }, [isDragging, dragOffset]);
 
   return (
-    <DesktopIcon
-      ref={iconRef}
-      icon={icon}
-      label={label}
-      isImage={isImage}
-      isDragging={isDragging}
-      onMouseDown={handleMouseDown}
-      onClick={handleClick}
-    />
+    <>
+      <DesktopIcon
+        ref={iconRef}
+        icon={icon}
+        label={label}
+        isImage={isImage}
+        isDragging={isDragging}
+        onMouseDown={handleMouseDown}
+        onClick={handleClick}
+        onContextMenu={handleContextMenu}
+      />
+      {showContextMenu && (
+        <div
+          className="desktop-icon-context-menu"
+          style={{
+            position: "fixed",
+            left: `${contextMenuPos.x}px`,
+            top: `${contextMenuPos.y}px`,
+            zIndex: 10000,
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button className="context-menu-item" onClick={handleResetPosition}>
+            Reset Position
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 
