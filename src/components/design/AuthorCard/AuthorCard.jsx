@@ -46,3 +46,4 @@ export const AuthorCard = ({ author }) => {
 };
 
 export default AuthorCard;
+// Geen wijzigingen nodig - externe links gebruiken correct <a> tags
