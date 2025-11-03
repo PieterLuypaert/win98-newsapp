@@ -2,6 +2,7 @@ import React from "react";
 import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
 import { TrendingList } from "../TrendingList/TrendingList";
+import { Button } from "../Button/Button";
 import "./HomeContent.css";
 import LoadingDialog from "../LoadingDialog/LoadingDialog";
 import { useHomeLogic } from "../../../pages/Home";
@@ -58,12 +59,12 @@ export const HomeContent = () => {
           {searchTerm && filteredNews.length === 0 ? (
             <div className="search-no-results">
               <p>No articles found for "{searchTerm}"</p>
-              <button
-                className="search-clear-button"
+              <Button
                 onClick={handleClearSearch}
+                className="search-clear-button"
               >
                 Clear Search
-              </button>
+              </Button>
             </div>
           ) : (
             <>
