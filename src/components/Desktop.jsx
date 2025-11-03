@@ -5,6 +5,10 @@ import { DesktopIconContainer } from "./functional/DesktopIcon/DesktopIconContai
 import { Clippy } from "./design/Clippy/Clippy";
 import * as Storage from "../core/storage";
 
+const DEFAULT_POSITIONS = {
+  news: { x: 20, y: 20 },
+};
+
 export const Desktop = ({ showIcons = true }) => {
   const navigate = useNavigate();
   const [iconPositions, setIconPositions] = useState(() =>
@@ -30,8 +34,15 @@ export const Desktop = ({ showIcons = true }) => {
     Storage.saveIconPositions(updatedPositions);
   };
 
+  const handleResetPosition = (iconId) => {
+    const updatedPositions = { ...iconPositions };
+    delete updatedPositions[iconId];
+    setIconPositions(updatedPositions);
+    Storage.saveIconPositions(updatedPositions);
+  };
+
   return (
-    <div className="desktop">
+    <div className="desktop" onContextMenu={(e) => e.preventDefault()}>
       {showIcons && (
         <div className="desktop-icons">
           {icons.map((icon) => (
@@ -42,12 +53,14 @@ export const Desktop = ({ showIcons = true }) => {
               label={icon.label}
               onClick={icon.onClick}
               isImage={icon.isImage}
-              position={iconPositions[icon.id]}
+              position={iconPositions[icon.id] || DEFAULT_POSITIONS[icon.id]}
               onPositionChange={handlePositionChange}
+              onResetPosition={handleResetPosition}
             />
           ))}
         </div>
       )}
+
       <Clippy message="Klik op het News icoon om te beginnen." />
     </div>
   );
