@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router";
 import "./RelatedArticles.css";
 
-export const RelatedArticles = ({ articles, onArticleClick }) => {
+export const RelatedArticles = ({ articles }) => {
   if (!articles || articles.length === 0) {
     return null;
   }
@@ -11,10 +12,10 @@ export const RelatedArticles = ({ articles, onArticleClick }) => {
       <div className="related-articles-header">Related Articles</div>
       <div className="related-articles-list">
         {articles.map((article) => (
-          <div
+          <Link
             key={article.id}
+            to={`/article/${article.slug}`}
             className="related-article-item"
-            onClick={() => onArticleClick(article.slug)}
           >
             {article.mainImage && (
               <img
@@ -29,7 +30,7 @@ export const RelatedArticles = ({ articles, onArticleClick }) => {
                 {new Date(article.timestamp).toLocaleDateString("nl-BE")}
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
