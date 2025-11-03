@@ -8,19 +8,19 @@
 @import "./layout/taskbar.css";
 
 /* UI components */
-@import "../components/design/Button/buttons.css";
-@import "../components/design/Seperator/Seperator.css";
-@import "../components/design/StartButton/TaskbarButton.css";
-@import "../components/design/Bookmarks/Bookmarks.css";
+@import "@design/Button/buttons.css";
+@import "@design/Seperator/Seperator.css";
+@import "@design/StartButton/TaskbarButton.css";
+@import "@design/Bookmarks/Bookmarks.css";
 
 @import "./layout/programs.css";
-@import "../components/design/TaskbarTime/TaskbarTime.css";
-@import "../components/design/TaskbarCredits/TaskbarCredits.css";
-@import "../components/design/window/window.css";
-@import "../components/design/Comments/Comments.css";
-@import "../components/design/CommentForm/CommentForm.css";
-@import "../components/design/AuthorCard/AuthorCard.css";
-@import "../components/design/BookmarkButton/BookmarkButton.css";
+@import "@design/TaskbarTime/TaskbarTime.css";
+@import "@design/TaskbarCredits/TaskbarCredits.css";
+@import "@design/window/window.css";
+@import "@design/Comments/Comments.css";
+@import "@design/CommentForm/CommentForm.css";
+@import "@design/AuthorCard/AuthorCard.css";
+@import "@design/BookmarkButton/BookmarkButton.css";
 
 /* Form components - consolidated */
 @import "./components/form-fields.css";
@@ -29,32 +29,3 @@
 @import "./responsive/mobile.css";
 @import "./responsive/tablet.css";
 @import "./responsive/desktop-large.css";
-
-@media (max-width: 900px) {
-  .desktop {
-    background: url("/window-mobile.jpg") center/cover no-repeat;
-    background-size: cover;
-    background-attachment: scroll;
-  }
-}
-@media (max-width: 600px) {
-  .desktop {
-    background: url("/window-mobile.jpg") center/cover no-repeat;
-    background-size: cover;
-    background-attachment: scroll;
-  }
-}
-@media (max-width: 480px) {
-  .desktop {
-    background: url("/window-mobile.jpg") center/cover no-repeat;
-    background-size: cover;
-    background-attachment: scroll;
-  }
-}
-@media (max-width: 360px) {
-  .desktop {
-    background: url("/window-mobile.jpg") center/cover no-repeat;
-    background-size: cover;
-    background-attachment: scroll;
-  }
-}
