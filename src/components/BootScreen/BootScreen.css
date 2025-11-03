@@ -1,28 +1,28 @@
 /* Fullscreen container */
 .bootscreen {
-    position: fixed;
-    inset: 0;
-    z-index: var(--z-index-bsod, 9999);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.12);
-    -webkit-font-smoothing: antialiased;
-    font-family: var(--font-family-primary);
-    pointer-events: auto;
-    overflow: hidden; 
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-bsod, 9999);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.12);
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-family-primary);
+  pointer-events: auto;
+  overflow: hidden;
 }
 
 .bootscreen::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--desktop-bg-default) center/cover no-repeat;
-    background-size: cover;
-    filter: blur(8px);
-    transform: scale(1.04); 
-    z-index: -1;
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--desktop-bg-default) center/cover no-repeat;
+  background-size: cover;
+  filter: blur(8px);
+  transform: scale(1.04);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .bootscreen-outer {
@@ -73,6 +73,15 @@
   margin: 6px 0;
 }
 
+.bootscreen-logo-static {
+  width: 420px;
+  max-width: 88%;
+  height: auto;
+  image-rendering: pixelated;
+  display: block;
+  opacity: 0.95;
+}
+
 .bootscreen-caption {
   margin-top: 8px;
   font-size: 13px;
@@ -102,6 +111,55 @@
   box-shadow: inset -1px -1px rgba(0, 0, 0, 0.12);
 }
 
+.bootscreen-start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px 20px;
+}
+
+.bootscreen-start-button {
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-black);
+  background: var(--color-window-bg);
+  border: 2px outset var(--color-white);
+  border-right-color: var(--color-gray-dark);
+  border-bottom-color: var(--color-gray-dark);
+  padding: 8px 32px;
+  min-width: 160px;
+  cursor: pointer;
+  transition: none;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.bootscreen-start-button:hover {
+  background: #d0d0d0;
+}
+
+.bootscreen-start-button:active {
+  border: 2px inset var(--color-white);
+  border-right-color: var(--color-gray-dark);
+  border-bottom-color: var(--color-gray-dark);
+  background: #b0b0b0;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bootscreen-start-button:focus {
+  outline: 1px dotted var(--color-black);
+  outline-offset: -4px;
+}
+
+.bootscreen-hint {
+  font-size: 11px;
+  color: var(--color-gray-darker);
+  font-family: var(--font-family-mono);
+  margin-top: -8px;
+}
+
 .bootscreen-subtext {
   margin-top: 8px;
   font-size: 11px;
@@ -118,5 +176,20 @@
   }
   .bootscreen-progress-wrap {
     height: 12px;
+  }
+
+  .bootscreen-start-screen {
+    padding: 30px 15px;
+    gap: 18px;
+  }
+
+  .bootscreen-logo-static {
+    width: 260px;
+  }
+
+  .bootscreen-start-button {
+    font-size: 13px;
+    padding: 6px 24px;
+    min-width: 140px;
   }
 }
