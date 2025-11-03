@@ -56,6 +56,38 @@
   pointer-events: none;
 }
 
+.desktop-icon-context-menu {
+  background: var(--color-window-bg);
+  border: 2px solid;
+  border-color: var(--color-window-border-light) var(--color-window-border-dark)
+    var(--color-window-border-dark) var(--color-window-border-light);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 2px;
+  min-width: 150px;
+}
+
+.context-menu-item {
+  width: 100%;
+  padding: 4px 8px;
+  background: var(--color-window-bg);
+  border: none;
+  text-align: left;
+  font-family: var(--font-family-primary);
+  font-size: 11px;
+  color: var(--color-black);
+  cursor: pointer;
+  display: block;
+}
+
+.context-menu-item:hover {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.context-menu-item:active {
+  background: var(--color-button-active);
+}
+
 @media (max-width: 768px) {
   .desktop-icon {
     width: 90px;
