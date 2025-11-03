@@ -8,7 +8,6 @@ import useAuth from "./UseAuth";
 import { FormInput } from "@/components/design/FormInput/FormInput";
 import { FormCheckbox } from "@/components/design/FormCheckbox/FormCheckbox";
 import { Button } from "@/components/design/Button/Button";
-import "@/components/design/LoginForm/LoginForm.css";
 
 const schema = zod.object({
   email: zod.string().email("Invalid email address"),
