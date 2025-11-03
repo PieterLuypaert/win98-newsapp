@@ -1,4 +1,4 @@
-import "@/components/design/AuthorCard/AuthorCard.css";
+import "@design/AuthorCard/AuthorCard.css";
 
 export const AuthorCard = ({ author }) => {
   if (!author) return null;
@@ -46,4 +46,3 @@ export const AuthorCard = ({ author }) => {
 };
 
 export default AuthorCard;
-// Geen wijzigingen nodig - externe links gebruiken correct <a> tags

@@ -1,5 +1,5 @@
-import isVoid from "../../../core/utils/isVoid";
-import LoadingDialog from "../../design/LoadingDialog/LoadingDialog";
+import isVoid from "@core/utils/isVoid";
+import LoadingDialog from "@design/LoadingDialog/LoadingDialog";
 
 const DataView = ({ error, data, onRender }) => {
   const isLoading = !error && !data;

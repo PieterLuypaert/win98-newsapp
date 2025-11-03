@@ -1,5 +1,5 @@
 import React from "react";
-import "@/components/design/Button/Button.css";
+import "@design/Button/Button.css";
 
 export const Button = ({
   children,
