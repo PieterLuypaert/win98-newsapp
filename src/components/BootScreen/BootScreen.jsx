@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import "@/components/BootScreen/BootScreen.css";
+import "./BootScreen.css";
 
 export default function BootScreen({ onFinish }) {
   const [exiting, setExiting] = useState(false);
