@@ -1,9 +1,9 @@
-import API from "../../networking/api";
+import API from "@core/networking/api";
 
 export const fetchCategories = () => {
-    return API.get("/news/categories.json").then(({ data }) => data);
+  return API.get("/news/categories.json").then(({ data }) => data);
 };
 
 export const fetchCategoryItem = (id) => {
-    return API.get(`/news/categories/${id}.json`).then(({ data }) => data);
+  return API.get(`/news/categories/${id}.json`).then(({ data }) => data);
 };
