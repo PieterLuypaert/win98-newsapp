@@ -7,6 +7,11 @@ import CommentForm from "@/components/design/CommentForm/CommentForm";
 const schema = zod.object({
   name: zod.string().min(1, "Naam is vereist"),
   body: zod.string().min(1, "Commentaar mag niet leeg zijn"),
+  email: zod
+    .string()
+    .email("Ongeldig emailadres")
+    .optional()
+    .or(zod.literal("")),
 });
 
 export const CommentFormContainer = ({ onSubmit, onCancel }) => {
@@ -16,11 +21,16 @@ export const CommentFormContainer = ({ onSubmit, onCancel }) => {
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(schema),
-    defaultValues: { name: "", body: "" },
+    defaultValues: { name: "", body: "", email: "" },
   });
 
   const submit = async (data) => {
-    if (onSubmit) await onSubmit(data);
+    if (onSubmit)
+      await onSubmit({
+        name: data.name,
+        body: data.body,
+        email: data.email || undefined,
+      });
   };
 
   return (

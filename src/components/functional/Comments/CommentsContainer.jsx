@@ -1,59 +1,73 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Comments from "../../design/Comments/Comments";
 import CommentFormContainer from "../Comments/CommentFormContainer";
-import commentsData from "../../../data/comments.json";
+import {
+  fetchComments,
+  postComment,
+} from "../../../core/modules/comments/comments.api";
+import useAuth from "../Auth/UseAuth";
+import LoadingDialog from "../../design/LoadingDialog/LoadingDialog";
 
-export const CommentsContainer = ({
-    postId,
-    initialComments = null,
-    onAdd,
-}) => {
-    const [comments, setComments] = useState([]);
-    const [showForm, setShowForm] = useState(false);
+export const CommentsContainer = ({ postId }) => {
+  const [showForm, setShowForm] = useState(false);
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
 
-    useEffect(() => {
-        if (Array.isArray(initialComments)) {
-            setComments(initialComments);
-        } else {
-            const articleComments = commentsData.filter(
-                (comment) => comment.postId === postId
-            );
-            setComments(articleComments);
-        }
-    }, [postId, initialComments]);
+  const { data: comments = [], isLoading } = useQuery({
+    queryKey: ["comments", postId],
+    queryFn: () => fetchComments(postId),
+    enabled: !!postId,
+  });
 
-    const handleAddComment = (formData) => {
-        const comment = {
-            postId,
-            id: Date.now(),
-            ...formData,
-        };
+  const mutation = useMutation({
+    mutationFn: (commentData) => postComment(postId, commentData),
+    onSuccess: (newComment) => {
+      queryClient.setQueryData(["comments", postId], (old = []) => [
+        { ...newComment, id: Date.now(), name: user?.username || "Anonymous" },
+        ...old,
+      ]);
+      setShowForm(false);
+    },
+  });
 
-        setComments((prev) => [comment, ...prev]);
-        setShowForm(false);
-        if (onAdd) onAdd(comment);
-    };
+  const handleAddComment = (formData) => {
+    if (!user) {
+      alert("You must be logged in to comment");
+      return;
+    }
+    mutation.mutate(formData);
+  };
 
-    const handleCancel = () => {
-        setShowForm(false);
-    };
+  const handleCancel = () => {
+    setShowForm(false);
+  };
 
-    const toggleForm = () => {
-        setShowForm((s) => !s);
-    };
+  const toggleForm = () => {
+    setShowForm((s) => !s);
+  };
 
-    const FormComponent = () => (
-        <CommentFormContainer onSubmit={handleAddComment} onCancel={handleCancel} />
-    );
+  const FormComponent = () => (
+    <CommentFormContainer onSubmit={handleAddComment} onCancel={handleCancel} />
+  );
 
+  if (isLoading) {
     return (
-        <Comments
-            comments={comments}
-            showForm={showForm}
-            onToggleForm={toggleForm}
-            FormComponent={FormComponent}
-        />
+      <LoadingDialog
+        message="Loading comments..."
+        onCancel={() => queryClient.cancelQueries(["comments", postId])}
+      />
     );
+  }
+
+  return (
+    <Comments
+      comments={comments}
+      showForm={showForm}
+      onToggleForm={toggleForm}
+      FormComponent={FormComponent}
+    />
+  );
 };
 
 export default CommentsContainer;
