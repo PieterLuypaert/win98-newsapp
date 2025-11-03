@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import "../styles/layout/programs.css";
-import { DesktopIconContainer } from "./functional/DesktopIcon/DesktopIconContainer";
-import { Clippy } from "./design/Clippy/Clippy";
-import * as Storage from "../core/storage";
+import "@styles/layout/programs.css";
+import { DesktopIconContainer } from "@functional/DesktopIcon/DesktopIconContainer";
+import { Clippy } from "@design/Clippy/Clippy";
+import * as Storage from "@core/storage";
 
 const DEFAULT_POSITIONS = {
   news: { x: 20, y: 20 },

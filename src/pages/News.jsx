@@ -1,5 +1,5 @@
 import React from "react";
-import { HomeContent } from "@/components/design/HomeContent/HomeContent";
+import { HomeContent } from "@design/HomeContent/HomeContent";
 
 export default function News() {
   return (
