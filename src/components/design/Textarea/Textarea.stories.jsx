@@ -1,4 +1,4 @@
-import "../../../styles/index.css";
+import "@styles/index.css";
 import React, { useState } from "react";
 import { Textarea } from "./Textarea";
 

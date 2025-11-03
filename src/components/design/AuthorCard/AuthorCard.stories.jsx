@@ -1,4 +1,4 @@
-import "../../../styles/index.css"; // laad globale styles zodat AuthorCard styling zichtbaar is
+import "@styles/index.css";
 import React from "react";
 import { AuthorCard } from "./AuthorCard";
 
