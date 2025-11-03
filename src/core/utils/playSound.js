@@ -3,12 +3,6 @@ let audioUnlocked = false;
 export const unlockAudio = () => {
   if (audioUnlocked) return Promise.resolve();
 
-  // Probeer een stil geluid af te spelen om audio te unlocken
-  const silentAudio = new Audio();
-  silentAudio.volume = 0.01;
-  silentAudio.src =
-    "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAAABmYWN0BAAAAAAAAABkYXRhAAAAAA==";
-
   return silentAudio
     .play()
     .then(() => {
