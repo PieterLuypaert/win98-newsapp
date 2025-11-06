@@ -33,20 +33,6 @@ export const CategoryContent = ({
       </section>
     );
 
-  if (isLoading) {
-    return (
-      <div className="category-content-wrapper">
-        <NewsNavigation
-          activeCategory={activeCategory}
-          onCategoryClick={(slug) => onCategoryClick(slug)}
-        />
-        <div style={{ padding: 16 }}>
-          <LoadingDialog message="Loading articles..." onCancel={() => {}} />
-        </div>
-      </div>
-    );
-  }
-
   const filteredByCategory = articles.filter(
     (article) =>
       !activeCategory ||
@@ -78,6 +64,20 @@ export const CategoryContent = ({
     }
     prevSearchTerm.current = searchTerm;
   }, [searchTerm, articlesFiltered.length]);
+
+  if (isLoading) {
+    return (
+      <div className="category-content-wrapper">
+        <NewsNavigation
+          activeCategory={activeCategory}
+          onCategoryClick={(slug) => onCategoryClick(slug)}
+        />
+        <div style={{ padding: 16 }}>
+          <LoadingDialog message="Loading articles..." onCancel={() => {}} />
+        </div>
+      </div>
+    );
+  }
 
   const headlines = articlesFiltered.filter((a) => a.isHeadline);
   const regularNews = articlesFiltered.filter((a) => !a.isHeadline);

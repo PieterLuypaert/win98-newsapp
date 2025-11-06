@@ -1,67 +1,111 @@
-import React, { useState, useEffect } from "react";
-import { playSound } from "@core/utils/playSound";
+import React from "react";
+import { Button } from "@design/Button/Button";
 import "./Clippy.css";
 
 export const Clippy = ({
-  message = "Welcome to my News App!",
-  autoShow = true,
-  soundEnabled = true,
+  message = "Welcome to my News App! Click me to chat!",
+  isExpanded = false,
+  chatHistory = [],
+  userInput = "",
+  isLoading = false,
+  error = null,
+  chatEndRef = null,
+  onClippyClick = () => {},
+  onSendMessage = () => {},
+  onInputChange = () => {},
+  onClearChat = () => {},
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasShown, setHasShown] = useState(false);
-
-  useEffect(() => {
-    if (autoShow && !hasShown) {
-      const timer = setTimeout(() => {
-        setIsVisible(true);
-        setHasShown(true);
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [autoShow, hasShown]);
-
-  const handleClose = () => {
-    setIsVisible(false);
-  };
-
-  const handleClippyClick = () => {
-    if (soundEnabled) {
-      playSound("/assets/sounds/clippy.mp3");
-    }
-  };
-
-  if (!isVisible) return null;
-
   return (
     <div className="clippy-container">
-      <div className="clippy-speech-bubble">
-        <div className="clippy-speech-header">
-          <span>Clippy says...</span>
-          <button
-            className="clippy-close"
-            onClick={handleClose}
-            aria-label="Close"
-          >
-            ×
-          </button>
+      <div className={`clippy-window ${isExpanded ? "expanded" : ""}`}>
+        <div className="clippy-title">
+          <span className="clippy-title-text">
+            {isExpanded ? "Clippy AI Assistant" : "Clippy says..."}
+          </span>
+          <div className="clippy-title-actions">
+            {isExpanded && (
+              <Button
+                variant="win98"
+                className="small"
+                onClick={onClearChat}
+                title="Clear chat history"
+              >
+                Clear
+              </Button>
+            )}
+          </div>
         </div>
-        <div className="clippy-speech-content">{message}</div>
+
+        <div className="clippy-body">
+          {!isExpanded ? (
+            <p className="clippy-message-simple">{message}</p>
+          ) : (
+            <>
+              <div className="clippy-messages">
+                <div className="clippy-msg assistant">
+                  <div className="msg-bubble">{message}</div>
+                </div>
+                {chatHistory.map((msg, idx) => (
+                  <div key={idx} className={`clippy-msg ${msg.role}`}>
+                    <div className="msg-bubble">{msg.content}</div>
+                  </div>
+                ))}
+                {isLoading && (
+                  <div className="clippy-msg assistant">
+                    <div className="msg-bubble loading">Typing...</div>
+                  </div>
+                )}
+                {error && (
+                  <div className="clippy-error">
+                    <small>Error: {error}</small>
+                  </div>
+                )}
+                <div ref={chatEndRef} />
+              </div>
+
+              <div className="clippy-input-area">
+                <input
+                  type="text"
+                  className="win98-input clippy-input-field"
+                  value={userInput}
+                  onChange={(e) => onInputChange(e.target.value)}
+                  placeholder="Ask Clippy anything..."
+                  disabled={isLoading}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter" && !isLoading && userInput.trim()) {
+                      onSendMessage();
+                    }
+                  }}
+                />
+                <Button
+                  variant="win98"
+                  onClick={onSendMessage}
+                  disabled={isLoading || !userInput.trim()}
+                >
+                  Send
+                </Button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
+
       <div
         className="clippy-character"
-        onClick={handleClippyClick}
+        onClick={onClippyClick}
         role="button"
         tabIndex={0}
         onKeyPress={(e) => {
           if (e.key === "Enter" || e.key === " ") {
-            handleClippyClick();
+            onClippyClick();
           }
         }}
-        title="Klik op mij voor een geluidje!"
+        title={isExpanded ? "Minimize chat" : "Chat with me!"}
       >
         <img src="/assets/clippy.gif" alt="Clippy" />
       </div>
     </div>
   );
 };
+
+export default Clippy;
