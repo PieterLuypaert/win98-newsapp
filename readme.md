@@ -66,7 +66,7 @@ The application features:
 - **Window Management**: Resizable, draggable windows
 - **Taskbar**: Functional taskbar with start menu and credits
 - **Boot Screen**: Animated startup sequence with audio
-- **Clippy Assistant**: Interactive help character
+- **Clippy AI Assistant**: Interactive AI-powered help character using OpenRouter
 - **Responsive Design**: Mobile-optimized layouts
 - **Loading States**: Windows 98-styled loading dialogs
 - **Error Handling**: User-friendly error messages
@@ -108,6 +108,11 @@ The application features:
 ### Deployment
 
 - **Render**: Cloud hosting platform
+
+### AI Integration
+
+- **OpenRouter**: AI API gateway for Clippy assistant
+- **GPT-3.5 Turbo**: Language model for conversational AI
 
 ## Architecture
 
@@ -151,6 +156,7 @@ src/
 
 - Node.js (v18 or higher)
 - npm or yarn package manager
+- OpenRouter API key (for Clippy AI features)
 
 ### Installation
 
@@ -177,7 +183,16 @@ cp .env.example .env.local
 
 ```env
 VITE_BASE_API_URL=https://www.pgm.gent/data
+VITE_OPENROUTER_API_KEY=your_openrouter_api_key_here
 ```
+
+**Getting an OpenRouter API Key:**
+
+- Visit [OpenRouter](https://openrouter.ai/keys)
+- Sign up or log in
+- Create a new API key
+- Add credits to your account (pay-as-you-go pricing)
+- Copy the key to your `.env.local` file
 
 ### Running the Application
 
@@ -300,6 +315,7 @@ All design components are documented in Storybook with interactive examples:
 - **Comments**: Comment list and form
 - **BookmarkButton**: Toggle bookmark state
 - **ProgressBar**: Reading progress indicator
+- **Clippy**: AI-powered assistant with chat interface
 
 ### Functional Components
 
@@ -338,33 +354,30 @@ GET /news/{id}.json               # Single article
 GET /profiles/{id}.json           # Author profile
 ```
 
-### Data Structure
+### OpenRouter AI API
+
+Clippy uses OpenRouter for AI-powered conversations:
 
 ```javascript
-// Article Object
-{
-  id: number,
-  slug: string,
-  title: string,
-  intro: string,
-  mainImage: string,
-  content: Array<ContentBlock>,
-  categories: Array<Category>,
-  tags: Array<Tag>,
-  author: number,
-  timestamp: string,
-  isHeadline: boolean
-}
+// API Configuration
+VITE_OPENROUTER_API_KEY=your_api_key
+
+// Features
+- Contextual help about the news app
+- Article summaries and explanations
+- Navigation assistance
+- General Q&A about news topics
+
+// Models Used
+- openai/gpt-3.5-turbo (default)
 ```
 
-### Caching Strategy
+**Privacy & Security:**
 
-React Query provides automatic caching:
-
-- Cache time: 5 minutes
-- Stale time: 1 minute
-- Automatic background refetching
-- Optimistic updates for bookmarks
+- Conversations are not stored by the application
+- Chat history stored locally in browser localStorage
+- API calls made directly from browser to OpenRouter
+- No server-side logging of conversations
 
 ## Authentication
 
