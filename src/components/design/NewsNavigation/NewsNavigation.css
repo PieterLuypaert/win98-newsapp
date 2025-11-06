@@ -54,9 +54,35 @@
   .news-navigation {
     flex-direction: column;
     align-items: stretch;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs);
   }
 
   .news-navigation-categories {
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    justify-content: flex-start;
+  }
+
+  .news-nav-item {
+    flex: 1 1 calc(50% - var(--spacing-xs));
+    box-sizing: border-box;
+    white-space: normal;
+    text-align: center;
+    padding: calc(var(--spacing-xs) / 2) var(--spacing-md);
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .news-navigation {
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs);
+  }
+
+  .news-nav-item {
+    flex-basis: 100%;
   }
 }
