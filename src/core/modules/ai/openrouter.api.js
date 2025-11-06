@@ -21,10 +21,6 @@ OpenRouterAPI.interceptors.request.use((config) => {
 export const sendMessageToAI = async (userMessage, chatHistory = []) => {
   const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
 
-  if (!apiKey || apiKey === "your_openrouter_api_key_here") {
-    throw new Error("OpenRouter API key not configured");
-  }
-
   const messages = [
     {
       role: "system",
