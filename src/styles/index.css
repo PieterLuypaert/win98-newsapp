@@ -21,8 +21,8 @@
 @import "@design/CommentForm/CommentForm.css";
 @import "@design/AuthorCard/AuthorCard.css";
 @import "@design/BookmarkButton/BookmarkButton.css";
+@import "@design/Clippy/Clippy.css";
 
-/* Form components - consolidated */
 @import "./components/form-fields.css";
 
 /* Media queries */
