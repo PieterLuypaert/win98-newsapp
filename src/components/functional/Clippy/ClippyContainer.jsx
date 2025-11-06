@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router"; // added
 import { playSound } from "@core/utils/playSound";
 import * as Storage from "@core/storage";
 import { sendMessageToAI } from "@core/modules/ai/openrouter.api";
@@ -9,6 +10,7 @@ export const ClippyContainer = ({
   autoShow = true,
   soundEnabled = true,
 }) => {
+  const navigate = useNavigate(); // added
   const [isVisible, setIsVisible] = useState(true);
   const [hasShown, setHasShown] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -53,6 +55,20 @@ export const ClippyContainer = ({
     setUserInput("");
     setIsLoading(true);
     setError(null);
+
+    const cmd = newMessage.content.trim().toLowerCase();
+    if (cmd === "open news" || cmd.startsWith("open news")) {
+      navigate("/news");
+      const actionReply = {
+        role: "assistant",
+        content: "Opening News window now.",
+      };
+      const finalHistory = [...updatedHistory, actionReply];
+      setChatHistory(finalHistory);
+      Storage.saveClippyChatHistory(finalHistory);
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const aiResponse = await sendMessageToAI(userInput, chatHistory);
