@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router"; // added
+import { useNavigate } from "react-router";
 import { playSound } from "@core/utils/playSound";
 import * as Storage from "@core/storage";
 import { sendMessageToAI } from "@core/modules/ai/openrouter.api";
@@ -10,7 +10,7 @@ export const ClippyContainer = ({
   autoShow = true,
   soundEnabled = true,
 }) => {
-  const navigate = useNavigate(); // added
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(true);
   const [hasShown, setHasShown] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -49,44 +49,84 @@ export const ClippyContainer = ({
   const handleSendMessage = async () => {
     if (!userInput.trim() || isLoading) return;
 
-    const newMessage = { role: "user", content: userInput };
-    const updatedHistory = [...chatHistory, newMessage];
-    setChatHistory(updatedHistory);
+    const text = userInput;
+    const userMsg = { role: "user", content: text };
+    const baseHistory = [...chatHistory, userMsg];
+    setChatHistory(baseHistory);
     setUserInput("");
     setIsLoading(true);
     setError(null);
 
-    const cmd = newMessage.content.trim().toLowerCase();
-    if (cmd === "open news" || cmd.startsWith("open news")) {
-      navigate("/news");
-      const actionReply = {
-        role: "assistant",
-        content: "Opening News window now.",
-      };
-      const finalHistory = [...updatedHistory, actionReply];
-      setChatHistory(finalHistory);
-      Storage.saveClippyChatHistory(finalHistory);
+    const raw = text.trim();
+    const lower = raw.toLowerCase();
+
+    const saveReply = (reply, path) => {
+      if (path) navigate(path);
+      const replyMsg = { role: "assistant", content: reply };
+      const h = [...baseHistory, replyMsg];
+      setChatHistory(h);
+      Storage.saveClippyChatHistory(h);
       setIsLoading(false);
-      return;
+    };
+
+    // Slash commands like "/news" or "/category/tech"
+    if (raw.startsWith("/")) {
+      if (lower === "/news") return saveReply("Opening News...", "/news");
+      if (lower === "/bookmarks")
+        return saveReply("Opening Bookmarks...", "/bookmarks");
+      if (lower === "/login") return saveReply("Opening Login...", "/login");
+      if (lower === "/register")
+        return saveReply("Opening Register...", "/register");
+      if (lower.startsWith("/category/")) {
+        const slug = raw.split("/")[2];
+        if (slug)
+          return saveReply(`Opening category ${slug}...`, `/category/${slug}`);
+      }
+      return saveReply("Onbekend commando. Gebruik '/news' of 'open <name>'.");
     }
 
+    // "open ..." style commands (explicit)
+    if (lower.startsWith("open ")) {
+      const target = lower.slice(5).trim();
+      if (target === "news") return saveReply("Opening News...", "/news");
+      if (target === "bookmarks")
+        return saveReply("Opening Bookmarks...", "/bookmarks");
+      if (target === "login") return saveReply("Opening Login...", "/login");
+      if (target === "register" || target === "signup")
+        return saveReply("Opening Register...", "/register");
+      if (target.startsWith("category ")) {
+        const slug = target.split(/\s+/)[1];
+        if (slug)
+          return saveReply(`Opening category ${slug}...`, `/category/${slug}`);
+      }
+
+      if (!target.includes(" ")) {
+        const slug = target;
+        return saveReply(`Opening category ${slug}...`, `/category/${slug}`);
+      }
+
+      return saveReply(
+        "Onbekend 'open' doel. Probeer 'open news' of 'open category <slug>'."
+      );
+    }
+
+    // anders: fallback naar AI
     try {
-      const aiResponse = await sendMessageToAI(userInput, chatHistory);
-      const responseMessage = { role: "assistant", content: aiResponse };
-      const finalHistory = [...updatedHistory, responseMessage];
-      setChatHistory(finalHistory);
-      Storage.saveClippyChatHistory(finalHistory);
+      const ai = await sendMessageToAI(text, chatHistory);
+      const aiMsg = { role: "assistant", content: ai };
+      const final = [...baseHistory, aiMsg];
+      setChatHistory(final);
+      Storage.saveClippyChatHistory(final);
     } catch (err) {
       console.error("Clippy AI error:", err);
-      setError(err.message || "Failed to get response");
-      const errorMessage = {
+      const errMsg = {
         role: "assistant",
-        content:
-          "Sorry, I couldn't process that. Make sure the OpenRouter API key is configured correctly!",
+        content: "Sorry, er is iets misgegaan met de AI-service.",
       };
-      const errorHistory = [...updatedHistory, errorMessage];
-      setChatHistory(errorHistory);
-      Storage.saveClippyChatHistory(errorHistory);
+      const final = [...baseHistory, errMsg];
+      setChatHistory(final);
+      Storage.saveClippyChatHistory(final);
+      setError(err.message || "AI error");
     } finally {
       setIsLoading(false);
     }
