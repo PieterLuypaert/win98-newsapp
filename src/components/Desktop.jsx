@@ -19,7 +19,7 @@ export const Desktop = ({ showIcons = true }) => {
     const hour = new Date().getHours();
     if (hour < 12) {
       return "Goedemorgen! Klik op het News icoon om het laatste nieuws te lezen.";
-    } else if (hour < 18) {
+    } else if (hour < 17) {
       return "Goedemiddag! Ontdek de laatste nieuwsartikelen.";
     } else {
       return "Goedenavond! Tijd voor het avondnieuws?";
