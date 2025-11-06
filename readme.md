@@ -29,6 +29,7 @@ A nostalgic Windows 98-styled news application built with React, featuring a ret
 - [Deployment](#deployment)
 - [License](#license)
 
+
 ## Project Overview
 
 This project is a modern news application wrapped in a nostalgic Windows 98 interface. It demonstrates advanced React development patterns, including component composition, custom hooks, state management with React Query, and form handling with React Hook Form.
