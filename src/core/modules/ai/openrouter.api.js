@@ -43,7 +43,7 @@ export const sendMessageToAI = async (userMessage, chatHistory = []) => {
 
   try {
     const response = await OpenRouterAPI.post("/chat/completions", {
-      model: "openai/gpt-3.5-turbo",
+      model: "openai/gpt-5-chat",
       messages,
       max_tokens: 200,
       temperature: 0.7,
