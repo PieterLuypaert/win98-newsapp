@@ -24,7 +24,7 @@ export const CommentsContainer = ({ postId }) => {
     mutationFn: (commentData) => postComment(postId, commentData),
     onSuccess: (newComment) => {
       queryClient.setQueryData(["comments", postId], (old = []) => [
-        { ...newComment, id: Date.now(), name: user?.username || "Anonymous" },
+        { ...newComment, id: Date.now(), name: user?.username || "Test" },
         ...old,
       ]);
       setShowForm(false);
