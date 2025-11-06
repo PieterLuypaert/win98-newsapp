@@ -6,6 +6,8 @@ const ICON_POSITIONS_KEY = "app_icon_positions";
 
 const CLIPPY_STATE_KEY = "app_clippy_dismissed";
 
+const CLIPPY_CHAT_KEY = "app_clippy_chat_history";
+
 export const saveUser = (user) => {
   localStorage.setItem(AUTH_KEY, JSON.stringify(user));
 };
@@ -52,4 +54,17 @@ export const isClippyDismissed = () => {
 
 export const clearClippyState = () => {
   localStorage.removeItem(CLIPPY_STATE_KEY);
+};
+
+export const saveClippyChatHistory = (history) => {
+  localStorage.setItem(CLIPPY_CHAT_KEY, JSON.stringify(history));
+};
+
+export const getClippyChatHistory = () => {
+  const raw = localStorage.getItem(CLIPPY_CHAT_KEY);
+  return raw ? JSON.parse(raw) : [];
+};
+
+export const clearClippyChatHistory = () => {
+  localStorage.removeItem(CLIPPY_CHAT_KEY);
 };
