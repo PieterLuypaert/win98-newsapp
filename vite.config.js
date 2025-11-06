@@ -16,4 +16,16 @@ export default defineConfig({
       "@modules": path.resolve(__dirname, "./src/core/modules"),
     },
   },
+  build: {
+    chunkSizeWarningLimit: 1000, // Increase to 1000 KB (adjust as needed)
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "react-router"],
+          query: ["@tanstack/react-query"],
+          motion: ["framer-motion"],
+        },
+      },
+    },
+  },
 });
