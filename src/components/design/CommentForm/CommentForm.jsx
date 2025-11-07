@@ -81,5 +81,3 @@ CommentForm.propTypes = {
   isSubmitting: PropTypes.bool,
   errors: PropTypes.object,
 };
-
-export default CommentForm;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router";
-import  ArticleContainer  from "@/components/functional/Article/ArticleContainer";
+import ArticleContainer from "@/components/functional/Article/ArticleContainer";
 
 export default function Article() {
   const { articleSlug } = useParams();

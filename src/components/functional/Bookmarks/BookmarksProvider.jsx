@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import * as Storage from "../../../core/storage";
-import { AuthContext } from "../Auth/AuthContext";
+import * as Storage from "@core/storage";
+import { AuthContext } from "@functional/Auth/AuthContext";
 
 const BookmarksContext = createContext(null);
 

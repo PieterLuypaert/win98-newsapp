@@ -1,5 +1,5 @@
 import React from "react";
-import Taskbar from "@/components/Taskbar";
+import { Taskbar } from "@/components/Taskbar";
 import { useBookmarks } from "@functional/Bookmarks/BookmarksProvider";
 
 const TaskbarContainer = ({ showFullscreenButton = true, onFullscreen }) => {

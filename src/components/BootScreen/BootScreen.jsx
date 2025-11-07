@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import "./BootScreen.css";
 
-export default function BootScreen({ onFinish }) {
+export function BootScreen({ onFinish }) {
   const [exiting, setExiting] = useState(false);
   const [started, setStarted] = useState(false);
   const audioRef = useRef(null);

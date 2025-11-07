@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import Comments from "../../design/Comments/Comments";
-import CommentFormContainer from "../Comments/CommentFormContainer";
-import {
-  fetchComments,
-  postComment,
-} from "../../../core/modules/comments/comments.api";
-import useAuth from "../Auth/UseAuth";
-import LoadingDialog from "../../design/LoadingDialog/LoadingDialog";
+import { Comments } from "@design/Comments/Comments";
+import { CommentFormContainer } from "@functional/Comments/CommentFormContainer";
+import { fetchComments, postComment, } from "@core/modules/comments/comments.api";
+import useAuth from "@functional/Auth/UseAuth";
+import LoadingDialog from "@design/LoadingDialog/LoadingDialog";
 
 export const CommentsContainer = ({ postId }) => {
   const [showForm, setShowForm] = useState(false);

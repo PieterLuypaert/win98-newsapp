@@ -4,9 +4,9 @@ import { Outlet, useLocation, matchPath, useNavigate } from "react-router";
 import TaskbarContainer from "@functional/Taskbar/TaskbarContainer";
 import { Desktop } from "@/components/Desktop";
 import { Window } from "@design/window/window";
-import BootScreen from "@/components/BootScreen/BootScreen";
+import { BootScreen } from "@/components/BootScreen/BootScreen";
 
-function App() {
+export function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showBoot, setShowBoot] = useState(true);
 
@@ -124,5 +124,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
