@@ -5,8 +5,24 @@ import Draggable from "react-draggable";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export const Window = forwardRef(
-  ({ title, children, onClose, width = 800, height = 600, ...props }, ref) => {
+  (
+    {
+      title,
+      children,
+      onClose,
+      width = 800,
+      height = 600,
+      maximized = false,
+      onToggleMaximize,
+      ...props
+    },
+    ref
+  ) => {
     const nodeRef = useRef(null);
+
+    const windowStyle = maximized
+      ? {}
+      : { width: `${width}px`, minHeight: `${height}px` };
 
     return (
       <Dialog
@@ -18,7 +34,7 @@ export const Window = forwardRef(
           <DialogContent
             ref={ref}
             {...props}
-            className="dialog"
+            className={`dialog ${maximized ? "maximized" : ""}`}
             onPointerDownOutside={(event) => {
               event.preventDefault();
             }}
@@ -31,17 +47,26 @@ export const Window = forwardRef(
             </VisuallyHidden>
             <Draggable
               handle=".title"
-              cancel=".closeButton, .touch-close"
+              cancel=".closeButton, .touch-close, .fullscreenButton"
               nodeRef={nodeRef}
             >
-              <div
-                ref={nodeRef}
-                className="window"
-                style={{ width: `${width}px`, minHeight: `${height}px` }}
-              >
+              <div ref={nodeRef} className="window" style={windowStyle}>
                 <div className="title" style={{ position: "relative" }}>
                   {title}
                   <div className="actions">
+                    <button
+                      className="fullscreenButton"
+                      title="Toggle fullscreen"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onToggleMaximize && onToggleMaximize();
+                      }}
+                      onTouchStart={(e) => e.stopPropagation()}
+                      onTouchEnd={(e) => e.stopPropagation()}
+                    >
+                      ⛶
+                    </button>
+
                     <DialogClose
                       className="closeButton touch-close"
                       tabIndex={0}
