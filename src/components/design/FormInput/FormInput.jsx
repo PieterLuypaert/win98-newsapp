@@ -2,43 +2,51 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./FormInput.css";
 
-export const FormInput = ({
-  type = "text",
-  name,
-  id,
-  label,
-  className = "win98-input",
-  placeholder = "",
-  required = false,
-  value,
-  onChange,
-  error,
-  ...rest
-}) => {
-  const inputId = id || `${name}-id`;
+export const FormInput = React.forwardRef(
+  (
+    {
+      type = "text",
+      name,
+      id,
+      label,
+      className = "win98-input",
+      placeholder = "",
+      required = false,
+      value,
+      onChange,
+      error,
+      ...rest
+    },
+    ref
+  ) => {
+    const inputId = id || `${name}-id`;
 
-  return (
-    <div className="form-row form-input">
-      {label && (
-        <label className="form-label" htmlFor={inputId}>
-          {label}
-        </label>
-      )}
-      <input
-        id={inputId}
-        name={name}
-        type={type}
-        className={className}
-        placeholder={placeholder}
-        required={required}
-        value={value}
-        onChange={onChange}
-        {...rest}
-      />
-      {error && <div className="form-error">{error}</div>}
-    </div>
-  );
-};
+    return (
+      <div className="form-row form-input">
+        {label && (
+          <label className="form-label" htmlFor={inputId}>
+            {label}
+          </label>
+        )}
+        <input
+          ref={ref}
+          id={inputId}
+          name={name}
+          type={type}
+          className={className}
+          placeholder={placeholder}
+          required={required}
+          value={value}
+          onChange={onChange}
+          {...rest}
+        />
+        {error && <div className="form-error">{error}</div>}
+      </div>
+    );
+  }
+);
+
+FormInput.displayName = "FormInput";
 
 FormInput.propTypes = {
   type: PropTypes.string,

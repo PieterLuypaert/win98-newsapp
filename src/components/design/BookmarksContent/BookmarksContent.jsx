@@ -73,7 +73,7 @@ export const BookmarksContent = ({
               <Link to={`/article/${article.slug}`}>
                 <ArticleCard
                   article={article}
-                  onClick={(e) => e.preventDefault()}
+                  onClick={() => {}}
                   onCategoryClick={() => {}}
                 />
               </Link>
