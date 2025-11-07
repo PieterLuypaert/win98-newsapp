@@ -1,10 +1,12 @@
 import "@styles/index.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Outlet, useLocation, matchPath, useNavigate } from "react-router";
 import { TaskbarContainer } from "@functional/Taskbar/TaskbarContainer";
 import { Desktop } from "@/components/Desktop";
 import { Window } from "@design/window/window";
 import { BootScreen } from "@/components/BootScreen/BootScreen";
+import { routes } from "./config/routes";
+import { useWindowMaximize } from "./hooks/useWindowMaximize";
 
 export function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -13,7 +15,22 @@ export function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const win = routes.find((route) =>
+    matchPath({ path: route.path }, location.pathname)
+  )?.config || { open: false };
+
+  const {
+    isWindowMaximized,
+    toggle: toggleWindowMaximize,
+    reset,
+  } = useWindowMaximize(win);
+
   const handleFullscreen = () => {
+    if (win.open && win.type === "news") {
+      toggleWindowMaximize();
+      return;
+    }
+
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
       setIsFullscreen(true);
@@ -23,75 +40,15 @@ export function App() {
     }
   };
 
-  const routes = [
-    {
-      path: "/news",
-      config: {
-        open: true,
-        type: "news",
-        title: "News Explorer - Home",
-        width: 1000,
-        height: 600,
-      },
-    },
-    {
-      path: "/bookmarks",
-      config: {
-        open: true,
-        type: "bookmarks",
-        title: "Bookmarks",
-        width: 800,
-        height: 560,
-      },
-    },
-    {
-      path: "/category/:categorySlug",
-      config: {
-        open: true,
-        type: "category",
-        title: "News Explorer - Category",
-        width: 1000,
-        height: 600,
-      },
-    },
-    {
-      path: "/article/:articleSlug",
-      config: {
-        open: true,
-        type: "article",
-        title: "News Explorer - Article",
-        width: 1000,
-        height: 600,
-      },
-    },
-    {
-      path: "/login",
-      config: {
-        open: true,
-        type: "login",
-        title: "Login",
-        width: 360,
-        height: 180,
-      },
-    },
-    {
-      path: "/register",
-      config: {
-        open: true,
-        type: "register",
-        title: "Register",
-        width: 360,
-        height: 180,
-      },
-    },
-  ];
-
-  const win = routes.find((route) =>
-    matchPath({ path: route.path }, location.pathname)
-  )?.config || { open: false };
-
   const handleCloseWindow = () => {
+    reset();
     navigate("/", { replace: true });
+  };
+
+  const handleToggleWindowMaximize = () => {
+    if (win.open && win.type === "news") {
+      toggleWindowMaximize();
+    }
   };
 
   const handleBootFinish = () => {
@@ -109,6 +66,8 @@ export function App() {
             onClose={handleCloseWindow}
             width={win.width}
             height={win.height}
+            maximized={isWindowMaximized}
+            onToggleMaximize={handleToggleWindowMaximize}
           >
             <Outlet />
           </Window>
