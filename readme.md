@@ -1,4 +1,5 @@
 # Windows 98 News Application
+![Bootscreen van de app met geluid](./public/assets/starting.png)
 
 ![Hoofdesign van de app](./public/assets/news-application.png)
 
