@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { NewsWindow } from "../NewsWindow/NewsWindow";
-import HomeContainer from "../../functional/Home/HomeContainer";
-import CategoryContainer from "../../functional/Category/CategoryContainer";
-import ArticleContainer from "../../functional/Article/ArticleContainer";
-import BookmarksContainer from "../../functional/Bookmarks/BookmarksContainer";
+import { HomeContainer } from "@/functional/Home/HomeContainer";
+import { CategoryContainer } from "@/functional/Category/CategoryContainer";
+import { ArticleContainer } from "@/functional/Article/ArticleContainer";
+import { BookmarksContainer } from "@/functional/Bookmarks/BookmarksContainer";
 
 export const ProgramGrid = ({ openWindow, categorySlug, articleSlug }) => {
   const navigate = useNavigate();

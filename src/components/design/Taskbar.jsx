@@ -6,7 +6,7 @@ import { FullscreenButton } from "./design/FullscreenButton/FullscreenButton";
 import { TaskbarTabs } from "./design/TaskbarCredits/TaskbarCredits";
 import { TaskbarTime } from "./design/TaskbarTime/TaskbarTime";
 import { Bookmark } from "./design/Bookmarks/Bookmarks";
-import BookmarkCount from "./design/Bookmarks/BookmarkCount";
+import { BookmarkCount } from "./design/Bookmarks/BookmarkCount";
 
 export const Taskbar = ({
   time,

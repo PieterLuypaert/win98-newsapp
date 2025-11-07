@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "@/components/design/Button/Button";
 import "./BookmarkButton.css";
-import LoginPrompt from "@/components/design/LoginPrompt/LoginPrompt";
+import { Button } from "@/components/design/Button/Button";
+import { LoginPrompt } from "@/components/design/LoginPrompt/LoginPrompt";
 
 export const BookmarkButton = ({
   bookmarked = false,

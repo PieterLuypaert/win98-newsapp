@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router";
 import "./RelatedArticles.css";
+import { Link } from "react-router";
 
 export const RelatedArticles = ({ articles }) => {
   if (!articles || articles.length === 0) {

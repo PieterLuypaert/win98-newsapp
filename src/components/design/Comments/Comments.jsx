@@ -1,8 +1,8 @@
 import React from "react";
+import "./Comments.css";
+import useAuth from "@functional/Auth/UseAuth";
 import { Button } from "@design/Button/Button";
 import { Separator } from "@design/Seperator/Separator";
-import useAuth from "@functional/Auth/UseAuth";
-import "./Comments.css";
 
 export const Comments = ({
   comments = [],

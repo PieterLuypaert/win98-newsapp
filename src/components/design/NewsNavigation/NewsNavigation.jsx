@@ -1,8 +1,8 @@
 import React from "react";
-import { SearchBar } from "../Searchbar/Searchbar";
 import "./NewsNavigation.css";
+import { SearchBar } from "../Searchbar/Searchbar";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCategories } from "../../../core/modules/categories/category.api";
+import { fetchCategories } from "@core/modules/categories/category.api";
 
 export const NewsNavigation = ({
   activeCategory,

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { AuthContext } from "./AuthContext";
-import * as Storage from "../../../core/storage";
+import * as Storage from "@/core/storage";
 
 const AuthProvider = ({ children }) => {
   const [user, setUserState] = useState(Storage.getUser());

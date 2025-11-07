@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "@design/Button/Button";
 import "./Clippy.css";
+import { Button } from "@design/Button/Button";
 
 export const Clippy = ({
   message = "Welcome to my News App! Click me to chat!",

@@ -1,8 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
+import "./CommentForm.css";
 import { Button } from "@design/Button/Button";
 import { Textarea } from "@design/Textarea/Textarea";
-import "./CommentForm.css";
-import PropTypes from "prop-types";
 
 export const CommentForm = ({
   name = "",

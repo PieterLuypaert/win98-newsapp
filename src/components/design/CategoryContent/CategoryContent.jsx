@@ -1,9 +1,9 @@
 import React from "react";
+import "./CategoryContent.css";
+import { Link } from "react-router";
 import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
-import "./CategoryContent.css";
 import LoadingDialog from "../LoadingDialog/LoadingDialog";
-import { Link } from "react-router"; 
 
 export const CategoryContent = ({
   isLoading = false,
