@@ -1,6 +1,8 @@
 # Windows 98 News Application
 ![Bootscreen van de app met geluid](./public/assets/starting.png)
 
+Windows 98 News Application met de klassieke windows bootscreen sound
+
 ![Hoofdesign van de app](./public/assets/news-application.png)
 
 Een nostalgische Windows 98‑stijl nieuwsapp gebouwd met React. Deze README bevat instructies om het project lokaal te draaien, de architectuur en links naar de live demo's. De bovenste afbeelding toont het hoofdesign / hoofdscherm van de applicatie.
