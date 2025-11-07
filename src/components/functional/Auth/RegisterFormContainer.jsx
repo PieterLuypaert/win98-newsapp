@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as zod from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { fakeRegister } from "@core/auth/auth.api.js";
-import useAuth from "@functional/Auth/UseAuth";
+import {useAuth} from "@functional/Auth/UseAuth";
 import { Button } from "@design/Button/Button";
 import { FormInput } from "@design/FormInput/FormInput";
 import { FormSelect } from "@design/FormSelect/FormSelect";
@@ -160,5 +160,3 @@ export const RegisterFormContainer = ({ onClose }) => {
     </form>
   );
 };
-
-export default RegisterFormContainer;

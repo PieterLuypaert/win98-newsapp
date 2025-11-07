@@ -45,4 +45,3 @@ export const BookmarkButton = ({
   );
 };
 
-export default BookmarkButton;

@@ -10,4 +10,3 @@ export function BookmarkCount({ count = 0 }) {
   );
 }
 
-export default BookmarkCount;

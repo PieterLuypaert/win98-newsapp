@@ -1,6 +1,6 @@
 import React from "react";
-import { RelatedArticles } from "@/components/design/RelatedArticles/RelatedArticles";
 import "./ArticleContent.css";
+import { RelatedArticles } from "@/components/design/RelatedArticles/RelatedArticles";
 import { ArticleHeader } from "@/components/design/ArticleHeader/ArticleHeader";
 import { ArticleBody } from "@/components/design/ArticleBody/ArticleBody";
 import { ArticleSidebar } from "@/components/design/ArticleSidebar/ArticleSidebar";

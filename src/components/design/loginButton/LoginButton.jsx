@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import useAuth from "../../functional/Auth/UseAuth";
+import { useAuth } from "../../functional/Auth/UseAuth";
 
 export const LoginButton = () => {
   const navigate = useNavigate();

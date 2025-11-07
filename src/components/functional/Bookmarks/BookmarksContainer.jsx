@@ -3,10 +3,10 @@ import { useNavigate } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { BookmarksContent } from "@design/BookmarksContent/BookmarksContent";
 import { fetchNews } from "@core/modules/news/news.api";
-import useAuth from "@functional/Auth/UseAuth";
+import { useAuth } from "@functional/Auth/UseAuth";
 import { useBookmarks } from "@functional/Bookmarks/BookmarksProvider";
 
-const BookmarksContainer = () => {
+export const BookmarksContainer = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const auth = useAuth();
@@ -43,5 +43,3 @@ const BookmarksContainer = () => {
     />
   );
 };
-
-export default BookmarksContainer;

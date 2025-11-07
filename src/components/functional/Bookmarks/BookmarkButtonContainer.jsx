@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import useAuth from "@functional/Auth/UseAuth";
+import { useAuth } from "@functional/Auth/UseAuth";
 import { useBookmarks } from "./BookmarksProvider";
 import { BookmarkButton } from "../../design/BookmarkButton/BookmarkButton";
 

@@ -6,9 +6,9 @@ import { fetchNews } from "@core/modules/news/news.api";
 import { fetchAuthors } from "@core/modules/authors/authors.api";
 import { BookmarkButtonContainer } from "@functional/Bookmarks/BookmarkButtonContainer";
 import { CommentsContainer } from "@functional/Comments/CommentsContainer";
-import LoadingDialog from "@design/LoadingDialog/LoadingDialog";
+import { LoadingDialog } from "@design/LoadingDialog/LoadingDialog";
 
-const ArticleContainer = ({ articleSlug }) => {
+export const ArticleContainer = ({ articleSlug }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const contentRef = useRef(null);
@@ -124,4 +124,3 @@ const ArticleContainer = ({ articleSlug }) => {
   );
 };
 
-export default ArticleContainer;

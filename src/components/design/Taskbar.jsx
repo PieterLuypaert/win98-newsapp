@@ -36,4 +36,3 @@ export const Taskbar = ({
   );
 };
 
-export default Taskbar;

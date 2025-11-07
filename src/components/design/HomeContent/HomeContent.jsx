@@ -4,9 +4,9 @@ import { NewsNavigation } from "@/components/design/NewsNavigation/NewsNavigatio
 import { ArticleCard } from "@/components/design/ArticleCard/ArticleCard";
 import { TrendingList } from "@/components/design/TrendingList/TrendingList";
 import { Button } from "@/components/design/Button/Button";
-import LoadingDialog from "@/components/design/LoadingDialog/LoadingDialog";
+import { LoadingDialog } from "@/components/design/LoadingDialog/LoadingDialog";
 import { useHomeLogic } from "@/pages/Home";
-import playSound from "@/core/utils/playSound";
+import { playSound } from "@/core/utils/playSound";
 
 export const HomeContent = () => {
   const {

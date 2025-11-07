@@ -3,7 +3,7 @@ import "./CategoryContent.css";
 import { Link } from "react-router";
 import { NewsNavigation } from "../NewsNavigation/NewsNavigation";
 import { ArticleCard } from "../ArticleCard/ArticleCard";
-import LoadingDialog from "../LoadingDialog/LoadingDialog";
+import { LoadingDialog } from "../LoadingDialog/LoadingDialog";
 
 export const CategoryContent = ({
   isLoading = false,
@@ -100,5 +100,3 @@ export const CategoryContent = ({
     </div>
   );
 };
-
-export default CategoryContent;

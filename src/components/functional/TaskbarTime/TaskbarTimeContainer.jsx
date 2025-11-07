@@ -20,4 +20,3 @@ export const TaskbarTimeContainer = () => {
   return <TaskbarTime time={formattedTime} />;
 };
 
-export default TaskbarTimeContainer;

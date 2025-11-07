@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { RegisterModal } from "../components/design/registerModal/RegisterModal";
 import { RegisterFormContainer } from "@/components/functional/Auth/RegisterFormContainer";
 
-export default function Register() {
+export function Register() {
   const navigate = useNavigate();
 
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import "./LoadingDialog.css";
 
-const LoadingDialog = ({ message = "Loading...", onCancel }) => {
+export const LoadingDialog = ({ message = "Loading...", onCancel }) => {
   return (
     <div className="ld-inline" role="status" aria-live="polite">
       <div className="ld-window ld-window--embedded">
@@ -25,4 +25,3 @@ const LoadingDialog = ({ message = "Loading...", onCancel }) => {
   );
 };
 
-export default LoadingDialog;

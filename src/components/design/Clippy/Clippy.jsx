@@ -108,4 +108,3 @@ export const Clippy = ({
   );
 };
 
-export default Clippy;

@@ -111,5 +111,3 @@ export const DesktopIconContainer = ({
     />
   );
 };
-
-export default DesktopIconContainer;

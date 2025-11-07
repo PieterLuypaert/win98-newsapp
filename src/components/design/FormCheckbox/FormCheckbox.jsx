@@ -1,6 +1,6 @@
 import React from "react";
-import "./FormCheckbox.css";
 import PropTypes from "prop-types";
+import "./FormCheckbox.css";
 
 export const FormCheckbox = ({
   name = "checkbox",
@@ -42,5 +42,3 @@ FormCheckbox.propTypes = {
   checked: PropTypes.bool,
   onChange: PropTypes.func,
 };
-
-export default FormCheckbox;

@@ -1,9 +1,9 @@
 import React from "react";
+import "./BookmarksContent.css";
 import { Link } from "react-router";
 import { ArticleCard } from "@design/ArticleCard/ArticleCard";
-import "./BookmarksContent.css";
 import { Button } from "@design/Button/Button";
-import LoadingDialog from "@design/LoadingDialog/LoadingDialog";
+import { LoadingDialog } from "@design/LoadingDialog/LoadingDialog";
 
 export const BookmarksContent = ({
   isAuthenticated = false,
@@ -97,5 +97,3 @@ export const BookmarksContent = ({
     </div>
   );
 };
-
-export default BookmarksContent;

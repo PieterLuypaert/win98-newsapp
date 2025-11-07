@@ -13,4 +13,3 @@ export const ProgressBar = ({ progress }) => {
   );
 };
 
-export default ProgressBar;

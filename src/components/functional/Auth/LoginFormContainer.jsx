@@ -4,7 +4,7 @@ import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { fakeLogin } from "@core/auth/auth.api.js";
-import useAuth from "@functional/Auth/UseAuth";
+import { useAuth } from "@functional/Auth/UseAuth";
 import { FormInput } from "@design/FormInput/FormInput";
 import { FormCheckbox } from "@design/FormCheckbox/FormCheckbox";
 import { Button } from "@design/Button/Button";
@@ -99,5 +99,3 @@ export const LoginFormContainer = ({ onSuccessClose, onRegister }) => {
     </form>
   );
 };
-
-export default LoginFormContainer;

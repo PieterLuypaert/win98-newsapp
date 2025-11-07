@@ -3,7 +3,7 @@ import "@/components/design/TrendingList/TrendingList.css";
 import { Link } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchTrending } from "@/core/modules/trending/trending.api";
-import LoadingDialog from "@/components/design/LoadingDialog/LoadingDialog";
+import { LoadingDialog } from "@/components/design/LoadingDialog/LoadingDialog";
 
 export const TrendingList = ({ items: propItems, onArticleClick }) => {
   const queryClient = useQueryClient();

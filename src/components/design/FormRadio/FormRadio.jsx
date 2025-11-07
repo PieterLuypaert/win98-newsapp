@@ -1,6 +1,6 @@
 import React from "react";
-import "./FormRadio.css";
 import PropTypes from "prop-types";
+import "./FormRadio.css";
 
 export const FormRadio = ({
   name,
@@ -49,5 +49,3 @@ FormRadio.propTypes = {
   required: PropTypes.bool,
   className: PropTypes.string,
 };
-
-export default FormRadio;

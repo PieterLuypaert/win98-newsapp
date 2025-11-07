@@ -50,4 +50,3 @@ export const useBookmarks = () => {
     return ctx;
 };
 
-export default BookmarksProvider;

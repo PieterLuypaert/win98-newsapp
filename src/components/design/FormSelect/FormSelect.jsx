@@ -1,6 +1,6 @@
 import React from "react";
-import "./FormSelect.css";
 import PropTypes from "prop-types";
+import "./FormSelect.css";
 
 export const FormSelect = ({
   name,
@@ -62,5 +62,3 @@ FormSelect.propTypes = {
   onChange: PropTypes.func,
   error: PropTypes.string,
 };
-
-export default FormSelect;

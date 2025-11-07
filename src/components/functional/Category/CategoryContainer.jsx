@@ -6,7 +6,7 @@ import { fetchNews } from "@core/modules/news/news.api";
 import { fetchCategories } from "@core/modules/categories/category.api";
 import playSound from "@core/utils/playSound";
 
-const CategoryContainer = ({ categorySlug }) => {
+export const CategoryContainer = ({ categorySlug }) => {
   const navigate = useNavigate();
 
   const [activeCategory, setActiveCategory] = useState(categorySlug);
@@ -101,5 +101,3 @@ const CategoryContainer = ({ categorySlug }) => {
     />
   );
 };
-
-export default CategoryContainer;

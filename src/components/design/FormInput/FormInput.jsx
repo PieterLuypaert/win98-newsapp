@@ -1,6 +1,6 @@
 import React from "react";
-import "./FormInput.css";
 import PropTypes from "prop-types";
+import "./FormInput.css";
 
 export const FormInput = ({
   type = "text",
@@ -53,5 +53,3 @@ FormInput.propTypes = {
   onBlur: PropTypes.func,
   error: PropTypes.string,
 };
-
-export default FormInput;

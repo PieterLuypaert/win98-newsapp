@@ -22,4 +22,3 @@ export const RegisterModal = ({
   return null;
 };
 
-export default RegisterModal;
