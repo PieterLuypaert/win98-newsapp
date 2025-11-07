@@ -12,7 +12,7 @@
   right: 0;
   transform: none;
   width: 100%;
-  height: calc(100vh - 2.5rem); 
+  height: calc(100vh - 2.5rem);
   inset: 0 auto auto 0;
   display: block;
   z-index: var(--z-index-window);
@@ -92,27 +92,56 @@
 }
 
 .window .title .fullscreenButton {
-  display: block;
-  min-width: 16px;
-  min-height: 14px;
-  background-color: var(--color-silver);
-  box-shadow: var(--shadow-window-button);
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 1;
-  text-align: center;
-  color: #000;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  border: none;
-  padding: 0 6px;
+  width: 28px;
+  height: 20px;
+  min-width: 28px;
+  min-height: 20px;
+  padding: 0;
   margin-right: 2px;
+  background-color: var(--color-silver);
+  box-shadow: var(--shadow-window-button);
+  border: none;
+  cursor: pointer;
+  color: #000;
+  font-weight: 700;
+  line-height: 1;
+  font-size: 13px;
+  border-radius: 2px;
+  transition: background 0.12s ease, transform 0.06s ease;
+}
+
+.window .title .fullscreenButton .fullscreen-icon {
+  display: inline-block;
+  font-size: 13px;
+  transform-origin: center;
+  line-height: 1;
+  user-select: none;
+}
+
+.window .title .fullscreenButton:hover {
+  background: var(--color-gray-light);
 }
 
 .window .title .fullscreenButton:active {
   box-shadow: var(--shadow-window-button-active);
+  transform: translateY(1px);
+}
+
+@media (max-width: 480px) {
+  .window .title .fullscreenButton {
+    width: 34px;
+    height: 24px;
+    min-width: 34px;
+    min-height: 24px;
+    font-size: 16px;
+  }
+
+  .window .title .fullscreenButton .fullscreen-icon {
+    font-size: 16px;
+  }
 }
 
 .window .body {
