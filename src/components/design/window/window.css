@@ -6,6 +6,28 @@
   transform: translate(-50%, -50%);
 }
 
+.dialog.maximized {
+  left: 0;
+  top: 0;
+  right: 0;
+  transform: none;
+  width: 100%;
+  height: calc(100vh - 2.5rem); 
+  inset: 0 auto auto 0;
+  display: block;
+  z-index: var(--z-index-window);
+}
+
+.dialog.maximized > .window {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+}
+
 .window {
   z-index: var(--z-index-window);
   gap: var(--spacing-sm);
@@ -67,6 +89,30 @@
 .window .title .closeButton:not(:disabled):active {
   box-shadow: var(--shadow-window-button-active);
   text-shadow: 1px 1px #222;
+}
+
+.window .title .fullscreenButton {
+  display: block;
+  min-width: 16px;
+  min-height: 14px;
+  background-color: var(--color-silver);
+  box-shadow: var(--shadow-window-button);
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  padding: 0 6px;
+  margin-right: 2px;
+}
+
+.window .title .fullscreenButton:active {
+  box-shadow: var(--shadow-window-button-active);
 }
 
 .window .body {

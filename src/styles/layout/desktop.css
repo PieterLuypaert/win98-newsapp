@@ -40,3 +40,28 @@
 .article-sidebar .login-prompt {
   max-width: 320px;
 }
+
+.window-wrapper {
+}
+
+
+.window-wrapper.maximized {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(100vh - 2.5rem); 
+  z-index: 900;
+  display: block;
+  margin: 0;
+  pointer-events: auto;
+}
+
+.window-wrapper.maximized > .window {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
