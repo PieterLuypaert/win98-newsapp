@@ -1,6 +1,8 @@
 # Windows 98 News Application
 
-A nostalgic Windows 98-styled news application built with React, featuring a retro user interface and modern web development practices.
+![Hoofdesign van de app](./public/assets/news-application.png)
+
+Een nostalgische Windows 98‑stijl nieuwsapp gebouwd met React. Deze README bevat instructies om het project lokaal te draaien, de architectuur en links naar de live demo's. De bovenste afbeelding toont het hoofdesign / hoofdscherm van de applicatie.
 
 ## Live Demo
 
@@ -28,7 +30,6 @@ A nostalgic Windows 98-styled news application built with React, featuring a ret
 - [Performance Optimizations](#performance-optimizations)
 - [Deployment](#deployment)
 - [License](#license)
-
 
 ## Project Overview
 
