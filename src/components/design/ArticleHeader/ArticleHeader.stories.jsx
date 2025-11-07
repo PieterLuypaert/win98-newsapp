@@ -24,7 +24,7 @@ const Template = (args) => {
     intro:
       args.intro ??
       "Dit is een korte introductie van het artikel. Pas deze tekst aan via de controls.",
-    mainImage: args.mainImage ?? "/assets/article-sample.jpg",
+      mainImage: "/public/assets/news-application.png",
     categories:
       Array.isArray(args.categories) && args.categories.length > 0
         ? args.categories
