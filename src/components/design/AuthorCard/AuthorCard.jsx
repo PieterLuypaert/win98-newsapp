@@ -1,4 +1,4 @@
-import "@design/AuthorCard/AuthorCard.css";
+import "./AuthorCard.css";
 
 export const AuthorCard = ({ author }) => {
   if (!author) return null;

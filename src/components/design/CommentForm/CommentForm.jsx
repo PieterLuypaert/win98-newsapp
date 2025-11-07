@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@design/Button/Button";
 import { Textarea } from "@design/Textarea/Textarea";
-import "@design/CommentForm/CommentForm.css";
+import "./CommentForm.css";
 import PropTypes from "prop-types";
 
 export const CommentForm = ({

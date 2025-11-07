@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@/components/design/Button/Button";
-import "@/components/design/BookmarkButton/BookmarkButton.css";
+import "./BookmarkButton.css";
 import LoginPrompt from "@/components/design/LoginPrompt/LoginPrompt";
 
 export const BookmarkButton = ({

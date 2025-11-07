@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
+import "./HomeContent.css";
 import { NewsNavigation } from "@/components/design/NewsNavigation/NewsNavigation";
 import { ArticleCard } from "@/components/design/ArticleCard/ArticleCard";
 import { TrendingList } from "@/components/design/TrendingList/TrendingList";
 import { Button } from "@/components/design/Button/Button";
-import "@/components/design/HomeContent/HomeContent.css";
 import LoadingDialog from "@/components/design/LoadingDialog/LoadingDialog";
 import { useHomeLogic } from "@/pages/Home";
 import playSound from "@/core/utils/playSound";

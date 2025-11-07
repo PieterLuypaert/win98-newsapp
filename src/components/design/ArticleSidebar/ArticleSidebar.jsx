@@ -1,5 +1,5 @@
 import React from "react";
-import "@/components/design/ArticleSidebar/ArticleSidebar.css";
+import "./ArticleSidebar.css";
 import { AuthorCard } from "@/components/design/AuthorCard/AuthorCard";
 import { ProgressBar } from "@/components/design/ProgressBar/ProgressBar";
 

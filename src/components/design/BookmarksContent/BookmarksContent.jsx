@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import { ArticleCard } from "@design/ArticleCard/ArticleCard";
-import "@design/BookmarksContent/BookmarksContent.css";
+import "./BookmarksContent.css";
 import { Button } from "@design/Button/Button";
 import LoadingDialog from "@design/LoadingDialog/LoadingDialog";
 

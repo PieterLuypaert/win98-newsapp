@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Button } from "@design/Button/Button";
-import "@design/LoginPrompt/LoginPrompt.css";
+import "./LoginPrompt.css";
 
 export const LoginPrompt = ({
   onClose = () => {},

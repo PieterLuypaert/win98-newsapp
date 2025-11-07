@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@design/Button/Button";
 import { Separator } from "@design/Seperator/Separator";
 import useAuth from "@functional/Auth/UseAuth";
-import "@design/Comments/Comments.css";
+import "./Comments.css";
 
 export const Comments = ({
   comments = [],
