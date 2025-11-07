@@ -1,12 +1,5 @@
 import "./window.css";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogPortal,
-  DialogTitle,
-  DialogDescription,
-} from "@radix-ui/react-dialog";
+import { Dialog, DialogClose, DialogContent, DialogPortal, DialogTitle, DialogDescription, } from "@radix-ui/react-dialog";
 import { forwardRef, useRef, useEffect } from "react";
 import Draggable from "react-draggable";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
