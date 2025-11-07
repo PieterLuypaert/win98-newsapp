@@ -50,19 +50,15 @@ export const Window = forwardRef(
       } else {
         const s = savedInlineStyles.current;
         if (s && el) {
-          // restore positioning/transform if available
           el.style.position = s.position || "";
           el.style.left = s.left || "";
           el.style.top = s.top || "";
           el.style.transform = s.transform || "";
-          // IMPORTANT: always restore size to the original props (width/height)
-          // so un-maximize returns to passed dimensions (e.g. 1000 x 600)
           el.style.width = `${width}px`;
           el.style.minHeight = `${height}px`;
           el.style.margin = s.margin || "";
           savedInlineStyles.current = null;
         } else {
-          // fallback: ensure correct size if no saved styles
           el.style.width = `${width}px`;
           el.style.minHeight = `${height}px`;
         }
