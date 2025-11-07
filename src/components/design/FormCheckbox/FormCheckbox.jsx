@@ -8,7 +8,7 @@ export const FormCheckbox = ({
   label = "",
   required = false,
   className = "",
-  checked,
+  checked = false,
   onChange,
   ...rest
 }) => {
