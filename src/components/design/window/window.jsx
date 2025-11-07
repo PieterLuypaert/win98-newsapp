@@ -1,6 +1,13 @@
 import "./window.css";
-import { Dialog, DialogClose, DialogContent, DialogPortal, DialogTitle, DialogDescription, } from "@radix-ui/react-dialog";
-import { forwardRef, useRef } from "react";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogPortal,
+  DialogTitle,
+  DialogDescription,
+} from "@radix-ui/react-dialog";
+import { forwardRef, useRef, useEffect } from "react";
 import Draggable from "react-draggable";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
@@ -19,6 +26,20 @@ export const Window = forwardRef(
     ref
   ) => {
     const nodeRef = useRef(null);
+
+    useEffect(() => {
+      const el = nodeRef.current;
+      if (!el) return;
+      if (maximized) {
+        el.style.transform = "";
+        el.style.left = "";
+        el.style.top = "";
+        el.style.position = "absolute";
+        el.style.margin = "0";
+      } else {
+       
+      }
+    }, [maximized]);
 
     const windowStyle = maximized
       ? {}
@@ -49,6 +70,7 @@ export const Window = forwardRef(
               handle=".title"
               cancel=".closeButton, .touch-close, .fullscreenButton"
               nodeRef={nodeRef}
+              disabled={maximized} 
             >
               <div ref={nodeRef} className="window" style={windowStyle}>
                 <div className="title" style={{ position: "relative" }}>
