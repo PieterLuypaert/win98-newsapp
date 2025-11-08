@@ -58,7 +58,7 @@ export const CategoryContainer = ({ categorySlug }) => {
       prevSearchTerm.current !== searchTerm &&
       articlesFiltered.length === 0
     ) {
-      playSound("/assets/sounds/error.wav");
+      playSound("/assets/sounds/erro.mp3");
     }
     prevSearchTerm.current = searchTerm;
   }, [searchTerm, articlesFiltered.length]);
