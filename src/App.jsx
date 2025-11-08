@@ -26,7 +26,9 @@ export function App() {
   } = useWindowMaximize(win);
 
   const handleFullscreen = () => {
-    if (win.open && win.type === "news") {
+
+    const allowed = ["news", "article", "category", "bookmarks"];
+    if (win.open && allowed.includes(win.type)) {
       toggleWindowMaximize();
       return;
     }
@@ -46,7 +48,8 @@ export function App() {
   };
 
   const handleToggleWindowMaximize = () => {
-    if (win.open && win.type === "news") {
+    const allowed = ["news", "article", "category", "bookmarks"];
+    if (win.open && allowed.includes(win.type)) {
       toggleWindowMaximize();
     }
   };

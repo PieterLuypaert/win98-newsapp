@@ -9,7 +9,8 @@ export const useWindowMaximize = (win = { open: false }) => {
   }, [win?.open]);
 
   const toggle = useCallback(() => {
-    if (win?.open && win.type === "news") {
+    const allowed = ["news", "article", "category", "bookmarks"];
+    if (win?.open && allowed.includes(win.type)) {
       setIsWindowMaximized((s) => !s);
     }
   }, [win]);
