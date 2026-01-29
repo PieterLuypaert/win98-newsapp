@@ -24,6 +24,7 @@
 @import "@design/Clippy/Clippy.css";
 
 @import "./components/form-fields.css";
+@import "./components/crt-overlay.css";
 
 /* Media queries */
 @import "./responsive/mobile.css";

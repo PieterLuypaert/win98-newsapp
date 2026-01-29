@@ -5,6 +5,7 @@ import { TaskbarContainer } from "@functional/Taskbar/TaskbarContainer";
 import { Desktop } from "@/components/Desktop";
 import { Window } from "@design/window/window";
 import { BootScreen } from "@/components/BootScreen/BootScreen";
+import { CRTOverlay } from "@/components/Effects/CRTOverlay";
 import { routes } from "./config/routes";
 import { useWindowMaximize } from "./hooks/useWindowMaximize";
 
@@ -16,7 +17,7 @@ export function App() {
   const navigate = useNavigate();
 
   const win = routes.find((route) =>
-    matchPath({ path: route.path }, location.pathname)
+    matchPath({ path: route.path }, location.pathname),
   )?.config || { open: false };
 
   const {
@@ -26,7 +27,6 @@ export function App() {
   } = useWindowMaximize(win);
 
   const handleFullscreen = () => {
-
     const allowed = ["news", "article", "category", "bookmarks"];
     if (win.open && allowed.includes(win.type)) {
       toggleWindowMaximize();
@@ -83,6 +83,7 @@ export function App() {
       />
 
       {showBoot && <BootScreen onFinish={handleBootFinish} />}
+      <CRTOverlay />
     </div>
   );
 }
