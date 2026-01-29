@@ -6,15 +6,23 @@ const OpenRouterAPI = axios.create({
   baseURL: OPENROUTER_BASE,
   headers: {
     "Content-Type": "application/json",
+    "HTTP-Referer": window.location.origin, // Required by OpenRouter for rankings
+    "X-Title": "Windows 98 News App", // Optional, shows in OpenRouter dashboard
   },
 });
 
 // Add API key to requests
 OpenRouterAPI.interceptors.request.use((config) => {
   const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
-  if (apiKey) {
+
+  if (!apiKey) {
+    console.warn(
+      "⚠️ OpenRouter API Key is missing! Check your VITE_OPENROUTER_API_KEY environment variable.",
+    );
+  } else {
     config.headers.Authorization = `Bearer ${apiKey}`;
   }
+
   return config;
 });
 
@@ -39,7 +47,7 @@ export const sendMessageToAI = async (userMessage, chatHistory = []) => {
 
   try {
     const response = await OpenRouterAPI.post("/chat/completions", {
-      model: "openai/gpt-5-chat",
+      model: "openai/gpt-3.5-turbo",
       messages,
       max_tokens: 200,
       temperature: 0.7,
@@ -48,11 +56,11 @@ export const sendMessageToAI = async (userMessage, chatHistory = []) => {
     return response.data.choices[0].message.content;
   } catch (error) {
     console.error("OpenRouter API error:", error);
-    
+
     if (error.response) {
       throw new Error(
-        error.response.data?.error?.message || 
-        `API error: ${error.response.status}`
+        error.response.data?.error?.message ||
+          `API error: ${error.response.status}`,
       );
     } else if (error.request) {
       // Request made but no response
