@@ -13,7 +13,9 @@ const OpenRouterAPI = axios.create({
 
 // Add API key to requests
 OpenRouterAPI.interceptors.request.use((config) => {
-  const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
+  // Sanitize the key: remove quotes and whitespace
+  const rawKey = import.meta.env.VITE_OPENROUTER_API_KEY;
+  const apiKey = rawKey ? rawKey.replace(/"/g, "").trim() : null;
 
   if (!apiKey) {
     console.warn(
@@ -55,9 +57,13 @@ export const sendMessageToAI = async (userMessage, chatHistory = []) => {
 
     return response.data.choices[0].message.content;
   } catch (error) {
-    console.error("OpenRouter API error:", error);
+    console.error("❌ Full OpenRouter Error Object:", error);
 
     if (error.response) {
+      console.error("❌ Error Data:", error.response.data);
+      console.error("❌ Error Status:", error.response.status);
+      console.error("❌ Error Headers:", error.response.headers);
+
       throw new Error(
         error.response.data?.error?.message ||
           `API error: ${error.response.status}`,
